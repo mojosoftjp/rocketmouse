@@ -152,32 +152,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Star field & shooting stars (auto-injected) ---
+  // --- Star field & shooting stars (canvas-based) ---
   (function createStarField() {
     const c = document.createElement('div');
     c.className = 'stars-container';
     c.setAttribute('aria-hidden', 'true');
 
-    // 3 star layers
-    ['stars-sm', 'stars-md', 'stars-lg'].forEach(cls => {
-      const el = document.createElement('div');
-      el.className = cls;
-      c.appendChild(el);
-    });
+    // Canvas for high-performance star rendering
+    const canvas = document.createElement('canvas');
+    canvas.className = 'stars-canvas';
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
+    c.appendChild(canvas);
 
-    // Aurora nebula
-    const aurora = document.createElement('div');
-    aurora.className = 'stars-aurora';
-    c.appendChild(aurora);
+    // Aurora nebula (two layers for depth)
+    const aurora1 = document.createElement('div');
+    aurora1.className = 'stars-aurora';
+    c.appendChild(aurora1);
+    const aurora2 = document.createElement('div');
+    aurora2.className = 'stars-aurora-2';
+    c.appendChild(aurora2);
 
-    // 5 shooting stars
-    for (let i = 1; i <= 5; i++) {
+    // 8 shooting stars
+    for (let i = 1; i <= 8; i++) {
       const s = document.createElement('div');
       s.className = 'shooting-star shooting-star-' + i;
       c.appendChild(s);
     }
 
     document.body.insertBefore(c, document.body.firstChild);
+
+    // --- Canvas star renderer ---
+    const ctx = canvas.getContext('2d');
+    let W, H, stars = [], animId;
+    const STAR_COUNT = 500;
+    const COLORS = [
+      [255,255,255],    // white
+      [16,185,129],     // green
+      [6,182,212],      // cyan
+      [99,102,241],     // indigo
+      [167,139,250],    // purple
+      [251,191,36],     // amber (rare)
+    ];
+
+    function initStars() {
+      W = canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
+      H = canvas.height = window.innerHeight * (window.devicePixelRatio || 1);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const colorIdx = Math.random() < 0.6 ? 0 : // 60% white
+                         Math.random() < 0.4 ? 1 : // ~16% green
+                         Math.random() < 0.4 ? 2 : // ~10% cyan
+                         Math.random() < 0.5 ? 3 : // ~7% indigo
+                         Math.random() < 0.7 ? 4 : 5; // purple/amber
+        const size = Math.random() < 0.7 ? 1 : Math.random() < 0.8 ? 1.5 : 2.5;
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: size,
+          color: COLORS[colorIdx],
+          alpha: 0.3 + Math.random() * 0.7,
+          twinkleSpeed: 0.5 + Math.random() * 2.5,
+          twinklePhase: Math.random() * Math.PI * 2,
+          glow: size > 2, // large stars get glow
+        });
+      }
+    }
+
+    function drawStars(time) {
+      ctx.clearRect(0, 0, W, H);
+      const t = time * 0.001;
+      for (const s of stars) {
+        const flicker = 0.5 + 0.5 * Math.sin(t * s.twinkleSpeed + s.twinklePhase);
+        const a = s.alpha * (0.3 + 0.7 * flicker);
+        const [r, g, b] = s.color;
+
+        if (s.glow) {
+          // Glow halo for large stars
+          const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
+          grad.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+          grad.addColorStop(0.3, `rgba(${r},${g},${b},${a * 0.4})`);
+          grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r * 5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Star core
+        ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      animId = requestAnimationFrame(drawStars);
+    }
+
+    initStars();
+    drawStars(0);
+
+    // Debounced resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { initStars(); }, 200);
+    });
   })();
 
   // --- Parallax orbs on mouse move (hero section only) ---
