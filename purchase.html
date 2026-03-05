@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購入 — RocketMouse AI</title>
+  <meta name="description" content="RocketMouse AI ライセンスの購入。買い切り・月額不要のビジュアルRPAマクロエディタ。">
+  <meta name="keywords" content="RocketMouse AI,ライセンス,購入,RPA,マクロ,自動化,買い切り,月額不要,個人版,法人版">
+  <link rel="icon" type="image/png" href="images/logo-64.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* --- Purchase page specific --- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 820px;
+      margin: 40px auto 0;
+    }
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
+    .pricing-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pricing-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 40px rgba(16,185,129,0.06);
+    }
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .pricing-card .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+    .pricing-card .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      margin: 12px 0 4px;
+    }
+    .pricing-card .price-note {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .pricing-card ul li {
+      color: rgba(255,255,255,0.8);
+      padding: 0.45rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.93rem;
+    }
+    .pricing-card ul li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    /* Hardware ID */
+    .hardware-id-section {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 8px;
+      text-align: left;
+    }
+    .hardware-id-section label {
+      display: block;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .hardware-id-section input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      background: rgba(0,0,0,0.3);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      font-family: var(--font-mono);
+      box-sizing: border-box;
+    }
+    .hardware-id-section input:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 2px rgba(16,185,129,0.2);
+    }
+    .hardware-id-section .help-text {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    .hardware-id-section .help-text a {
+      color: var(--accent-green);
+    }
+    .hardware-id-error {
+      color: var(--accent-red);
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+      display: none;
+    }
+
+    /* PayPal */
+    .paypal-button-container { min-height: 55px; }
+    .payment-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .payment-note svg { width: 16px; height: 16px; }
+
+    /* Bank transfer */
+    .bank-transfer-section {
+      max-width: 820px;
+      margin: 48px auto 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .bank-transfer-section h3 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bank-transfer-section h3 svg { width: 24px; height: 24px; color: var(--accent-green); }
+    .bank-description {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+    .bank-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .bank-table th, .bank-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.92rem;
+    }
+    .bank-table th {
+      color: var(--text-muted);
+      width: 120px;
+      font-weight: 500;
+    }
+    .bank-table td { color: var(--text-primary); }
+    .bank-notice {
+      background: rgba(16,185,129,0.04);
+      border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+    .bank-notice h4 {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bank-notice h4 svg { width: 20px; height: 20px; color: var(--accent-green); }
+    .bank-notice ol {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bank-notice ol ul {
+      list-style: disc;
+      padding-left: 1rem;
+      margin: 4px 0;
+    }
+    .bank-notice ol ul li { color: var(--text-secondary); }
+    .bank-note {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Notice box */
+    .notice-box {
+      max-width: 820px;
+      margin: 24px auto 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .notice-box h4 {
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .notice-box p, .notice-box li {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .notice-box ol { padding-left: 1.2rem; }
+    .notice-box ul { list-style: disc; padding-left: 1.2rem; }
+
+    /* Process steps */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 820px;
+      margin: 32px auto 0;
+    }
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+    }
+    .process-step {
+      text-align: center;
+      padding: 1.2rem 0.8rem;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      color: #000;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1.1rem;
+    }
+    .process-step h4 {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    /* Success modal */
+    .success-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .success-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .success-modal {
+      background: #111;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+    }
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .success-icon svg { width: 32px; height: 32px; color: #000; }
+    .success-modal h2 {
+      color: var(--text-primary);
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+    .success-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+    .success-details {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--text-muted); font-size: 0.85rem; }
+    .detail-value { color: var(--text-primary); font-size: 0.85rem; font-weight: 500; }
+    .success-next-steps {
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .success-next-steps h4 {
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .success-next-steps h4 svg { width: 18px; height: 18px; color: var(--accent-green); }
+    .success-next-steps p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .success-close-btn {
+      background: var(--accent-green);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 32px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .success-close-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><img src="images/logo-64.png" alt="">RocketMouse AI</a>
+    <button class="nav-mobile-toggle">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">ホーム</a>
+      <a href="download.html">ダウンロード</a>
+      <a href="help.html">ヘルプ</a>
+      <a href="license.html">ライセンス</a>
+      <a href="purchase.html" class="active">購入</a>
+      <a href="contact.html">お問い合わせ</a>
+      <div class="nav-lang">
+        <a href="purchase.html" class="active">JP</a>
+        <a href="en/purchase.html">EN</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">ホーム</a><span>/</span><span>購入</span></div>
+    <h1>ライセンス購入</h1>
+    <p>RocketMouse AI のフルバージョンを入手 — 買い切り・月額不要</p>
+  </div>
+</div>
+
+<!-- 価格カード -->
+<section class="section">
+  <div class="container">
+    <div class="pricing-grid reveal">
+      <!-- 個人版 -->
+      <div class="pricing-card">
+        <h3>Personal</h3>
+        <p class="subtitle">1 PC &middot; 永久ライセンス</p>
+        <div class="price">&yen;49,800</div>
+        <p class="price-note">税込 &middot; 買い切り</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>全機能無制限</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>永久ライセンス（買い切り）</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>無料アップデート</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>メールサポート</li>
+        </ul>
+        <!-- ハードウェアID入力欄（個人版は1PC限定のため必須） -->
+        <div class="hardware-id-section">
+          <label for="hardware-id-input">ハードウェアID（必須）</label>
+          <input type="text" id="hardware-id-input" placeholder="RM-HW-XXXXXXXXXXXXXXXX" maxlength="23">
+          <p class="help-text">RocketMouse AI のAboutダイアログでハードウェアIDを確認・コピーできます。<a href="#hardware-id-guide">詳しい手順</a></p>
+          <p id="hardware-id-error" class="hardware-id-error">ハードウェアIDを入力してください</p>
+        </div>
+        <div id="paypal-button-personal" class="paypal-button-container"></div>
+        <p class="payment-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          PayPalで安全にお支払い
+        </p>
+      </div>
+
+      <!-- 法人版 -->
+      <div class="pricing-card">
+        <h3>Business</h3>
+        <p class="subtitle">PC台数無制限 &middot; 永久ライセンス</p>
+        <div class="price">&yen;148,000</div>
+        <p class="price-note">税込 &middot; 買い切り</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>全機能無制限</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>永久ライセンス（買い切り）</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>PC台数無制限</strong></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>無料アップデート</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>優先メールサポート</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>請求書払い対応</li>
+        </ul>
+        <!-- ハードウェアID入力欄（法人版は任意） -->
+        <div class="hardware-id-section">
+          <label for="hardware-id-input-business">ハードウェアID（任意）</label>
+          <input type="text" id="hardware-id-input-business" placeholder="RM-HW-XXXXXXXXXXXXXXXX" maxlength="23">
+          <p class="help-text">RocketMouse AI のAboutダイアログでハードウェアIDを確認・コピーできます。<a href="#hardware-id-guide">詳しい手順</a></p>
+        </div>
+        <div id="paypal-button-business" class="paypal-button-container"></div>
+        <p class="payment-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          PayPalで安全にお支払い
+        </p>
+      </div>
+    </div>
+
+    <!-- ハードウェアID確認手順 -->
+    <div class="notice-box reveal" id="hardware-id-guide">
+      <h4>ハードウェアIDの確認方法</h4>
+      <p>個人版の購入にはハードウェアIDが必要です。以下の手順で確認できます：</p>
+      <ol>
+        <li>RocketMouse AI を起動</li>
+        <li>ツールバー右側の「About」ボタンをクリック</li>
+        <li>Aboutダイアログに表示されるハードウェアIDをコピー</li>
+        <li>上の入力欄にペーストしてください</li>
+      </ol>
+    </div>
+
+    <!-- ご購入前の注意 -->
+    <div class="notice-box reveal">
+      <h4>ご購入前にご確認ください</h4>
+      <ul>
+        <li>ライセンスキーは、お支払い完了後24時間以内にメールでお届けします</li>
+        <li>個人版は1台のPCでのみ有効です。PC変更時は再発行が必要です</li>
+        <li>法人版は同一法人内であればPC台数無制限でご利用いただけます</li>
+        <li>返金は原則として対応しておりません。購入前に7日間の試用版でご確認ください</li>
+      </ul>
+    </div>
+
+    <!-- 銀行振込 -->
+    <div class="bank-transfer-section reveal">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/></svg>
+        銀行振込でのお支払い
+      </h3>
+      <p class="bank-description">PayPal以外に、銀行振込でもお支払いいただけます。</p>
+      <table class="bank-table">
+        <tr><th>銀行名</th><td>三菱UFJ銀行</td></tr>
+        <tr><th>支店名</th><td>新瑞橋（あらたまばし）支店</td></tr>
+        <tr><th>口座種別</th><td>普通</td></tr>
+        <tr><th>口座番号</th><td>1402999</td></tr>
+        <tr><th>口座名義</th><td>ユ）モジヨソフト</td></tr>
+      </table>
+      <div class="bank-notice">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          銀行振込でのご購入手順
+        </h4>
+        <ol>
+          <li>上記口座に代金をお振込みください
+            <ul>
+              <li>個人版: <strong>&yen;49,800（税込）</strong></li>
+              <li>法人版: <strong>&yen;148,000（税込）</strong></li>
+            </ul>
+          </li>
+          <li>お振込み後、以下の情報を <a href="mailto:support@mojosoft.biz?subject=RocketMouse%20AI%20銀行振込%20ライセンス申請">support@mojosoft.biz</a> までメールでお送りください：
+            <ul>
+              <li>お振込み名義</li>
+              <li>ご購入ライセンス種別（個人版 / 法人版）</li>
+              <li><strong>ハードウェアID</strong></li>
+              <li>ライセンスキー送付先メールアドレス</li>
+            </ul>
+          </li>
+          <li>入金確認後、24時間以内にライセンスキーをメールでお届けします</li>
+        </ol>
+        <p class="bank-note">※ 振込手数料はお客様のご負担となります</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- 購入後の流れ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal"><h2>購入後の流れ</h2></div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h4>お支払い</h4>
+        <p>PayPalまたは銀行振込でお支払い</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h4>キー受け取り</h4>
+        <p>24時間以内にメールでお届け</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h4>キーを入力</h4>
+        <p>Aboutダイアログでライセンスキーを入力</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h4>利用開始</h4>
+        <p>すべての機能が無制限で利用可能</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- よくある質問 -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal"><h2>よくある質問</h2></div>
+    <div class="reveal" style="max-width:820px;margin:0 auto;">
+      <div class="faq-item"><div class="faq-question"><span>どのような支払い方法に対応していますか？</span><span class="arrow">+</span></div><div class="faq-answer"><p>PayPalと銀行振込に対応しています。PayPalではクレジットカード、デビットカード、PayPal残高でお支払いいただけます。</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>ライセンスキーはすぐに届きますか？</span><span class="arrow">+</span></div><div class="faq-answer"><p>お支払い確認後、24時間以内にメールでライセンスキーをお届けします。通常は数時間以内にお届けしますが、時差や確認作業により遅れる場合があります。</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>PCを買い替えた場合はどうなりますか？</span><span class="arrow">+</span></div><div class="faq-answer"><p><strong>個人版</strong>の場合は、サポートまでご連絡ください。新しいPCで使用できるようライセンスを再発行いたします。<strong>法人版</strong>の場合は、PC台数無制限のため再発行は不要です。</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>トライアル中に購入できますか？</span><span class="arrow">+</span></div><div class="faq-answer"><p>はい。トライアル期間中またはトライアル終了後いつでもライセンスを購入・認証できます。</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>領収書は発行されますか？</span><span class="arrow">+</span></div><div class="faq-answer"><p>はい。PayPalの購入レシートが領収書となります。法人向け請求書が必要な場合は<a href="contact.html">お問い合わせ</a>ください。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 購入完了モーダル -->
+<div id="success-modal" class="success-modal-overlay">
+  <div class="success-modal">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h2>お支払い完了</h2>
+    <p class="success-subtitle">ご購入ありがとうございます！</p>
+    <div class="success-details">
+      <div class="detail-row"><span class="detail-label">ご購入製品</span><span class="detail-value" id="modal-product">-</span></div>
+      <div class="detail-row"><span class="detail-label">お支払い金額</span><span class="detail-value" id="modal-amount">-</span></div>
+      <div class="detail-row"><span class="detail-label">メールアドレス</span><span class="detail-value" id="modal-email">-</span></div>
+      <div class="detail-row" id="modal-hwid-row"><span class="detail-label">ハードウェアID</span><span class="detail-value" id="modal-hwid">-</span></div>
+    </div>
+    <div class="success-next-steps">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        次のステップ
+      </h4>
+      <p>ライセンスキーは<strong>24時間以内</strong>に上記メールアドレス宛にお届けします。届きましたらRocketMouse AI のAboutダイアログでキーを入力してください。</p>
+    </div>
+    <button class="success-close-btn" onclick="closeSuccessModal()">閉じる</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="nav-brand"><img src="images/logo-64.png" alt="" style="width:28px;height:28px">RocketMouse AI</a><p>Scratch風ビジュアルブロックで誰でも簡単にRPAマクロを作成</p></div>
+      <div class="footer-col"><h4>製品</h4><a href="download.html">ダウンロード</a><a href="license.html">ライセンス</a><a href="purchase.html">購入</a></div>
+      <div class="footer-col"><h4>サポート</h4><a href="help.html">ヘルプ</a><a href="contact.html">お問い合わせ</a></div>
+      <div class="footer-col"><h4>開発元</h4><a href="#">Mojosoft</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Mojosoft. All rights reserved.</span><span>RocketMouse AI v1.0.1.1</span></div>
+  </div>
+</footer>
+
+<!-- PayPal SDK (JPY) -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQW_pNfSyvlWxHshLEfmnSzEq85x3im5k-2Khrpns2wh7XV2yp5oYYkwb1_8-8fT2U6fnVIX4xlrTvgO&currency=JPY&locale=ja_JP"></script>
+<script>
+    // 購入完了モーダル
+    function showSuccessModal(product, amount, email, hardwareId) {
+        document.getElementById('modal-product').textContent = product;
+        document.getElementById('modal-amount').textContent = amount;
+        document.getElementById('modal-email').textContent = email;
+        var hwidRow = document.getElementById('modal-hwid-row');
+        var hwidValue = document.getElementById('modal-hwid');
+        if (hardwareId) {
+            hwidRow.style.display = 'flex';
+            hwidValue.textContent = hardwareId;
+        } else {
+            hwidRow.style.display = 'none';
+        }
+        document.getElementById('success-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSuccessModal() {
+        document.getElementById('success-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('success-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeSuccessModal();
+    });
+
+    // ハードウェアID検証（RM-HW- + 16文字英数字）
+    function validateHardwareId(id) {
+        return /^RM-HW-[A-Z0-9]{16}$/.test(id);
+    }
+    function showHardwareIdError(show, msg) {
+        var el = document.getElementById('hardware-id-error');
+        if (el) {
+            el.textContent = msg || 'ハードウェアIDを入力してください';
+            el.style.display = show ? 'block' : 'none';
+        }
+    }
+
+    // 個人版 PayPalボタン
+    if (document.getElementById('paypal-button-personal')) {
+        paypal.Buttons({
+            style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'paypal' },
+            onClick: function(data, actions) {
+                var input = document.getElementById('hardware-id-input');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                if (!hwid) {
+                    showHardwareIdError(true, 'ハードウェアIDを入力してください');
+                    input.focus();
+                    return actions.reject();
+                }
+                if (!validateHardwareId(hwid)) {
+                    showHardwareIdError(true, 'ハードウェアIDの形式が正しくありません（例: RM-HW-A3F2K9X1B7D4E6G8）');
+                    input.focus();
+                    return actions.reject();
+                }
+                showHardwareIdError(false);
+                return actions.resolve();
+            },
+            createOrder: function(data, actions) {
+                var input = document.getElementById('hardware-id-input');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                return actions.order.create({
+                    purchase_units: [{
+                        description: 'RocketMouse AI 個人版ライセンス [HW:' + hwid + ']',
+                        amount: {
+                            currency_code: 'JPY',
+                            value: '49800',
+                            breakdown: { item_total: { currency_code: 'JPY', value: '49800' } }
+                        },
+                        items: [{
+                            name: 'RocketMouse AI 個人版ライセンス',
+                            sku: 'MJ020',
+                            unit_amount: { currency_code: 'JPY', value: '49800' },
+                            quantity: '1',
+                            description: 'HW:' + hwid
+                        }],
+                        custom_id: 'MJ020|' + hwid
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    var input = document.getElementById('hardware-id-input');
+                    var hwid = input ? input.value.trim().toUpperCase() : '';
+                    showSuccessModal('RocketMouse AI 個人版', '¥49,800（税込）', details.payer.email_address, hwid);
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Error:', err);
+                alert('決済処理中にエラーが発生しました。もう一度お試しください。');
+            }
+        }).render('#paypal-button-personal');
+    }
+
+    // 法人版 PayPalボタン
+    if (document.getElementById('paypal-button-business')) {
+        paypal.Buttons({
+            style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal' },
+            createOrder: function(data, actions) {
+                var input = document.getElementById('hardware-id-input-business');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                var desc = hwid
+                    ? 'RocketMouse AI 法人版ライセンス（PC台数無制限）[HW:' + hwid + ']'
+                    : 'RocketMouse AI 法人版ライセンス（PC台数無制限）';
+                return actions.order.create({
+                    purchase_units: [{
+                        description: desc,
+                        amount: {
+                            currency_code: 'JPY',
+                            value: '148000',
+                            breakdown: { item_total: { currency_code: 'JPY', value: '148000' } }
+                        },
+                        items: [{
+                            name: 'RocketMouse AI 法人版ライセンス（PC台数無制限）',
+                            sku: 'MJ021',
+                            unit_amount: { currency_code: 'JPY', value: '148000' },
+                            quantity: '1',
+                            description: hwid ? 'HW:' + hwid : 'PC台数無制限'
+                        }],
+                        custom_id: 'MJ021|' + (hwid || 'UNLIMITED')
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    var input = document.getElementById('hardware-id-input-business');
+                    var hwid = input ? input.value.trim().toUpperCase() : '';
+                    showSuccessModal('RocketMouse AI 法人版（PC台数無制限）', '¥148,000（税込）', details.payer.email_address, hwid || null);
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Error:', err);
+                alert('決済処理中にエラーが発生しました。もう一度お試しください。');
+            }
+        }).render('#paypal-button-business');
+    }
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

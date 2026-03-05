@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help — RocketMouse AI</title>
+  <meta name="description" content="Complete guide to all RocketMouse AI features. Block editor, block reference, debugging, AI features.">
+  <link rel="icon" type="image/png" href="../images/logo-64.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><img src="../images/logo-64.png" alt="">RocketMouse AI</a>
+    <button class="nav-mobile-toggle">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="download.html">Download</a>
+      <a href="help.html" class="active">Help</a>
+      <a href="license.html">License</a>
+      <a href="purchase.html">Purchase</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-lang">
+        <a href="../help.html">JP</a>
+        <a href="help.html" class="active">EN</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Help</span></div>
+    <h1>Help</h1>
+    <p>Complete guide to all RocketMouse AI features</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <button class="btn btn-secondary btn-sm help-sidebar-toggle" style="display:none;margin-bottom:20px;">Show Table of Contents</button>
+    <div class="help-layout">
+
+      <aside class="help-sidebar">
+        <ul class="help-toc">
+          <li class="toc-category">Overview</li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#editor-basics">Editor Basics</a></li>
+          <li class="toc-category">Blocks</li>
+          <li><a href="#block-types">Block Types</a></li>
+          <li><a href="#block-categories">Block Categories</a></li>
+          <li class="toc-category">Execution</li>
+          <li><a href="#execution-debug">Execution &amp; Debugging</a></li>
+          <li><a href="#variables-functions">Variables &amp; Functions</a></li>
+          <li class="toc-category">AI / Settings</li>
+          <li><a href="#ai-features">AI Features</a></li>
+          <li><a href="#license-settings">License &amp; Settings</a></li>
+          <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+        </ul>
+      </aside>
+
+      <div class="help-content">
+
+        <h2 id="getting-started">Getting Started</h2>
+
+        <h3>What is RocketMouse AI?</h3>
+        <p>RocketMouse AI is a visual editor for building RPA macros using Scratch-style puzzle blocks. Drag and snap blocks together to automate mouse actions, keyboard input, browser interactions, Excel operations, image recognition, AI integration, and more — all without writing code.</p>
+
+        <h3>Screen Layout</h3>
+        <p>The app uses a 3-column layout:</p>
+        <ul>
+          <li><strong>Left</strong>: Category sidebar + Block palette — list of available blocks</li>
+          <li><strong>Center</strong>: Workspace — main area for placing and connecting blocks</li>
+          <li><strong>Right</strong>: Property panel + Log/Variables panel — block settings and execution results</li>
+        </ul>
+
+        <h3>Project Files</h3>
+        <p>Saved in <code>.rmproj</code> format (JSON). <kbd>Ctrl</kbd>+<kbd>S</kbd> to save, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> for Save As. An asterisk <code>*</code> in the title bar indicates unsaved changes.</p>
+
+        <h2 id="editor-basics">Editor Basics</h2>
+
+        <h3>Placing Blocks</h3>
+        <p>Drag blocks from the palette to the workspace. You can also click a palette item to place it directly.</p>
+
+        <h3>Snap Connections</h3>
+        <p>Bring blocks close together (within 20px) and they automatically snap-connect. Yellow highlight shows connection candidates.</p>
+
+        <h3>Stack Dragging</h3>
+        <p>Drag the top block of a connected chain to move all attached blocks together.</p>
+
+        <h3>Block Selection</h3>
+        <p>Click to select (blue border). <kbd>Ctrl</kbd>+click for multi-select. Drag on canvas for marquee selection. <kbd>Ctrl</kbd>+<kbd>A</kbd> to select all.</p>
+
+        <h3>Zoom / Pan</h3>
+        <p>Mouse wheel to zoom. Middle button drag or right button drag to pan. <kbd>Home</kbd> key to zoom-to-fit all blocks.</p>
+
+        <h3>Property Panel</h3>
+        <p>Appears on the right when a block is selected. Set comments, delay (ms), enabled/disabled, and block-specific parameters.</p>
+
+        <h3>Palette Search</h3>
+        <p>Use the search box above the palette for incremental search across all categories. <kbd>Esc</kbd> or the &#10005; button clears the search.</p>
+
+        <h3>Minimap</h3>
+        <p>200&#215;150px overview in the bottom-left corner. Click/drag to pan the workspace. Toggle via toolbar button.</p>
+
+        <h2 id="block-types">Block Types</h2>
+
+        <table>
+          <thead><tr><th>Shape</th><th>Description</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Stack</strong></td><td>Standard block with top notch + bottom bump</td><td>Click, type, file operations</td></tr>
+            <tr><td><strong>Hat</strong></td><td>Rounded top, no top connector</td><td>Start block, function definitions</td></tr>
+            <tr><td><strong>C-Block</strong></td><td>Contains child blocks in its mouth, auto-expands</td><td>Loops, conditions, TryCatch</td></tr>
+            <tr><td><strong>Boolean</strong></td><td>Hexagonal, represents true/false conditions</td><td>Comparisons (=, &gt;, &lt;), AND/OR/NOT</td></tr>
+            <tr><td><strong>Reporter</strong></td><td>Capsule shape, returns values, snaps into parameter slots</td><td>Variable refs, math, strings</td></tr>
+            <tr><td><strong>Cap</strong></td><td>Top connector only, terminates flow</td><td>Break, Continue, MacroExit, Return</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="block-categories">Block Categories</h2>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#3B82F6">&#9679;</span> Mouse <span class="badge badge-blue">16 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>LeftClick / RightClick / MiddleClick</td><td>Mouse button clicks (with optional coordinates)</td></tr>
+                <tr><td>DoubleClick</td><td>Double-click</td></tr>
+                <tr><td>MouseMove</td><td>Move cursor to coordinates</td></tr>
+                <tr><td>MouseDrag</td><td>Drag from point A to point B</td></tr>
+                <tr><td>ScrollUp / ScrollDown</td><td>Mouse wheel scroll</td></tr>
+                <tr><td>MouseClickRelative / MouseMoveRelative</td><td>Relative to active window</td></tr>
+                <tr><td>Others</td><td>LeftDown/Up, RightDown/Up, ScrollLeft/Right</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#8B5CF6">&#9679;</span> Keyboard <span class="badge badge-purple">2 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>KeyInput</td><td>Key combos (e.g., <code>Ctrl+S</code>, <code>{ENTER}</code>, <code>{F8}{ENTER}</code>)</td></tr>
+                <tr><td>TextPaste</td><td>Paste text via clipboard</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#EC4899">&#9679;</span> Window <span class="badge" style="background:rgba(236,72,153,0.15);color:#EC4899;">8 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>ActivateWindow</td><td>Bring window to front</td></tr>
+                <tr><td>CloseWindow</td><td>Close specified window</td></tr>
+                <tr><td>MinimizeWindow / MaximizeWindow / RestoreWindow</td><td>Window state</td></tr>
+                <tr><td>ResizeWindow / MoveWindow</td><td>Resize and reposition</td></tr>
+                <tr><td>GetWindowTitle</td><td>Get active window title</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#06B6D4">&#9679;</span> Browser <span class="badge" style="background:rgba(6,182,212,0.15);color:#06B6D4;">16 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <p>Control Edge/Chrome via Playwright.</p>
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>BrowserLaunch</td><td>Launch browser (Edge/Chrome)</td></tr>
+                <tr><td>BrowserNavigate</td><td>Navigate to URL</td></tr>
+                <tr><td>BrowserClick</td><td>Click element (CSS selector)</td></tr>
+                <tr><td>BrowserType</td><td>Type text into element</td></tr>
+                <tr><td>BrowserGetText / BrowserGetAttribute</td><td>Extract data</td></tr>
+                <tr><td>BrowserScreenshot</td><td>Save screenshot</td></tr>
+                <tr><td>BrowserEvalJs</td><td>Execute JavaScript</td></tr>
+                <tr><td>BrowserSelectOption / BrowserWaitElement</td><td>Interact and wait</td></tr>
+                <tr><td>BrowserClose</td><td>Close browser</td></tr>
+                <tr><td>Others</td><td>Check, GetUrl, GetTitle, ScrollTo, NewTab</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#10B981">&#9679;</span> Excel <span class="badge badge-green">18 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <p>COM-based Excel operations (requires Microsoft Excel).</p>
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>ExcelOpen / ExcelClose / ExcelSave</td><td>Workbook management</td></tr>
+                <tr><td>ExcelReadCell / ExcelWriteCell</td><td>Cell read/write</td></tr>
+                <tr><td>ExcelSetFormula</td><td>Set cell formula</td></tr>
+                <tr><td>ExcelRunMacro</td><td>Execute VBA macro</td></tr>
+                <tr><td>ExcelFilter / ExcelReadRange</td><td>Filter and range ops</td></tr>
+                <tr><td>Others</td><td>CopySheet, DeleteSheet, WriteRange, InsertRow, Sort, FindCell, Chart, ExportPdf, GetLastRow</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#F97316">&#9679;</span> File / Folder <span class="badge badge-amber">15 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>FileCopy / FileMove / FileDelete</td><td>Basic file operations</td></tr>
+                <tr><td>FileRead / FileWrite / FileAppend</td><td>Text file I/O</td></tr>
+                <tr><td>FolderCreate / FolderCopy / FolderDelete</td><td>Folder operations</td></tr>
+                <tr><td>FileRename / FileGetInfo / FileListFiles</td><td>File utilities</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#06B6D4">&#9679;</span> Data Processing <span class="badge" style="background:rgba(6,182,212,0.15);color:#06B6D4;">22 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>JsonParse / JsonStringify</td><td>JSON parsing and generation</td></tr>
+                <tr><td>RegexMatch / RegexReplace</td><td>Regular expressions</td></tr>
+                <tr><td>StringIndexOf / StartsWith / EndsWith</td><td>String search</td></tr>
+                <tr><td>DateAdd / DateDiff / DateFormat</td><td>Date arithmetic and formatting</td></tr>
+                <tr><td>ListCreate / Add / Get / Set / Length / Remove / Sort / Join</td><td>List operations</td></tr>
+                <tr><td>Others</td><td>TextExtract, TextFormat, TextReplace, TextQuote</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#FBBF24">&#9679;</span> Control Flow <span class="badge badge-amber">17 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>ConditionBranch</td><td>if-then (C-block)</td></tr>
+                <tr><td>ConditionBranchElse</td><td>if-then-else (dual mouth)</td></tr>
+                <tr><td>LoopStart</td><td>For loop (specified count)</td></tr>
+                <tr><td>ForEachLoop</td><td>Iterate over list items</td></tr>
+                <tr><td>TryCatch</td><td>Error handling (try/catch mouths)</td></tr>
+                <tr><td>BreakLoop / ContinueLoop</td><td>Loop control (Cap type)</td></tr>
+                <tr><td>MacroExit</td><td>Immediate macro termination (Cap type)</td></tr>
+                <tr><td>WaitTime / WaitWindow / WaitImage / WaitColor / WaitCpu</td><td>Conditional waits</td></tr>
+                <tr><td>FunctionDefine / FunctionCall / FunctionReturn</td><td>Custom functions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#A78BFA">&#9679;</span> AI <span class="badge badge-purple">1 block</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>AiInstruction</td><td>Send prompt to LLM, store response in variable. 5 providers (OpenAI, Anthropic, Gemini, Groq, local LLM). Vision API support (image attachment, 4MB limit).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#14B8A6">&#9679;</span> Vision / OCR <span class="badge badge-green">9 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>VisionClick</td><td>Click on template image</td></tr>
+                <tr><td>VisionWait / VisionDisappear</td><td>Wait for image appear/disappear</td></tr>
+                <tr><td>VisionGetPosition</td><td>Get image coordinates</td></tr>
+                <tr><td>VisionCapture</td><td>Save screen capture</td></tr>
+                <tr><td>OcrReadText</td><td>Read text from screen region (Windows OCR)</td></tr>
+                <tr><td>OcrClickText / OcrWaitText</td><td>Find and click/wait for text</td></tr>
+                <tr><td>WaitImage</td><td>Image recognition wait (OpenCV)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#10B981">&#9679;</span> Boolean / Condition <span class="badge badge-green">11 types</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <p>Hexagonal blocks that snap into C-block condition slots.</p>
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>BoolCompareEquals / Greater / Less</td><td>Comparison operators (=, &gt;, &lt;)</td></tr>
+                <tr><td>BoolVariableEquals</td><td>Variable value match</td></tr>
+                <tr><td>BoolFileExists</td><td>File existence check</td></tr>
+                <tr><td>BoolWindowVisible</td><td>Window visibility check</td></tr>
+                <tr><td>BoolImageFound / BoolColorFound</td><td>Image/color detection</td></tr>
+                <tr><td>BoolAnd / BoolOr / BoolNot</td><td>Logical operators (nestable)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#8B949E">&#9679;</span> System / Utility <span class="badge" style="background:rgba(139,148,158,0.15);color:#8B949E;">18+ blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>AppLaunch / AppClose</td><td>Launch and close applications</td></tr>
+                <tr><td>MessageBox / InputDialog</td><td>User interaction dialogs</td></tr>
+                <tr><td>ClipboardSet / ClipboardGet</td><td>Clipboard operations</td></tr>
+                <tr><td>ProcessStart / ProcessKill</td><td>Process management</td></tr>
+                <tr><td>ZipCreate / ZipExtract</td><td>ZIP compression/extraction</td></tr>
+                <tr><td>Base64Encode / Base64Decode</td><td>Base64 encoding</td></tr>
+                <tr><td>HashCompute</td><td>Hash (MD5/SHA1/SHA256/SHA512)</td></tr>
+                <tr><td>HttpGet / HttpPost / HttpDownload</td><td>HTTP operations</td></tr>
+                <tr><td>RegistryRead / RegistryWrite</td><td>Registry operations</td></tr>
+                <tr><td>TextToSpeech / ScreenCapture</td><td>System utilities</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header"><h4><span style="color:#EF4444">&#9679;</span> Reporter <span class="badge" style="background:rgba(239,68,68,0.15);color:#EF4444;">15 blocks</span></h4><span class="arrow">&#9654;</span></div>
+          <div class="collapsible-body">
+            <p>Capsule-shaped blocks that snap into parameter slots of other blocks.</p>
+            <table>
+              <thead><tr><th>Block</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>MathAdd / Subtract / Multiply / Divide / Modulo</td><td>Arithmetic + modulo</td></tr>
+                <tr><td>MathFunction</td><td>Math functions (abs, round, ceil, floor, sqrt)</td></tr>
+                <tr><td>StringConcat / StringLength / StringCharAt</td><td>String operations</td></tr>
+                <tr><td>RandomNumber</td><td>Random number generation</td></tr>
+                <tr><td>SenseMouseX / SenseMouseY</td><td>Current mouse coordinates</td></tr>
+                <tr><td>SenseCurrentDateTime</td><td>Current date/time</td></tr>
+                <tr><td>SenseClipboardText</td><td>Clipboard text</td></tr>
+                <tr><td>SenseEnvironmentVariable</td><td>Environment variable value</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h2 id="execution-debug">Execution &amp; Debugging</h2>
+
+        <h3>Running Macros</h3>
+        <p>Press the &#9654; Play button in the toolbar. Execution starts from the Start block. The currently executing block is highlighted with a green border.</p>
+
+        <h3>Pause / Resume / Step</h3>
+        <p>While running: &#9208; Pause to stop, &#9654; Resume to continue, &#9193; Step to execute one block at a time.</p>
+
+        <h3>Stop</h3>
+        <p>Press &#9632; Stop to immediately halt execution.</p>
+
+        <h3>Dry Run</h3>
+        <p>Test the flow without performing actual mouse/keyboard operations. Results are shown in the log panel.</p>
+
+        <h3>Speed Control</h3>
+        <p>Adjust execution speed from 1x to 10x using the toolbar slider. Changes apply in real-time.</p>
+
+        <h3>Error Visualization</h3>
+        <p>Failed blocks are highlighted with a red border, and the error message is shown in a tooltip.</p>
+
+        <h3>Log Panel</h3>
+        <p>Structured log in the bottom panel with 4 color levels: gray (Info), green (Success), red (Error), yellow (Warning).</p>
+
+        <h3>Variable Watch</h3>
+        <p>The "Variables" tab in the bottom panel shows runtime variable values. Changed variables are highlighted in green.</p>
+
+        <h3>Breakpoints</h3>
+        <p>Right-click a block &rarr; "Set Breakpoint" or press <kbd>F9</kbd>. A red dot marker appears, and execution pauses automatically when it reaches that block.</p>
+
+        <h3>Recording</h3>
+        <p>Press the &#9899; Record button to capture mouse/keyboard actions. Recorded actions are placed as blocks in the workspace.</p>
+
+        <h2 id="variables-functions">Variables &amp; Functions</h2>
+
+        <h3>Defining Variables</h3>
+        <p>Use the <code>VariableDefine</code> block to create variables. Reference values with <code>{=variableName}</code> syntax in any parameter field.</p>
+
+        <h3>Expressions</h3>
+        <p>The <code>VariableExpression</code> block supports arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, parentheses. Example: <code>{=count} + 1</code></p>
+
+        <h3>System Variables</h3>
+        <p>Automatically set inside loops:</p>
+        <ul>
+          <li><code>{=_loopIndex}</code> — 1-based loop counter (1, 2, 3, ...)</li>
+          <li><code>{=_loopIteration}</code> — 0-based loop counter (0, 1, 2, ...)</li>
+        </ul>
+
+        <h3>List Operations</h3>
+        <p><code>ListCreate</code> for empty lists, <code>ListAdd</code> to append, <code>ListGet</code>/<code>ListSet</code> for index access. <code>ListSort</code>, <code>ListJoin</code>, and more available.</p>
+
+        <h3>Custom Functions</h3>
+        <p>Define functions with <code>FunctionDefine</code> (Hat), call with <code>FunctionCall</code> (Stack), return values with <code>FunctionReturn</code> (Cap). Recursion supported (max depth 100).</p>
+
+        <h3>Auto Output Variables</h3>
+        <p>Blocks with output variables get smart default names (e.g., <code>CellValue</code>). Duplicates are auto-numbered (<code>CellValue2</code>, <code>CellValue3</code>...).</p>
+
+        <h2 id="ai-features">AI Features</h2>
+
+        <h3>AI Instruction Block</h3>
+        <p>The <code>AiInstruction</code> block sends a prompt to an LLM and stores the response in a variable. Attach image files for Vision API (4MB limit).</p>
+
+        <h3>Provider Setup</h3>
+        <p>Click the &#9881; AI Settings button in the toolbar to configure API keys and default models. Use the test button to verify connectivity.</p>
+
+        <h3>Supported Providers</h3>
+        <table>
+          <thead><tr><th>Provider</th><th>Default Model</th><th>Vision</th></tr></thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>gpt-4o</td><td>&#10003;</td></tr>
+            <tr><td>Anthropic</td><td>claude-sonnet-4-5</td><td>&#10003;</td></tr>
+            <tr><td>Google Gemini</td><td>gemini-2.5-pro</td><td>&#10003;</td></tr>
+            <tr><td>Groq</td><td>llama-3.3-70b</td><td>&#10007;</td></tr>
+            <tr><td>Local LLM</td><td>User-specified</td><td>&#10003;</td></tr>
+          </tbody>
+        </table>
+
+        <h3>AI Assistant</h3>
+        <p>The AI Assistant chat panel on the right side offers:</p>
+        <ul>
+          <li><strong>Explain</strong> — AI explains the current macro</li>
+          <li><strong>Diagnose</strong> — AI suggests issues and improvements</li>
+          <li><strong>General Chat</strong> — Ask about block usage and more</li>
+          <li><strong>Block Generation</strong> — Describe tasks in natural language to auto-generate block sequences</li>
+        </ul>
+
+        <h2 id="license-settings">License &amp; Settings</h2>
+
+        <h3>License</h3>
+        <p>Free 7-day trial, then activate with a license key for full access. See <a href="license.html">License Policy</a> for details.</p>
+
+        <h3>AI Settings</h3>
+        <p>Toolbar &rarr; AI Settings &rarr; Enter API keys for each provider &rarr; Test &rarr; Save. Settings are stored in the Windows registry.</p>
+
+        <h3>Project Settings</h3>
+        <p><code>.rmproj</code> files are JSON format. They can be manually edited but are typically managed within the app.</p>
+
+        <h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+
+        <table>
+          <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Redo</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Copy</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>Paste</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>Duplicate</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Select All</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Search Blocks</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Save</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Save As</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td><td>Fold / Unfold</td></tr>
+            <tr><td><kbd>Delete</kbd></td><td>Delete Selected</td></tr>
+            <tr><td><kbd>Escape</kbd></td><td>Deselect</td></tr>
+            <tr><td><kbd>Home</kbd></td><td>Zoom to Fit</td></tr>
+            <tr><td><kbd>F9</kbd></td><td>Toggle Breakpoint</td></tr>
+            <tr><td>Mouse Wheel</td><td>Zoom</td></tr>
+            <tr><td>Middle Button Drag</td><td>Pan</td></tr>
+            <tr><td>Right Button Drag</td><td>Pan</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="nav-brand"><img src="../images/logo-64.png" alt="" style="width:28px;height:28px">RocketMouse AI</a><p>Build RPA macros easily with Scratch-style visual blocks</p></div>
+      <div class="footer-col"><h4>Product</h4><a href="download.html">Download</a><a href="license.html">License</a><a href="purchase.html">Purchase</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="help.html">Help</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Developer</h4><a href="#">Mojosoft</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Mojosoft. All rights reserved.</span><span>RocketMouse AI v1.0.1.1</span></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

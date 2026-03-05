@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase License — RocketMouse AI</title>
+  <meta name="description" content="Purchase a RocketMouse AI license. One-time purchase, no subscription. Visual RPA macro editor.">
+  <meta name="keywords" content="RocketMouse AI,license,purchase,RPA,macro,automation,one-time purchase,no subscription,personal,business">
+  <link rel="icon" type="image/png" href="../images/logo-64.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* --- Purchase page specific --- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 820px;
+      margin: 40px auto 0;
+    }
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
+    .pricing-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pricing-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 40px rgba(16,185,129,0.06);
+    }
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .pricing-card .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+    .pricing-card .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      margin: 12px 0 4px;
+    }
+    .pricing-card .price-note {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .pricing-card ul li {
+      color: rgba(255,255,255,0.8);
+      padding: 0.45rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.93rem;
+    }
+    .pricing-card ul li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    /* Hardware ID */
+    .hardware-id-section {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 8px;
+      text-align: left;
+    }
+    .hardware-id-section label {
+      display: block;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .hardware-id-section input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      background: rgba(0,0,0,0.3);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      font-family: var(--font-mono);
+      box-sizing: border-box;
+    }
+    .hardware-id-section input:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 2px rgba(16,185,129,0.2);
+    }
+    .hardware-id-section .help-text {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    .hardware-id-section .help-text a {
+      color: var(--accent-green);
+    }
+    .hardware-id-error {
+      color: var(--accent-red);
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+      display: none;
+    }
+
+    /* PayPal */
+    .paypal-button-container { min-height: 55px; }
+    .payment-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .payment-note svg { width: 16px; height: 16px; }
+
+    /* Notice box */
+    .notice-box {
+      max-width: 820px;
+      margin: 24px auto 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .notice-box h4 {
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .notice-box p, .notice-box li {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .notice-box ol { padding-left: 1.2rem; }
+    .notice-box ul { list-style: disc; padding-left: 1.2rem; }
+
+    /* Process steps */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 820px;
+      margin: 32px auto 0;
+    }
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+    }
+    .process-step {
+      text-align: center;
+      padding: 1.2rem 0.8rem;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      color: #000;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1.1rem;
+    }
+    .process-step h4 {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    /* Success modal */
+    .success-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .success-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .success-modal {
+      background: #111;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+    }
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .success-icon svg { width: 32px; height: 32px; color: #000; }
+    .success-modal h2 {
+      color: var(--text-primary);
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+    .success-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+    .success-details {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--text-muted); font-size: 0.85rem; }
+    .detail-value { color: var(--text-primary); font-size: 0.85rem; font-weight: 500; }
+    .success-next-steps {
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .success-next-steps h4 {
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .success-next-steps h4 svg { width: 18px; height: 18px; color: var(--accent-green); }
+    .success-next-steps p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .success-close-btn {
+      background: var(--accent-green);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 32px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .success-close-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><img src="../images/logo-64.png" alt="">RocketMouse AI</a>
+    <button class="nav-mobile-toggle">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="download.html">Download</a>
+      <a href="help.html">Help</a>
+      <a href="license.html">License</a>
+      <a href="purchase.html" class="active">Purchase</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-lang">
+        <a href="../purchase.html">JP</a>
+        <a href="purchase.html" class="active">EN</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Purchase</span></div>
+    <h1>Purchase License</h1>
+    <p>Get the full version of RocketMouse AI — one-time purchase, no subscription</p>
+  </div>
+</div>
+
+<!-- Pricing cards -->
+<section class="section">
+  <div class="container">
+    <div class="pricing-grid reveal">
+      <!-- Personal -->
+      <div class="pricing-card">
+        <h3>Personal</h3>
+        <p class="subtitle">1 PC &middot; Perpetual license</p>
+        <div class="price">$329</div>
+        <p class="price-note">One-time purchase</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>All features unlimited</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Perpetual license (one-time)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Free updates</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Email support</li>
+        </ul>
+        <!-- Hardware ID (required for Personal) -->
+        <div class="hardware-id-section">
+          <label for="hardware-id-input">Hardware ID (Required)</label>
+          <input type="text" id="hardware-id-input" placeholder="RM-HW-XXXXXXXXXXXXXXXX" maxlength="23">
+          <p class="help-text">Find your Hardware ID in the RocketMouse AI About dialog. <a href="#hardware-id-guide">How to find it</a></p>
+          <p id="hardware-id-error" class="hardware-id-error">Please enter your Hardware ID</p>
+        </div>
+        <div id="paypal-button-personal" class="paypal-button-container"></div>
+        <p class="payment-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          Secure payment via PayPal
+        </p>
+      </div>
+
+      <!-- Business -->
+      <div class="pricing-card">
+        <h3>Business</h3>
+        <p class="subtitle">Unlimited PCs &middot; Perpetual license</p>
+        <div class="price">$999</div>
+        <p class="price-note">One-time purchase</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>All features unlimited</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Perpetual license (one-time)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>Unlimited PCs</strong></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Free updates</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Priority email support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Invoice available</li>
+        </ul>
+        <!-- Hardware ID (optional for Business) -->
+        <div class="hardware-id-section">
+          <label for="hardware-id-input-business">Hardware ID (Optional)</label>
+          <input type="text" id="hardware-id-input-business" placeholder="RM-HW-XXXXXXXXXXXXXXXX" maxlength="23">
+          <p class="help-text">Find your Hardware ID in the RocketMouse AI About dialog. <a href="#hardware-id-guide">How to find it</a></p>
+        </div>
+        <div id="paypal-button-business" class="paypal-button-container"></div>
+        <p class="payment-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          Secure payment via PayPal
+        </p>
+      </div>
+    </div>
+
+    <!-- Hardware ID guide -->
+    <div class="notice-box reveal" id="hardware-id-guide">
+      <h4>How to Find Your Hardware ID</h4>
+      <p>A Hardware ID is required to purchase the Personal license. Follow these steps:</p>
+      <ol>
+        <li>Launch RocketMouse AI</li>
+        <li>Click the "About" button on the toolbar (right side)</li>
+        <li>Copy the Hardware ID shown in the About dialog</li>
+        <li>Paste it in the input field above</li>
+      </ol>
+    </div>
+
+    <!-- Before you purchase -->
+    <div class="notice-box reveal">
+      <h4>Before You Purchase</h4>
+      <ul>
+        <li>Your license key will be delivered via email within 24 hours of payment</li>
+        <li>Personal license is valid for 1 PC only. Contact support for PC changes</li>
+        <li>Business license can be used on unlimited PCs within the same organization</li>
+        <li>Refunds are generally not available. Please try the 7-day free trial first</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- How it works -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal"><h2>How It Works</h2></div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h4>Payment</h4>
+        <p>Pay securely via PayPal</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h4>Receive Key</h4>
+        <p>License key delivered within 24 hours</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h4>Enter Key</h4>
+        <p>Enter the key in the About dialog</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h4>Start Using</h4>
+        <p>All features unlocked forever</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal"><h2>FAQ</h2></div>
+    <div class="reveal" style="max-width:820px;margin:0 auto;">
+      <div class="faq-item"><div class="faq-question"><span>What payment methods do you accept?</span><span class="arrow">+</span></div><div class="faq-answer"><p>We accept PayPal. You can pay with credit cards, debit cards, or PayPal balance.</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>When will I receive my license key?</span><span class="arrow">+</span></div><div class="faq-answer"><p>Within 24 hours of payment confirmation. Usually within a few hours, but may take longer due to time zone differences.</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>What if I change my PC?</span><span class="arrow">+</span></div><div class="faq-answer"><p><strong>Personal</strong> license holders can contact support for a license re-issue. <strong>Business</strong> license works on unlimited PCs, so no re-issue is needed.</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>Can I purchase during the trial?</span><span class="arrow">+</span></div><div class="faq-answer"><p>Yes. You can purchase and activate a license at any time during or after the 7-day trial period.</p></div></div>
+      <div class="faq-item"><div class="faq-question"><span>Can I get a receipt or invoice?</span><span class="arrow">+</span></div><div class="faq-answer"><p>Yes. Your PayPal receipt serves as proof of purchase. For business invoices, please <a href="contact.html">contact us</a>.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Success modal -->
+<div id="success-modal" class="success-modal-overlay">
+  <div class="success-modal">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h2>Payment Complete</h2>
+    <p class="success-subtitle">Thank you for your purchase!</p>
+    <div class="success-details">
+      <div class="detail-row"><span class="detail-label">Product</span><span class="detail-value" id="modal-product">-</span></div>
+      <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value" id="modal-amount">-</span></div>
+      <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value" id="modal-email">-</span></div>
+      <div class="detail-row" id="modal-hwid-row"><span class="detail-label">Hardware ID</span><span class="detail-value" id="modal-hwid">-</span></div>
+    </div>
+    <div class="success-next-steps">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Next Steps
+      </h4>
+      <p>Your license key will be delivered to the email address above <strong>within 24 hours</strong>. Once received, enter the key in the RocketMouse AI About dialog to activate.</p>
+    </div>
+    <button class="success-close-btn" onclick="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="nav-brand"><img src="../images/logo-64.png" alt="" style="width:28px;height:28px">RocketMouse AI</a><p>Build RPA macros easily with Scratch-style visual blocks</p></div>
+      <div class="footer-col"><h4>Product</h4><a href="download.html">Download</a><a href="license.html">License</a><a href="purchase.html">Purchase</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="help.html">Help</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Developer</h4><a href="#">Mojosoft</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Mojosoft. All rights reserved.</span><span>RocketMouse AI v1.0.1.1</span></div>
+  </div>
+</footer>
+
+<!-- PayPal SDK (USD) -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQW_pNfSyvlWxHshLEfmnSzEq85x3im5k-2Khrpns2wh7XV2yp5oYYkwb1_8-8fT2U6fnVIX4xlrTvgO&currency=USD&locale=en_US"></script>
+<script>
+    // Success modal
+    function showSuccessModal(product, amount, email, hardwareId) {
+        document.getElementById('modal-product').textContent = product;
+        document.getElementById('modal-amount').textContent = amount;
+        document.getElementById('modal-email').textContent = email;
+        var hwidRow = document.getElementById('modal-hwid-row');
+        var hwidValue = document.getElementById('modal-hwid');
+        if (hardwareId) {
+            hwidRow.style.display = 'flex';
+            hwidValue.textContent = hardwareId;
+        } else {
+            hwidRow.style.display = 'none';
+        }
+        document.getElementById('success-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSuccessModal() {
+        document.getElementById('success-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('success-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeSuccessModal();
+    });
+
+    // Hardware ID validation (RM-HW- + 16 alphanumeric chars)
+    function validateHardwareId(id) {
+        return /^RM-HW-[A-Z0-9]{16}$/.test(id);
+    }
+    function showHardwareIdError(show, msg) {
+        var el = document.getElementById('hardware-id-error');
+        if (el) {
+            el.textContent = msg || 'Please enter your Hardware ID';
+            el.style.display = show ? 'block' : 'none';
+        }
+    }
+
+    // Personal PayPal button
+    if (document.getElementById('paypal-button-personal')) {
+        paypal.Buttons({
+            style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'paypal' },
+            onClick: function(data, actions) {
+                var input = document.getElementById('hardware-id-input');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                if (!hwid) {
+                    showHardwareIdError(true, 'Please enter your Hardware ID');
+                    input.focus();
+                    return actions.reject();
+                }
+                if (!validateHardwareId(hwid)) {
+                    showHardwareIdError(true, 'Invalid Hardware ID format (e.g. RM-HW-A3F2K9X1B7D4E6G8)');
+                    input.focus();
+                    return actions.reject();
+                }
+                showHardwareIdError(false);
+                return actions.resolve();
+            },
+            createOrder: function(data, actions) {
+                var input = document.getElementById('hardware-id-input');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                return actions.order.create({
+                    purchase_units: [{
+                        description: 'RocketMouse AI Personal License [HW:' + hwid + ']',
+                        amount: {
+                            currency_code: 'USD',
+                            value: '329.00',
+                            breakdown: { item_total: { currency_code: 'USD', value: '329.00' } }
+                        },
+                        items: [{
+                            name: 'RocketMouse AI Personal License',
+                            sku: 'MJ020',
+                            unit_amount: { currency_code: 'USD', value: '329.00' },
+                            quantity: '1',
+                            description: 'HW:' + hwid
+                        }],
+                        custom_id: 'MJ020|' + hwid
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    var input = document.getElementById('hardware-id-input');
+                    var hwid = input ? input.value.trim().toUpperCase() : '';
+                    showSuccessModal('RocketMouse AI Personal', '$329.00', details.payer.email_address, hwid);
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Error:', err);
+                alert('An error occurred during payment. Please try again.');
+            }
+        }).render('#paypal-button-personal');
+    }
+
+    // Business PayPal button
+    if (document.getElementById('paypal-button-business')) {
+        paypal.Buttons({
+            style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal' },
+            createOrder: function(data, actions) {
+                var input = document.getElementById('hardware-id-input-business');
+                var hwid = input ? input.value.trim().toUpperCase() : '';
+                var desc = hwid
+                    ? 'RocketMouse AI Business License (Unlimited PCs) [HW:' + hwid + ']'
+                    : 'RocketMouse AI Business License (Unlimited PCs)';
+                return actions.order.create({
+                    purchase_units: [{
+                        description: desc,
+                        amount: {
+                            currency_code: 'USD',
+                            value: '999.00',
+                            breakdown: { item_total: { currency_code: 'USD', value: '999.00' } }
+                        },
+                        items: [{
+                            name: 'RocketMouse AI Business License (Unlimited PCs)',
+                            sku: 'MJ021',
+                            unit_amount: { currency_code: 'USD', value: '999.00' },
+                            quantity: '1',
+                            description: hwid ? 'HW:' + hwid : 'Unlimited PCs'
+                        }],
+                        custom_id: 'MJ021|' + (hwid || 'UNLIMITED')
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    var input = document.getElementById('hardware-id-input-business');
+                    var hwid = input ? input.value.trim().toUpperCase() : '';
+                    showSuccessModal('RocketMouse AI Business (Unlimited PCs)', '$999.00', details.payer.email_address, hwid || null);
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Error:', err);
+                alert('An error occurred during payment. Please try again.');
+            }
+        }).render('#paypal-button-business');
+    }
+</script>
+<script src="../js/main.js"></script>
+</body>
+</html>

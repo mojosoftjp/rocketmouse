@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ヘルプ - RocketMouse AI</title>
+  <meta name="description" content="RocketMouse AI の全機能ガイド。ブロックエディタの使い方、ブロックカテゴリ一覧、実行・デバッグ、変数・関数、AI機能など。">
+  <link rel="icon" href="images/logo-64.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><img src="images/logo-64.png" alt="">RocketMouse AI</a>
+    <button class="nav-mobile-toggle">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">ホーム</a>
+      <a href="download.html">ダウンロード</a>
+      <a href="help.html" class="active">ヘルプ</a>
+      <a href="license.html">ライセンス</a>
+      <a href="purchase.html">購入</a>
+      <a href="contact.html">お問い合わせ</a>
+      <div class="nav-lang">
+        <a href="help.html" class="active">JP</a>
+        <a href="en/help.html">EN</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">ホーム</a><span>/</span><span>ヘルプ</span></div>
+    <h1>ヘルプ</h1>
+    <p>RocketMouse AI の全機能ガイド</p>
+  </div>
+</div>
+
+<!-- Help Content -->
+<div class="section">
+  <div class="container">
+    <button class="btn btn-secondary btn-sm help-sidebar-toggle" style="display:none;margin-bottom:20px;">目次を表示</button>
+    <div class="help-layout">
+
+      <!-- Sidebar TOC -->
+      <aside class="help-sidebar">
+        <ul class="help-toc">
+          <li class="toc-category">はじめに</li>
+          <li><a href="#getting-started">RocketMouse AI とは</a></li>
+          <li><a href="#screen-layout">画面構成</a></li>
+          <li><a href="#project-files">プロジェクトファイル</a></li>
+
+          <li class="toc-category">エディタの基本操作</li>
+          <li><a href="#editor-basics">ブロックの配置と接続</a></li>
+          <li><a href="#selection-dragdrop">選択とドラッグ</a></li>
+          <li><a href="#zoom-pan">ズームとパン</a></li>
+          <li><a href="#property-panel">プロパティパネル</a></li>
+          <li><a href="#palette-search">パレット検索</a></li>
+          <li><a href="#minimap">ミニマップ</a></li>
+
+          <li class="toc-category">ブロックの種類</li>
+          <li><a href="#block-types">ブロック形状一覧</a></li>
+
+          <li class="toc-category">ブロックカテゴリ一覧</li>
+          <li><a href="#block-categories">カテゴリ概要</a></li>
+          <li><a href="#cat-mouse">Mouse</a></li>
+          <li><a href="#cat-keyboard">Keyboard</a></li>
+          <li><a href="#cat-window">Window</a></li>
+          <li><a href="#cat-browser">Browser</a></li>
+          <li><a href="#cat-excel">Excel</a></li>
+          <li><a href="#cat-file">File</a></li>
+          <li><a href="#cat-data">Data Processing</a></li>
+          <li><a href="#cat-control">Control Flow</a></li>
+          <li><a href="#cat-ai">AI</a></li>
+          <li><a href="#cat-vision">Vision</a></li>
+          <li><a href="#cat-boolean">Boolean / Condition</a></li>
+          <li><a href="#cat-system">System / App</a></li>
+          <li><a href="#cat-reporter">Reporter</a></li>
+
+          <li class="toc-category">実行とデバッグ</li>
+          <li><a href="#execution-debug">実行操作</a></li>
+          <li><a href="#debug-tools">デバッグツール</a></li>
+          <li><a href="#recording">録音機能</a></li>
+
+          <li class="toc-category">変数と関数</li>
+          <li><a href="#variables-functions">変数の基本</a></li>
+          <li><a href="#custom-functions">カスタム関数</a></li>
+
+          <li class="toc-category">AI機能</li>
+          <li><a href="#ai-features">AI指示ブロック</a></li>
+          <li><a href="#ai-assistant">AIアシスタント</a></li>
+
+          <li class="toc-category">ライセンスと設定</li>
+          <li><a href="#license-settings">ライセンス概要</a></li>
+          <li><a href="#ai-settings">AI設定</a></li>
+
+          <li class="toc-category">キーボードショートカット</li>
+          <li><a href="#keyboard-shortcuts">ショートカット一覧</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="help-content">
+
+        <!-- ===== 1. はじめに ===== -->
+        <h2 id="getting-started">RocketMouse AI とは</h2>
+        <p>RocketMouse AI は、Scratch風のパズルピースブロックをドラッグ&スナップで組み立てて、RPAマクロを作成するビジュアルエディタです。プログラミング知識は不要で、マウス操作、キーボード入力、ブラウザ操作、Excel操作、画像認識など、さまざまな作業を自動化できます。</p>
+        <p>ブロックをつなげるだけで自動化フローを構築でき、条件分岐やループ、変数、関数、AI連携などの高度な機能も備えています。</p>
+
+        <div class="notice notice-info">
+          <strong>ポイント:</strong> RocketMouse AI では、すべての操作を「ブロック」として表現します。ブロックの形状（Stack、Hat、C型、Boolean、Reporter、Cap）によって、接続できる場所や役割が異なります。
+        </div>
+
+        <h3 id="screen-layout">画面構成</h3>
+        <p>メイン画面は3カラム構成です。</p>
+        <ul>
+          <li><strong>左カラム:</strong> カテゴリサイドバー + ブロックパレット。カテゴリを選択すると、そのカテゴリに属するブロックがパレットに表示されます。</li>
+          <li><strong>中央カラム:</strong> ワークスペース（ブロック配置エリア）。ここにブロックをドラッグ&ドロップして、マクロフローを組み立てます。</li>
+          <li><strong>右カラム:</strong> プロパティパネル（ブロック選択時）+ ログ/変数パネル（実行時）。選択したブロックの設定変更や、実行時のログ・変数の確認ができます。</li>
+        </ul>
+        <p>画面上部にはツールバーがあり、ファイル操作、実行制御（再生/停止/一時停止/ステップ）、録音、ドライラン、ズーム、AI設定などのボタンが並んでいます。画面下部にはステータスバーがあり、実行中のステップ数や経過時間を表示します。</p>
+
+        <h3 id="project-files">プロジェクトファイル</h3>
+        <p>マクロは <code>.rmproj</code> 形式（JSON）で保存・読込できます。</p>
+        <ul>
+          <li><kbd>Ctrl</kbd>+<kbd>S</kbd> で上書き保存</li>
+          <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> で名前を付けて保存</li>
+          <li>未保存の変更がある場合、タイトルバーに <code>*</code> マークが表示されます</li>
+          <li>アプリ終了時に未保存変更がある場合、保存確認ダイアログが表示されます</li>
+        </ul>
+
+        <!-- ===== 2. エディタの基本操作 ===== -->
+        <h2 id="editor-basics">エディタの基本操作</h2>
+
+        <h3>ブロックの配置</h3>
+        <p>左のパレットからワークスペースにブロックを配置するには、2つの方法があります。</p>
+        <ul>
+          <li><strong>ドラッグ&ドロップ:</strong> パレットのブロックをドラッグし、ワークスペースの任意の位置にドロップします。</li>
+          <li><strong>クリック配置:</strong> パレットのブロックをクリックすると、ワークスペースの適当な位置に自動配置されます。</li>
+        </ul>
+
+        <h3>スナップ接続</h3>
+        <p>ブロックを他のブロックに近づけると（20ピクセル以内）、自動的にスナップ接続されます。接続候補のブロックは黄色のハイライトで表示されます。</p>
+        <ul>
+          <li><strong>上下接続:</strong> ブロックの下部凸と次のブロックの上部凹みが接続</li>
+          <li><strong>C型ブロックの口:</strong> C型ブロック（if、ループ等）の口の中にブロックを配置</li>
+          <li><strong>Booleanスロット:</strong> 六角形のBooleanブロックをC型ブロックの条件スロットにスナップ</li>
+          <li><strong>Reporterスロット:</strong> カプセル型のReporterブロックを他のブロックのパラメータスロットにスナップ</li>
+        </ul>
+
+        <h3 id="selection-dragdrop">選択とドラッグ</h3>
+        <ul>
+          <li><strong>クリック選択:</strong> ブロックをクリックすると青枠で選択状態になります。</li>
+          <li><strong>複数選択:</strong> <kbd>Ctrl</kbd>+クリックで複数のブロックを選択できます。</li>
+          <li><strong>マーキー選択:</strong> ワークスペースの空白部分からドラッグすると、範囲内のブロックをまとめて選択できます。</li>
+          <li><strong>全選択:</strong> <kbd>Ctrl</kbd>+<kbd>A</kbd> でワークスペース上の全ブロックを選択。</li>
+          <li><strong>スタック一括ドラッグ:</strong> 接続されたブロック列の上部をドラッグすると、下に接続されたすべてのブロックが一緒に移動します。</li>
+          <li><strong>複製:</strong> <kbd>Ctrl</kbd>+<kbd>D</kbd> または右クリックメニューで選択ブロックを複製。</li>
+          <li><strong>コピー&ペースト:</strong> <kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>Ctrl</kbd>+<kbd>V</kbd> でブロックをコピー&ペースト。C型ブロックやBooleanブロックのツリーも完全にコピーされます。</li>
+          <li><strong>削除:</strong> <kbd>Delete</kbd> キーまたは右クリックメニューで選択ブロックを削除。</li>
+          <li><strong>元に戻す/やり直し:</strong> <kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd> で直前の操作を取り消し・再実行（スナップショット方式）。</li>
+        </ul>
+
+        <h3 id="zoom-pan">ズームとパン</h3>
+        <ul>
+          <li><strong>ズーム:</strong> マウスホイールの回転でワークスペースを拡大/縮小</li>
+          <li><strong>パン:</strong> マウス中ボタンドラッグまたは右ボタンドラッグでワークスペースをスクロール</li>
+          <li><strong>無限キャンバス:</strong> ブロックはワークスペースのどこにでも配置可能。キャンバスの端は存在しません。</li>
+          <li><strong>全体表示:</strong> <kbd>Home</kbd> キーで全ブロックが画面に収まるようにズーム&パンを自動調整</li>
+        </ul>
+
+        <h3 id="property-panel">プロパティパネル</h3>
+        <p>ブロックを選択すると、画面右側にプロパティパネルが表示されます。共通設定と各ブロック固有のパラメータを編集できます。</p>
+        <ul>
+          <li><strong>コメント:</strong> ブロックにメモを記入。実行には影響しません。</li>
+          <li><strong>遅延 (ms):</strong> ブロック実行後の待機時間（ミリ秒）を指定。</li>
+          <li><strong>有効/無効:</strong> 無効に設定したブロックは実行時にスキップされます。</li>
+          <li><strong>操作固有パラメータ:</strong> 各ブロックの種類に応じたパラメータ（座標、ファイルパス、キーコンボ、変数名など）を設定。</li>
+        </ul>
+
+        <h3 id="palette-search">パレット検索</h3>
+        <p>パレット上部の検索ボックスでブロックをインクリメンタルサーチできます。全カテゴリを横断して、表示名やOperationType名でマッチするブロックを検索します。検索中はカテゴリグループが非表示になり、マッチしたブロックだけが一覧表示されます。<kbd>Esc</kbd> キーまたは検索ボックスの「x」ボタンで検索をクリアできます。</p>
+
+        <h3 id="minimap">ミニマップ</h3>
+        <p>ワークスペース左下に200x150pxの俯瞰ビュー（ミニマップ）を表示できます。全ブロックがカテゴリカラーの小さな矩形で表示され、白い枠で現在のビューポート範囲を示します。ミニマップ上をクリック/ドラッグするとワークスペースがパンします。ツールバーのボタンで表示/非表示を切り替えられます。</p>
+
+        <!-- ===== 3. ブロックの種類 ===== -->
+        <h2 id="block-types">ブロックの種類</h2>
+        <p>RocketMouse AI では、6種類のブロック形状があり、それぞれ異なる役割と接続ルールを持っています。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>形状</th>
+              <th>特徴</th>
+              <th>用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stack型</strong></td>
+              <td>上に凹み（受け側）、下に凸（接続側）。もっとも標準的なブロック形状。</td>
+              <td>LeftClick、KeyInput、AppLaunch など、ほとんどの操作に使用</td>
+            </tr>
+            <tr>
+              <td><strong>Hat型</strong></td>
+              <td>丸い上辺。上コネクタなし（他のブロックの下に接続不可）。</td>
+              <td>Startブロック（マクロの開始点）、FunctionDefine（関数定義）</td>
+            </tr>
+            <tr>
+              <td><strong>C型ブロック</strong></td>
+              <td>口の中に子ブロックを配置可能。口の高さは内部のブロック数に応じて自動拡張。</td>
+              <td>条件分岐（if-then, if-then-else）、ループ（for, forEach）、TryCatch</td>
+            </tr>
+            <tr>
+              <td><strong>Boolean型</strong></td>
+              <td>六角形。true / false の条件を表す。C型ブロックの条件スロットにスナップ。</td>
+              <td>比較（=, &gt;, &lt;）、論理演算（AND, OR, NOT）、ファイル存在チェックなど</td>
+            </tr>
+            <tr>
+              <td><strong>Reporter型</strong></td>
+              <td>カプセル型（丸い両端）。値を返す。他のブロックのパラメータスロットにスナップ。</td>
+              <td>変数参照、数学演算（加算・減算等）、文字列操作、マウス座標など</td>
+            </tr>
+            <tr>
+              <td><strong>Cap型</strong></td>
+              <td>上コネクタのみ（下コネクタなし）。フローの終了を表す。</td>
+              <td>BreakLoop、ContinueLoop、MacroExit、FunctionReturn</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ===== 4. ブロックカテゴリ一覧 ===== -->
+        <h2 id="block-categories">ブロックカテゴリ一覧</h2>
+        <p>RocketMouse AI には多数のブロックがカテゴリ別に整理されています。各カテゴリをクリックすると詳細を展開できます。</p>
+
+        <!-- Mouse -->
+        <div class="collapsible" id="cat-mouse">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#3B82F6;border:1px solid #3B82F6;">Mouse</span> マウス操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 16ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>マウスのクリック、移動、ドラッグ、スクロールなどの操作を自動化するブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>LeftClick</strong></td><td>指定座標を左クリック</td></tr>
+                <tr><td><strong>RightClick</strong></td><td>指定座標を右クリック</td></tr>
+                <tr><td><strong>MiddleClick</strong></td><td>指定座標を中クリック</td></tr>
+                <tr><td><strong>DoubleClick</strong></td><td>指定座標をダブルクリック</td></tr>
+                <tr><td><strong>MouseMove</strong></td><td>指定座標にマウスカーソルを移動</td></tr>
+                <tr><td><strong>MouseDrag</strong></td><td>指定の開始座標から終了座標へドラッグ</td></tr>
+                <tr><td><strong>ScrollUp</strong></td><td>マウスホイールを上方向にスクロール</td></tr>
+                <tr><td><strong>ScrollDown</strong></td><td>マウスホイールを下方向にスクロール</td></tr>
+                <tr><td><strong>LeftDown</strong></td><td>左ボタンを押下（離さない）</td></tr>
+                <tr><td><strong>LeftUp</strong></td><td>左ボタンを離す</td></tr>
+                <tr><td><strong>RightDown</strong></td><td>右ボタンを押下（離さない）</td></tr>
+                <tr><td><strong>RightUp</strong></td><td>右ボタンを離す</td></tr>
+                <tr><td><strong>MiddleDown</strong></td><td>中ボタンを押下（離さない）</td></tr>
+                <tr><td><strong>MiddleUp</strong></td><td>中ボタンを離す</td></tr>
+                <tr><td><strong>ScrollLeft</strong></td><td>マウスホイールを左方向にスクロール</td></tr>
+                <tr><td><strong>ScrollRight</strong></td><td>マウスホイールを右方向にスクロール</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Keyboard -->
+        <div class="collapsible" id="cat-keyboard">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#8B5CF6;border:1px solid #8B5CF6;">Keyboard</span> キーボード操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 2ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>キーボード入力やテキスト貼り付けを自動化するブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>KeyInput</strong></td><td>キーコンボ入力。修飾キー（Ctrl, Shift, Alt）との組み合わせや、特殊キー（<code>{ENTER}</code>, <code>{TAB}</code>, <code>{F1}</code>等）のシーケンスに対応。KeyComboピッカーで直感的に入力可能。</td></tr>
+                <tr><td><strong>TextPaste</strong></td><td>テキスト文字列をクリップボード経由で貼り付け。日本語（IME）を含む任意のテキストに対応。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Window -->
+        <div class="collapsible" id="cat-window">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#EC4899;border:1px solid #EC4899;">Window</span> ウィンドウ操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 8ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>ウィンドウのアクティブ化、最小化、最大化、サイズ変更などの操作を行うブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ActivateWindow</strong></td><td>指定タイトルのウィンドウをアクティブ（前面）に</td></tr>
+                <tr><td><strong>CloseWindow</strong></td><td>指定タイトルのウィンドウを閉じる</td></tr>
+                <tr><td><strong>MinimizeWindow</strong></td><td>ウィンドウを最小化</td></tr>
+                <tr><td><strong>MaximizeWindow</strong></td><td>ウィンドウを最大化</td></tr>
+                <tr><td><strong>RestoreWindow</strong></td><td>ウィンドウを元のサイズに復元</td></tr>
+                <tr><td><strong>ResizeWindow</strong></td><td>ウィンドウのサイズを変更</td></tr>
+                <tr><td><strong>MoveWindow</strong></td><td>ウィンドウの位置を移動</td></tr>
+                <tr><td><strong>SnapWindow</strong></td><td>ウィンドウを画面端にスナップ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Browser -->
+        <div class="collapsible" id="cat-browser">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#06B6D4;border:1px solid #06B6D4;">Browser</span> ブラウザ操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 16ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Webブラウザの起動、ナビゲーション、要素操作、スクリーンショットなどを自動化するブロックです。Playwright を利用し、Edge / Chrome をシステムの channel モードで使用します。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>BrowserLaunch</strong></td><td>ブラウザを起動（Edge / Chrome / Chromium 選択可）</td></tr>
+                <tr><td><strong>BrowserNavigate</strong></td><td>指定URLに移動</td></tr>
+                <tr><td><strong>BrowserClick</strong></td><td>CSSセレクタで指定した要素をクリック</td></tr>
+                <tr><td><strong>BrowserType</strong></td><td>テキストフィールドに文字入力</td></tr>
+                <tr><td><strong>BrowserGetText</strong></td><td>要素のテキストを取得して変数に格納</td></tr>
+                <tr><td><strong>BrowserGetAttribute</strong></td><td>要素の属性値を取得</td></tr>
+                <tr><td><strong>BrowserScreenshot</strong></td><td>ページまたは要素のスクリーンショットを保存</td></tr>
+                <tr><td><strong>BrowserEvalJs</strong></td><td>JavaScript コードを実行</td></tr>
+                <tr><td><strong>BrowserSelectOption</strong></td><td>ドロップダウンから選択</td></tr>
+                <tr><td><strong>BrowserWaitElement</strong></td><td>指定要素が表示されるまで待機</td></tr>
+                <tr><td><strong>BrowserClose</strong></td><td>ブラウザを閉じる</td></tr>
+                <tr><td><strong>BrowserNewTab</strong></td><td>新しいタブを開く</td></tr>
+                <tr><td><strong>BrowserSwitchTab</strong></td><td>指定タブに切替</td></tr>
+                <tr><td><strong>BrowserGoBack</strong></td><td>前のページに戻る</td></tr>
+                <tr><td><strong>BrowserGoForward</strong></td><td>次のページに進む</td></tr>
+                <tr><td><strong>BrowserReload</strong></td><td>ページを再読み込み</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Excel -->
+        <div class="collapsible" id="cat-excel">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#10B981;border:1px solid #10B981;">Excel</span> Excel操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 18ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Excel COM オートメーションでブック/シート/セルを操作するブロックです。Microsoft Excel がインストールされている必要があります。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ExcelOpen</strong></td><td>Excelファイルを開く</td></tr>
+                <tr><td><strong>ExcelClose</strong></td><td>Excelブックを閉じる</td></tr>
+                <tr><td><strong>ExcelSave</strong></td><td>ブックを保存</td></tr>
+                <tr><td><strong>ExcelReadCell</strong></td><td>指定セルの値を読み取り変数に格納</td></tr>
+                <tr><td><strong>ExcelWriteCell</strong></td><td>指定セルに値を書き込み</td></tr>
+                <tr><td><strong>ExcelSetFormula</strong></td><td>セルに数式を設定</td></tr>
+                <tr><td><strong>ExcelRunMacro</strong></td><td>VBAマクロを実行</td></tr>
+                <tr><td><strong>ExcelFilter</strong></td><td>オートフィルタを適用</td></tr>
+                <tr><td><strong>ExcelReadRange</strong></td><td>範囲のデータを一括読み取り</td></tr>
+                <tr><td><strong>ExcelWriteRange</strong></td><td>範囲にデータを一括書き込み</td></tr>
+                <tr><td><strong>ExcelCopySheet</strong></td><td>シートをコピー</td></tr>
+                <tr><td><strong>ExcelDeleteSheet</strong></td><td>シートを削除</td></tr>
+                <tr><td><strong>ExcelRenameSheet</strong></td><td>シート名を変更</td></tr>
+                <tr><td><strong>ExcelCreateBook</strong></td><td>新規ブックを作成</td></tr>
+                <tr><td><strong>ExcelAddSheet</strong></td><td>新しいシートを追加</td></tr>
+                <tr><td><strong>ExcelGetLastRow</strong></td><td>データのある最終行を取得</td></tr>
+                <tr><td><strong>ExcelGetLastColumn</strong></td><td>データのある最終列を取得</td></tr>
+                <tr><td><strong>ExcelSaveAs</strong></td><td>名前を付けてブックを保存</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- File -->
+        <div class="collapsible" id="cat-file">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#F97316;border:1px solid #F97316;">File</span> ファイル操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 12ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>ファイルのコピー、移動、削除、読み書きなどの操作を行うブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>FileCopy</strong></td><td>ファイルをコピー</td></tr>
+                <tr><td><strong>FileMove</strong></td><td>ファイルを移動</td></tr>
+                <tr><td><strong>FileDelete</strong></td><td>ファイルを削除</td></tr>
+                <tr><td><strong>FileRead</strong></td><td>テキストファイルの内容を読み取り変数に格納</td></tr>
+                <tr><td><strong>FileWrite</strong></td><td>テキストファイルに内容を書き込み（上書き）</td></tr>
+                <tr><td><strong>FileAppend</strong></td><td>テキストファイルに内容を追記</td></tr>
+                <tr><td><strong>DirectoryCopy</strong></td><td>ディレクトリをコピー</td></tr>
+                <tr><td><strong>DirectoryCreate</strong></td><td>ディレクトリを作成</td></tr>
+                <tr><td><strong>DirectoryDelete</strong></td><td>ディレクトリを削除</td></tr>
+                <tr><td><strong>DirectoryGetFiles</strong></td><td>ディレクトリ内のファイル一覧を取得</td></tr>
+                <tr><td><strong>FileGetInfo</strong></td><td>ファイルの情報（サイズ、更新日時等）を取得</td></tr>
+                <tr><td><strong>FileRename</strong></td><td>ファイル名を変更</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Data Processing -->
+        <div class="collapsible" id="cat-data">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#06B6D4;border:1px solid #06B6D4;">Data</span> データ処理 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 22ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>JSON解析、正規表現、文字列操作、日付演算、リスト操作など、データの加工・変換を行うブロックです。</p>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">JSON / 正規表現</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>JsonParse</strong></td><td>JSON文字列を解析し、指定パスの値を変数に格納</td></tr>
+                <tr><td><strong>JsonStringify</strong></td><td>値をJSON文字列に変換</td></tr>
+                <tr><td><strong>RegexMatch</strong></td><td>正規表現でテキストを検索、マッチした値を変数に格納</td></tr>
+                <tr><td><strong>RegexReplace</strong></td><td>正規表現でテキストを置換</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">文字列操作</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>StringSubstring</strong></td><td>文字列の部分取得</td></tr>
+                <tr><td><strong>StringReplace</strong></td><td>文字列の置換</td></tr>
+                <tr><td><strong>StringSplit</strong></td><td>区切り文字で文字列を分割しリスト化</td></tr>
+                <tr><td><strong>StringTrim</strong></td><td>文字列の前後の空白を除去</td></tr>
+                <tr><td><strong>StringIndexOf</strong></td><td>文字列内で指定テキストの位置を検索</td></tr>
+                <tr><td><strong>StringStartsWith</strong></td><td>文字列が指定テキストで始まるかチェック</td></tr>
+                <tr><td><strong>StringEndsWith</strong></td><td>文字列が指定テキストで終わるかチェック</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">日付演算</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>DateAdd</strong></td><td>日付に日数/月数/年数を加算</td></tr>
+                <tr><td><strong>DateDiff</strong></td><td>2つの日付の差を計算</td></tr>
+                <tr><td><strong>DateFormat</strong></td><td>日付を指定フォーマットで文字列に変換</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">リスト操作</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ListCreate</strong></td><td>新しいリスト（配列）を作成</td></tr>
+                <tr><td><strong>ListAdd</strong></td><td>リストに要素を追加</td></tr>
+                <tr><td><strong>ListGet</strong></td><td>リストの指定インデックスの要素を取得</td></tr>
+                <tr><td><strong>ListSet</strong></td><td>リストの指定インデックスの要素を変更</td></tr>
+                <tr><td><strong>ListLength</strong></td><td>リストの要素数を取得</td></tr>
+                <tr><td><strong>ListRemove</strong></td><td>リストから要素を削除</td></tr>
+                <tr><td><strong>ListSort</strong></td><td>リストをソート</td></tr>
+                <tr><td><strong>ListJoin</strong></td><td>リストの要素を区切り文字で結合して文字列に</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Control Flow -->
+        <div class="collapsible" id="cat-control">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#FBBF24;border:1px solid #FBBF24;">Control</span> 制御フロー <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 17ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>条件分岐、ループ、待機、関数定義・呼び出しなど、マクロの実行フローを制御するブロックです。</p>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">条件分岐（C型ブロック）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ConditionBranch</strong></td><td>if-then 分岐。条件スロットにBooleanブロックをスナップして条件を指定。</td></tr>
+                <tr><td><strong>ConditionBranchElse</strong></td><td>if-then-else 分岐。条件が偽の場合のelse口も持つ。</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">ループ（C型ブロック）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>LoopStart</strong></td><td>指定回数繰り返し（forループ）。<code>{=_loopIndex}</code> で現在のループ番号（1始まり）を参照可能。</td></tr>
+                <tr><td><strong>ForEachLoop</strong></td><td>リストの各要素に対して繰り返し。要素を変数に格納。</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">エラー処理（C型ブロック）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>TryCatch</strong></td><td>Try-Catch構造。try口で実行し、エラー発生時はcatch口を実行。リトライ回数指定可。</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">フロー制御（Cap型ブロック）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>BreakLoop</strong></td><td>現在のループを中断して抜ける</td></tr>
+                <tr><td><strong>ContinueLoop</strong></td><td>現在のループの残りをスキップして次の繰り返しへ</td></tr>
+                <tr><td><strong>MacroExit</strong></td><td>マクロの実行を即座に正常終了</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">待機・関数・変数・その他</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>WaitTime</strong></td><td>指定ミリ秒間待機</td></tr>
+                <tr><td><strong>FunctionDefine</strong></td><td>カスタム関数を定義（Hat型）。関数名を指定。</td></tr>
+                <tr><td><strong>FunctionCall</strong></td><td>定義済み関数を呼び出し（Stack型）。</td></tr>
+                <tr><td><strong>FunctionReturn</strong></td><td>関数から値を返して終了（Cap型）。</td></tr>
+                <tr><td><strong>VariableDefine</strong></td><td>変数を定義（値を設定）</td></tr>
+                <tr><td><strong>VariableDelete</strong></td><td>変数を削除</td></tr>
+                <tr><td><strong>VariableExpression</strong></td><td>四則演算式を評価して変数に格納</td></tr>
+                <tr><td><strong>Comment</strong></td><td>コメントブロック。実行時はスキップ。メモや説明を記述。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div class="collapsible" id="cat-ai">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#A78BFA;border:1px solid #A78BFA;">AI</span> AI操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 1ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>LLM（大規模言語モデル）にプロンプトを送信し、AI応答を変数に格納するブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AiInstruction</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ（OpenAI, Anthropic, Gemini, Groq, ローカルLLM）から選択可能。画像ファイルを添付してVision APIも利用可（4MB制限）。温度パラメータ、モデル指定にも対応。</td></tr>
+              </tbody>
+            </table>
+            <div class="notice notice-info" style="margin-top:12px;">
+              <strong>設定方法:</strong> AI設定ダイアログ（ツールバー）でAPIキーとデフォルトモデルを設定してください。各ブロック個別にプロバイダやモデルを上書きすることもできます。
+            </div>
+          </div>
+        </div>
+
+        <!-- Vision -->
+        <div class="collapsible" id="cat-vision">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#14B8A6;border:1px solid #14B8A6;">Vision</span> 画像認識 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 9ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>画像認識（テンプレートマッチング）やOCR（文字認識）を使って画面要素を検出・操作するブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>VisionClick</strong></td><td>テンプレート画像にマッチする画面上の位置をクリック</td></tr>
+                <tr><td><strong>VisionWait</strong></td><td>テンプレート画像が画面上に表示されるまで待機</td></tr>
+                <tr><td><strong>VisionDisappear</strong></td><td>テンプレート画像が画面上から消えるまで待機</td></tr>
+                <tr><td><strong>VisionGetPosition</strong></td><td>テンプレート画像の位置（X,Y座標）を変数に格納</td></tr>
+                <tr><td><strong>VisionCapture</strong></td><td>画面の指定領域をキャプチャして画像ファイルに保存</td></tr>
+                <tr><td><strong>OcrReadText</strong></td><td>指定領域のテキストをOCR（Windows OCR）で読み取り変数に格納</td></tr>
+                <tr><td><strong>OcrClickText</strong></td><td>OCRで検出したテキストの位置をクリック</td></tr>
+                <tr><td><strong>OcrWaitText</strong></td><td>指定テキストがOCRで検出されるまで待機</td></tr>
+                <tr><td><strong>WaitImage</strong></td><td>AI Vision APIを使用して画面の状態を分析し、条件に合致するまで待機</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Boolean / Condition -->
+        <div class="collapsible" id="cat-boolean">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#10B981;border:1px solid #10B981;">Boolean</span> 条件ブロック <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 11種類</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>六角形の条件ブロック（Boolean型）です。C型ブロック（if-then/if-then-else）の条件スロットにスナップして使用します。</p>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">比較演算</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>BoolCompareEquals</strong></td><td>左辺 = 右辺（等しい）</td></tr>
+                <tr><td><strong>BoolCompareGreater</strong></td><td>左辺 &gt; 右辺（より大きい）</td></tr>
+                <tr><td><strong>BoolCompareLess</strong></td><td>左辺 &lt; 右辺（より小さい）</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">論理演算</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>BoolAnd</strong></td><td>AND（かつ）。2つの条件スロットを持つ。両方trueの場合true。</td></tr>
+                <tr><td><strong>BoolOr</strong></td><td>OR（または）。2つの条件スロットを持つ。どちらかがtrueの場合true。</td></tr>
+                <tr><td><strong>BoolNot</strong></td><td>NOT（否定）。1つの条件スロットを持つ。trueとfalseを反転。</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">状態チェック</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>BoolVariableEquals</strong></td><td>変数の値が指定値と等しいかチェック</td></tr>
+                <tr><td><strong>BoolFileExists</strong></td><td>ファイルが存在するかチェック</td></tr>
+                <tr><td><strong>BoolWindowVisible</strong></td><td>指定タイトルのウィンドウが表示されているかチェック</td></tr>
+                <tr><td><strong>BoolImageFound</strong></td><td>テンプレート画像が画面上に見つかるかチェック</td></tr>
+                <tr><td><strong>BoolColorFound</strong></td><td>指定座標のピクセルが指定色と一致するかチェック</td></tr>
+              </tbody>
+            </table>
+            <div class="notice notice-info" style="margin-top:12px;">
+              <strong>ネスト対応:</strong> AND/OR/NOT ブロックのスロットに別のBooleanブロックをスナップすることで、複雑な条件式（例: <code>(A &gt; 10) AND (B = "OK")</code>）を組み立てられます。
+            </div>
+          </div>
+        </div>
+
+        <!-- System / App -->
+        <div class="collapsible" id="cat-system">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#8B949E;border:1px solid #8B949E;">System</span> システム / アプリ <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 18ブロック</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>アプリケーション起動、メッセージボックス、クリップボード、プロセス管理、圧縮、エンコード、ハッシュなどのシステム操作ブロックです。</p>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AppLaunch</strong></td><td>アプリケーションを起動（パス指定）</td></tr>
+                <tr><td><strong>AppClose</strong></td><td>アプリケーションを終了</td></tr>
+                <tr><td><strong>MessageBox</strong></td><td>メッセージボックスを表示</td></tr>
+                <tr><td><strong>InputDialog</strong></td><td>テキスト入力ダイアログを表示し、入力値を変数に格納</td></tr>
+                <tr><td><strong>ClipboardSet</strong></td><td>クリップボードにテキストを設定</td></tr>
+                <tr><td><strong>ClipboardGet</strong></td><td>クリップボードからテキストを取得</td></tr>
+                <tr><td><strong>ProcessStart</strong></td><td>プロセスを起動（引数指定可）</td></tr>
+                <tr><td><strong>ProcessKill</strong></td><td>プロセスを終了（プロセス名指定）</td></tr>
+                <tr><td><strong>ZipCreate</strong></td><td>ファイル/フォルダをZIP圧縮</td></tr>
+                <tr><td><strong>ZipExtract</strong></td><td>ZIPファイルを展開</td></tr>
+                <tr><td><strong>Base64Encode</strong></td><td>文字列/ファイルをBase64エンコード</td></tr>
+                <tr><td><strong>Base64Decode</strong></td><td>Base64をデコード</td></tr>
+                <tr><td><strong>HashCompute</strong></td><td>ハッシュ値を計算（MD5 / SHA1 / SHA256 / SHA512）</td></tr>
+                <tr><td><strong>PlaySound</strong></td><td>サウンドファイルを再生</td></tr>
+                <tr><td><strong>ScreenCapture</strong></td><td>画面全体をキャプチャして画像ファイルに保存</td></tr>
+                <tr><td><strong>LogWrite</strong></td><td>ログにメッセージを出力</td></tr>
+                <tr><td><strong>RegistryRead</strong></td><td>レジストリの値を読み取り</td></tr>
+                <tr><td><strong>RegistryWrite</strong></td><td>レジストリに値を書き込み</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Reporter -->
+        <div class="collapsible" id="cat-reporter">
+          <div class="collapsible-header">
+            <h4><span class="block-badge" style="color:#3B82F6;border:1px solid #3B82F6;">Reporter</span> レポーターブロック <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 15ブロック + 変数参照</span></h4>
+            <span class="arrow">&#9654;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>カプセル型のレポーターブロックは値を返し、他のブロックのパラメータスロットにスナップして使用します。Scratchの「演算」「調べる」ブロックに相当します。</p>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">変数参照</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>VariableReference</strong></td><td>変数の値を参照。パラメータスロットにスナップして変数値を動的に使用。</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">数学演算（Math）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>MathAdd</strong></td><td>加算（A + B）</td></tr>
+                <tr><td><strong>MathSubtract</strong></td><td>減算（A - B）</td></tr>
+                <tr><td><strong>MathMultiply</strong></td><td>乗算（A * B）</td></tr>
+                <tr><td><strong>MathDivide</strong></td><td>除算（A / B）</td></tr>
+                <tr><td><strong>MathModulo</strong></td><td>剰余（A % B）</td></tr>
+                <tr><td><strong>MathFunction</strong></td><td>数学関数（abs, round, floor, ceil, sqrt, sin, cos, tan, log, pow, min, max）</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">文字列（String）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>StringConcat</strong></td><td>2つの文字列を結合</td></tr>
+                <tr><td><strong>StringLength</strong></td><td>文字列の長さを返す</td></tr>
+                <tr><td><strong>StringCharAt</strong></td><td>指定位置の文字を返す</td></tr>
+                <tr><td><strong>RandomNumber</strong></td><td>指定範囲の乱数を生成</td></tr>
+              </tbody>
+            </table>
+            <h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">センシング（Sensing）</h4>
+            <table>
+              <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>SenseMouseX</strong></td><td>現在のマウスX座標</td></tr>
+                <tr><td><strong>SenseMouseY</strong></td><td>現在のマウスY座標</td></tr>
+                <tr><td><strong>SenseCurrentDateTime</strong></td><td>現在の日時</td></tr>
+                <tr><td><strong>SenseClipboardText</strong></td><td>クリップボードのテキスト</td></tr>
+                <tr><td><strong>SenseEnvironmentVariable</strong></td><td>環境変数の値</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===== 5. 実行とデバッグ ===== -->
+        <h2 id="execution-debug">実行とデバッグ</h2>
+
+        <h3>マクロの実行</h3>
+        <p>ツールバーの <strong>&#9654; 再生</strong> ボタンでマクロを実行します。Startブロック（Hat型）から順に、接続されたブロックチェーンを上から下に実行していきます。</p>
+        <ul>
+          <li>実行中のブロックは <strong>緑色の枠</strong> でハイライトされます。</li>
+          <li>ステータスバーに現在のステップ番号と総ステップ数（例: <code>[3/42]</code>）が表示されます。</li>
+          <li>ワークスペース上部に薄い緑色のプログレスバーが実行進捗を表示します。</li>
+        </ul>
+
+        <h3>一時停止 / 再開 / ステップ実行</h3>
+        <ul>
+          <li><strong>一時停止:</strong> 実行中に一時停止。現在のブロックの実行完了後に停止します。</li>
+          <li><strong>再開:</strong> 一時停止状態から通常実行を再開。</li>
+          <li><strong>ステップ:</strong> 1ブロックだけ実行して再び一時停止。フローの動作を1ステップずつ確認できます。</li>
+        </ul>
+
+        <h3>停止</h3>
+        <p><strong>&#9632; 停止</strong> ボタンで実行を即座に中断します。一時停止中でも停止可能です。</p>
+
+        <h3>ドライラン</h3>
+        <p>実際のマウス・キーボード操作を行わずに、フローの流れだけを確認するモードです。各ブロックの処理をログに出力しますが、実際のシステム操作（クリック、入力、ファイル操作等）は実行しません。ロジックの確認やデバッグに便利です。</p>
+
+        <h3>速度コントロール</h3>
+        <p>ツールバーのスライダーで <strong>1x ～ 10x</strong> の速度調整が可能です。速度はリアルタイムに変更でき、実行中でも即座に反映されます。速度を上げると各ステップ間の待機時間が短縮されます（50msのフロアあり）。</p>
+
+        <h3 id="debug-tools">デバッグツール</h3>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">エラー可視化</h4>
+        <p>エラーが発生したブロックは <strong style="color:#EF4444;">赤色の枠</strong> でハイライト表示されます。ブロックにマウスを合わせると、ToolTipにエラーメッセージの詳細が表示されます。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ログパネル</h4>
+        <p>画面下部のパネルに構造化ログが表示されます。4色のレベルで情報を識別できます。</p>
+        <table>
+          <thead><tr><th>色</th><th>レベル</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td><span style="color:#8B949E;">&#9679;</span> 灰</td><td>Info</td><td>ステップ開始、パラメータ情報</td></tr>
+            <tr><td><span style="color:#10B981;">&#9679;</span> 緑</td><td>Success</td><td>ステップ完了、所要時間、条件評価結果</td></tr>
+            <tr><td><span style="color:#EF4444;">&#9679;</span> 赤</td><td>Error</td><td>エラー発生、エラーメッセージ</td></tr>
+            <tr><td><span style="color:#F59E0B;">&#9679;</span> 黄</td><td>Warning</td><td>一時停止、スキップ情報</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">変数ウォッチパネル</h4>
+        <p>下部パネルの「変数」タブに切り替えると、実行中の全変数の名前と値をリアルタイムで監視できます。値が更新された変数は <strong style="color:#10B981;">緑色の背景</strong> でハイライトされます。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ブレークポイント</h4>
+        <p>特定のブロックで実行を自動停止させるブレークポイント機能です。</p>
+        <ul>
+          <li>設定方法: ブロックを右クリック → 「ブレークポイント設定」、または <kbd>F9</kbd> キー</li>
+          <li>ブレークポイントが設定されたブロックには <strong style="color:#EF4444;">赤い丸マーカー</strong> が表示されます</li>
+          <li>実行がブレークポイントに到達すると自動的に一時停止します</li>
+          <li>一時停止後、再開またはステップ実行で続行できます</li>
+        </ul>
+
+        <h3 id="recording">録音機能</h3>
+        <p>ツールバーの <strong style="color:#EF4444;">&#9679; 録音</strong> ボタンで、マウス操作やキーボード入力を自動記録できます。記録された操作は自動的にブロックとしてワークスペースに配置されます。</p>
+        <ul>
+          <li>マウスクリック（左/右/中/ダブル）、ドラッグ、スクロールを記録</li>
+          <li>キーボード入力（英語テキスト、日本語IME入力、ショートカットキー）を記録</li>
+          <li>録音停止後、記録された操作をブロックチェーンとして確認・編集可能</li>
+        </ul>
+
+        <!-- ===== 6. 変数と関数 ===== -->
+        <h2 id="variables-functions">変数と関数</h2>
+
+        <h3>変数の定義と参照</h3>
+        <p><strong>VariableDefine</strong> ブロックで変数を作成し、値を設定します。変数の値は <code>{=変数名}</code> 構文で他のブロックのパラメータ内から参照できます。</p>
+        <pre><code>例: 変数名「filePath」に値「C:\Documents\data.txt」を設定
+    → FileRead ブロックのパスに {=filePath} と入力
+    → 実行時に自動的に「C:\Documents\data.txt」に置換</code></pre>
+
+        <div class="notice notice-info">
+          <strong>変数名は大文字小文字を区別しません。</strong> <code>{=myVar}</code> と <code>{=MYVAR}</code> は同じ変数を参照します。
+        </div>
+
+        <h3>変数の式</h3>
+        <p><strong>VariableExpression</strong> ブロックで四則演算の結果を変数に格納できます。</p>
+        <ul>
+          <li>対応演算子: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>（剰余）</li>
+          <li>括弧 <code>()</code> で優先順位を指定可能</li>
+          <li>変数参照 <code>{=name}</code> を式の中で使用可能</li>
+          <li>例: <code>{=total} * 1.1</code>, <code>({=width} + {=margin}) * 2</code></li>
+        </ul>
+
+        <div class="notice notice-warning">
+          <strong>注意:</strong> VariableExpression は数学演算専用です。文字列の結合には VariableDefine の value パラメータ、または StringConcat レポーターブロックを使用してください。
+        </div>
+
+        <h3>システム変数</h3>
+        <p>ループ内では以下のシステム変数が自動的に設定されます。</p>
+        <table>
+          <thead><tr><th>変数名</th><th>説明</th></tr></thead>
+          <tbody>
+            <tr><td><code>{=_loopIndex}</code></td><td>現在のループ番号（1始まり）。1回目=1, 2回目=2, ...</td></tr>
+            <tr><td><code>{=_loopIteration}</code></td><td>現在のループ反復回数（0始まり）。1回目=0, 2回目=1, ...</td></tr>
+          </tbody>
+        </table>
+
+        <h3>リスト操作</h3>
+        <p>リスト（配列）を作成・操作するブロックが用意されています。</p>
+        <ul>
+          <li><strong>ListCreate:</strong> 空のリスト、またはカンマ区切りの初期値でリストを作成</li>
+          <li><strong>ListAdd:</strong> リストの末尾に要素を追加</li>
+          <li><strong>ListGet / ListSet:</strong> インデックス指定で要素の取得・設定（0始まり）</li>
+          <li><strong>ListLength:</strong> リストの要素数を取得</li>
+          <li><strong>ListRemove:</strong> 指定インデックスの要素を削除</li>
+          <li><strong>ListSort:</strong> リストをソート（昇順/降順）</li>
+          <li><strong>ListJoin:</strong> リストの全要素を区切り文字で結合して文字列に変換</li>
+        </ul>
+
+        <h3 id="custom-functions">カスタム関数</h3>
+        <p>繰り返し使用する処理をカスタム関数として定義できます。</p>
+        <ul>
+          <li><strong>FunctionDefine（Hat型）:</strong> 関数を定義します。関数名を指定し、口の中に処理ブロックを配置します。ワークスペース上にStartブロックとは別に配置します。</li>
+          <li><strong>FunctionCall（Stack型）:</strong> 定義済みの関数を呼び出します。関数名を指定。</li>
+          <li><strong>FunctionReturn（Cap型）:</strong> 関数から値を返して終了します。呼び出し元のFunctionCallブロックの出力変数に格納されます。</li>
+        </ul>
+
+        <div class="notice notice-info">
+          <strong>再帰呼び出し対応:</strong> 関数は自分自身を呼び出す再帰処理に対応しています。無限再帰防止のため、コールスタックの上限は100段です。
+        </div>
+
+        <h3>自動出力変数</h3>
+        <p>出力変数を持つブロック（ExcelReadCell、FileRead、BrowserGetText 等）をパレットから配置すると、スマートなデフォルト変数名が自動設定されます。</p>
+        <ul>
+          <li>例: ExcelReadCell → <code>CellValue</code></li>
+          <li>同名の変数が既にワークスペース上にある場合は自動連番: <code>CellValue</code> → <code>CellValue2</code> → <code>CellValue3</code></li>
+          <li>コピー&ペースト時にも自動連番が適用されます</li>
+        </ul>
+
+        <!-- ===== 7. AI機能 ===== -->
+        <h2 id="ai-features">AI機能</h2>
+
+        <h3>AI指示ブロック（AiInstruction）</h3>
+        <p><strong>AiInstruction</strong> ブロックは、マクロ実行中にLLM（大規模言語モデル）にプロンプトを送信し、AIの応答を変数に格納します。テキスト生成、データ分析、意思決定の自動化などに活用できます。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">パラメータ</h4>
+        <table>
+          <thead><tr><th>パラメータ</th><th>説明</th></tr></thead>
+          <tbody>
+            <tr><td><strong>prompt</strong></td><td>LLMに送信するプロンプト。<code>{=変数名}</code> で変数参照可能。</td></tr>
+            <tr><td><strong>outputVariable</strong></td><td>応答を格納する変数名（デフォルト: AIResponse）</td></tr>
+            <tr><td><strong>filePath</strong></td><td>添付画像ファイルのパス（Vision API用。4MB制限）</td></tr>
+            <tr><td><strong>provider</strong></td><td>使用するプロバイダ（Default = AI設定のデフォルト）</td></tr>
+            <tr><td><strong>model</strong></td><td>使用するモデルID（空欄 = プロバイダのデフォルトモデル）</td></tr>
+            <tr><td><strong>temperature</strong></td><td>生成の多様性（0.0 = 決定的 ～ 1.0 = 創造的。デフォルト: 0.3）</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">プロバイダ設定</h4>
+        <p>ツールバーの AI設定ボタンから、各プロバイダの API キーとデフォルトモデルを設定します。</p>
+        <table>
+          <thead><tr><th>プロバイダ</th><th>主要モデル</th><th>Vision対応</th></tr></thead>
+          <tbody>
+            <tr><td><strong>OpenAI</strong></td><td>gpt-4o, gpt-4o-mini</td><td>対応</td></tr>
+            <tr><td><strong>Anthropic</strong></td><td>claude-sonnet-4-5, claude-3-5-haiku</td><td>対応</td></tr>
+            <tr><td><strong>Google Gemini</strong></td><td>gemini-2.5-pro, gemini-2.0-flash</td><td>対応</td></tr>
+            <tr><td><strong>Groq</strong></td><td>llama-3.3-70b-versatile</td><td>非対応</td></tr>
+            <tr><td><strong>ローカルLLM</strong></td><td>LM Studio / Ollama（任意モデル）</td><td>対応（モデル依存）</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="ai-assistant">AIアシスタント</h3>
+        <p>右パネルのAIアシスタントは、マクロに関する質問や操作をチャット形式でサポートします。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">主な機能</h4>
+        <ul>
+          <li><strong>マクロの説明:</strong> 選択したブロックやマクロ全体の動作をAIが解説</li>
+          <li><strong>問題の診断:</strong> エラーやフローの問題点をAIが分析・提案</li>
+          <li><strong>一般質問:</strong> 使い方やブロックの機能についてチャットで質問</li>
+          <li><strong>ブロック自動生成:</strong> 自然言語でタスクを記述すると、AIがブロック列をJSON形式で生成し、ワークスペースに配置できます</li>
+        </ul>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ブロック自動生成の使い方</h4>
+        <ol>
+          <li>AIアシスタントのチャット入力欄にタスクを自然言語で記述（例:「メモ帳を開いてHello Worldと入力して保存して」）</li>
+          <li>AIがブロック列を生成し、チャット内にプレビュー表示</li>
+          <li>「配置する」ボタンをクリックすると、生成されたブロックがワークスペースのStartブロックに接続配置されます</li>
+        </ol>
+
+        <div class="notice notice-success">
+          <strong>マルチターン対応:</strong> AIアシスタントは会話の文脈を保持します。追加の指示（「もう1つループを追加して」等）を送ると、前回の会話を踏まえた応答が得られます。「新しい会話」ボタンで会話履歴をリセットできます。
+        </div>
+
+        <!-- ===== 8. ライセンスと設定 ===== -->
+        <h2 id="license-settings">ライセンスと設定</h2>
+
+        <h3>ライセンス概要</h3>
+        <p>RocketMouse AI は <strong>7日間のトライアル</strong> を提供しています。トライアル期間中はすべての機能を制限なく使用できます。トライアル期間が終了すると、マクロの実行（再生・録音）が制限されますが、編集・保存・AIアシスタントは引き続き利用可能です。</p>
+        <p>ライセンスキーを購入・入力すると、制限なくすべての機能をご利用いただけます。詳しくは <a href="license.html">ライセンスページ</a> をご覧ください。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ライセンスの種類</h4>
+        <table>
+          <thead><tr><th>種類</th><th>対象</th><th>制限</th></tr></thead>
+          <tbody>
+            <tr><td><strong>個人版（Personal）</strong></td><td>個人利用</td><td>1台のPCに限定</td></tr>
+            <tr><td><strong>法人版（Business）</strong></td><td>商用利用</td><td>PC台数無制限</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ライセンス認証方法</h4>
+        <ol>
+          <li>ツールバー右側の「About」ボタンをクリック</li>
+          <li>Aboutダイアログでライセンスキーを入力</li>
+          <li>「認証」ボタンをクリックして有効化</li>
+        </ol>
+
+        <h3 id="ai-settings">AI設定</h3>
+        <p>AI指示ブロックとAIアシスタントで使用するLLMプロバイダの設定です。</p>
+        <ol>
+          <li>ツールバーの AI設定ボタン（歯車アイコン）をクリック</li>
+          <li>使用するプロバイダのセクションを展開</li>
+          <li>APIキーを入力</li>
+          <li>「接続テスト」ボタンで接続を確認</li>
+          <li>デフォルトプロバイダとモデルを選択</li>
+          <li>「保存」をクリック</li>
+        </ol>
+
+        <div class="notice notice-warning">
+          <strong>APIキーの管理:</strong> APIキーはレジストリに保存されます（<code>HKCU\Software\Mojosoft\RocketMouse\AI</code>）。プロジェクトファイル (.rmproj) には保存されないため、プロジェクトを共有してもAPIキーは漏洩しません。
+        </div>
+
+        <h3>プロジェクト設定</h3>
+        <p>マクロプロジェクトは <code>.rmproj</code> ファイル（JSON形式）に保存されます。テキストエディタで開いて手動編集することも可能です。プロジェクトファイルには以下の情報が含まれます。</p>
+        <ul>
+          <li>マクロステップ（ブロックのフラットリスト）</li>
+          <li>各ブロックのパラメータと設定</li>
+          <li>ブロックの座標位置</li>
+          <li>プロジェクト変数のデフォルト値</li>
+        </ul>
+
+        <!-- ===== 9. キーボードショートカット ===== -->
+        <h2 id="keyboard-shortcuts">キーボードショートカット</h2>
+        <p>RocketMouse AI で使用できるキーボードショートカットの一覧です。</p>
+
+        <h3>編集操作</h3>
+        <table>
+          <thead><tr><th>ショートカット</th><th>動作</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>元に戻す（Undo）</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>やり直し（Redo）</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>選択ブロックをコピー</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>コピーしたブロックをペースト</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>選択ブロックを複製</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>全ブロックを選択</td></tr>
+            <tr><td><kbd>Delete</kbd></td><td>選択ブロックを削除</td></tr>
+            <tr><td><kbd>Escape</kbd></td><td>選択を解除</td></tr>
+          </tbody>
+        </table>
+
+        <h3>ファイル操作</h3>
+        <table>
+          <thead><tr><th>ショートカット</th><th>動作</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>上書き保存</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>名前を付けて保存</td></tr>
+          </tbody>
+        </table>
+
+        <h3>ナビゲーション</h3>
+        <table>
+          <thead><tr><th>ショートカット</th><th>動作</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>ブロック検索を開く</td></tr>
+            <tr><td><kbd>Home</kbd></td><td>全体表示（ZoomToFit） &#8212; 全ブロックが画面に収まるようにズーム</td></tr>
+            <tr><td>マウスホイール</td><td>ズーム（拡大/縮小）</td></tr>
+            <tr><td>中ボタンドラッグ</td><td>ワークスペースをパン</td></tr>
+            <tr><td>右ボタンドラッグ</td><td>ワークスペースをパン</td></tr>
+          </tbody>
+        </table>
+
+        <h3>デバッグ</h3>
+        <table>
+          <thead><tr><th>ショートカット</th><th>動作</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>F9</kbd></td><td>ブレークポイントの設定/解除</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td><td>C型ブロックの折り畳み/展開</td></tr>
+          </tbody>
+        </table>
+
+      </div><!-- /help-content -->
+    </div><!-- /help-layout -->
+  </div><!-- /container -->
+</div><!-- /section -->
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-brand"><img src="images/logo-64.png" alt="" style="width:28px;height:28px">RocketMouse AI</a>
+        <p>Scratch風ビジュアルブロックで誰でも簡単にRPAマクロを作成</p>
+      </div>
+      <div class="footer-col">
+        <h4>製品</h4>
+        <a href="download.html">ダウンロード</a>
+        <a href="license.html">ライセンス</a>
+        <a href="purchase.html">購入</a>
+      </div>
+      <div class="footer-col">
+        <h4>サポート</h4>
+        <a href="help.html">ヘルプ</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+      <div class="footer-col">
+        <h4>開発元</h4>
+        <a href="#">Mojosoft</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Mojosoft. All rights reserved.</span>
+      <span>RocketMouse AI v1.0.1.1</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
