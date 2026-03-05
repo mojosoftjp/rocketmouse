@@ -936,51 +936,51 @@ kbd {
   100% { opacity: 0; }
 }
 
-/* Aurora nebula — Layer 1: primary glow (strong) */
+/* Aurora nebula — Layer 1: primary glow */
 .stars-aurora {
   position: absolute;
-  inset: -30% -15%;
+  inset: -25% -10%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 1800px 800px at 5%  8%,  rgba(16,185,129,0.45), transparent 60%),
-    radial-gradient(ellipse 1600px 900px at 90% 25%, rgba(6,182,212,0.38), transparent 60%),
-    radial-gradient(ellipse 1400px 700px at 30% 60%, rgba(99,102,241,0.35), transparent 60%),
-    radial-gradient(ellipse 1200px 600px at 70% 10%, rgba(16,185,129,0.30), transparent 60%),
-    radial-gradient(ellipse 1500px 550px at 15% 45%, rgba(6,182,212,0.32), transparent 60%),
-    radial-gradient(ellipse 1300px 650px at 55% 75%, rgba(99,102,241,0.28), transparent 60%),
-    radial-gradient(ellipse 1000px 500px at 80% 65%, rgba(16,185,129,0.25), transparent 60%),
-    radial-gradient(ellipse 900px  450px at 45% 20%, rgba(167,139,250,0.22), transparent 60%),
-    radial-gradient(ellipse 1100px 500px at 60% 50%, rgba(236,72,153,0.15), transparent 60%);
+    radial-gradient(ellipse 1800px 800px at 5%  8%,  rgba(16,185,129,0.25), transparent 60%),
+    radial-gradient(ellipse 1600px 900px at 90% 25%, rgba(6,182,212,0.20), transparent 60%),
+    radial-gradient(ellipse 1400px 700px at 30% 60%, rgba(99,102,241,0.20), transparent 60%),
+    radial-gradient(ellipse 1200px 600px at 70% 10%, rgba(16,185,129,0.16), transparent 60%),
+    radial-gradient(ellipse 1500px 550px at 15% 45%, rgba(6,182,212,0.18), transparent 60%),
+    radial-gradient(ellipse 1300px 650px at 55% 75%, rgba(99,102,241,0.15), transparent 60%),
+    radial-gradient(ellipse 1000px 500px at 80% 65%, rgba(16,185,129,0.14), transparent 60%),
+    radial-gradient(ellipse 900px  450px at 45% 20%, rgba(167,139,250,0.12), transparent 60%),
+    radial-gradient(ellipse 1100px 500px at 60% 50%, rgba(236,72,153,0.08), transparent 60%);
   animation: auroraShift 12s ease-in-out infinite alternate;
 }
 
 /* Aurora nebula — Layer 2: secondary drift (offset animation) */
 .stars-aurora-2 {
   position: absolute;
-  inset: -25% -10%;
+  inset: -20% -10%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 1600px 700px at 75% 15%, rgba(16,185,129,0.35), transparent 55%),
-    radial-gradient(ellipse 1400px 800px at 10% 40%, rgba(6,182,212,0.30), transparent 55%),
-    radial-gradient(ellipse 1200px 600px at 50% 80%, rgba(99,102,241,0.28), transparent 55%),
-    radial-gradient(ellipse 1000px 500px at 85% 55%, rgba(167,139,250,0.22), transparent 55%),
-    radial-gradient(ellipse 800px  400px at 25% 70%, rgba(16,185,129,0.20), transparent 55%),
-    radial-gradient(ellipse 1300px 550px at 40% 30%, rgba(6,182,212,0.25), transparent 55%);
+    radial-gradient(ellipse 1600px 700px at 75% 15%, rgba(16,185,129,0.18), transparent 55%),
+    radial-gradient(ellipse 1400px 800px at 10% 40%, rgba(6,182,212,0.15), transparent 55%),
+    radial-gradient(ellipse 1200px 600px at 50% 80%, rgba(99,102,241,0.14), transparent 55%),
+    radial-gradient(ellipse 1000px 500px at 85% 55%, rgba(167,139,250,0.12), transparent 55%),
+    radial-gradient(ellipse 800px  400px at 25% 70%, rgba(16,185,129,0.10), transparent 55%),
+    radial-gradient(ellipse 1300px 550px at 40% 30%, rgba(6,182,212,0.13), transparent 55%);
   animation: auroraShift2 15s ease-in-out infinite alternate;
 }
 
 @keyframes auroraShift {
-  0%   { opacity: 0.8; transform: scale(1) translateX(0) translateY(0); }
-  25%  { opacity: 0.9; transform: scale(1.05) translateX(-20px) translateY(-10px); }
-  50%  { opacity: 1;   transform: scale(1.03) translateX(15px) translateY(8px); }
-  75%  { opacity: 0.95; transform: scale(1.07) translateX(-8px) translateY(-15px); }
-  100% { opacity: 1;   transform: scale(1.08) translateX(-12px) translateY(-18px); }
+  0%   { opacity: 0.7; transform: scale(1) translateX(0) translateY(0); }
+  25%  { opacity: 0.8; transform: scale(1.05) translateX(-20px) translateY(-10px); }
+  50%  { opacity: 0.9; transform: scale(1.03) translateX(15px) translateY(8px); }
+  75%  { opacity: 0.85; transform: scale(1.07) translateX(-8px) translateY(-15px); }
+  100% { opacity: 0.95; transform: scale(1.08) translateX(-12px) translateY(-18px); }
 }
 
 @keyframes auroraShift2 {
-  0%   { opacity: 0.6; transform: scale(1.02) translateX(10px) translateY(5px); }
-  25%  { opacity: 0.75; transform: scale(0.98) translateX(-12px) translateY(15px); }
-  50%  { opacity: 0.85; transform: scale(1.04) translateX(20px) translateY(-8px); }
-  75%  { opacity: 0.7; transform: scale(1.01) translateX(-18px) translateY(12px); }
-  100% { opacity: 0.8; transform: scale(1.06) translateX(8px) translateY(-20px); }
+  0%   { opacity: 0.5; transform: scale(1.02) translateX(10px) translateY(5px); }
+  25%  { opacity: 0.6; transform: scale(0.98) translateX(-12px) translateY(15px); }
+  50%  { opacity: 0.7; transform: scale(1.04) translateX(20px) translateY(-8px); }
+  75%  { opacity: 0.55; transform: scale(1.01) translateX(-18px) translateY(12px); }
+  100% { opacity: 0.65; transform: scale(1.06) translateX(8px) translateY(-20px); }
 }
