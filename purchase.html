@@ -135,6 +135,38 @@
     }
     .payment-note svg { width: 16px; height: 16px; }
 
+    /* Sale badge & launch pricing */
+    .sale-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #EF4444, #F97316);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    }
+    .price-original {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: -4px;
+    }
+    .launch-note {
+      color: #F97316;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: 16px;
+    }
+
     /* Bank transfer */
     .bank-transfer-section {
       max-width: 820px;
@@ -405,10 +437,13 @@
     <div class="pricing-grid reveal">
       <!-- 個人版 -->
       <div class="pricing-card">
+        <span class="sale-badge">&#127881; 発売記念</span>
         <h3>Personal</h3>
         <p class="subtitle">1 PC &middot; 永久ライセンス</p>
-        <div class="price">&yen;49,800</div>
+        <div class="price-original">&yen;49,800</div>
+        <div class="price">&yen;29,800</div>
         <p class="price-note">税込 &middot; 買い切り</p>
+        <p class="launch-note">発売記念価格 — 2026年4月30日まで</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>全機能無制限</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>永久ライセンス（買い切り）</li>
@@ -431,10 +466,13 @@
 
       <!-- 法人版 -->
       <div class="pricing-card">
+        <span class="sale-badge">&#127881; 発売記念</span>
         <h3>Business</h3>
         <p class="subtitle">PC台数無制限 &middot; 永久ライセンス</p>
-        <div class="price">&yen;148,000</div>
+        <div class="price-original">&yen;148,000</div>
+        <div class="price">&yen;99,800</div>
         <p class="price-note">税込 &middot; 買い切り</p>
+        <p class="launch-note">発売記念価格 — 2026年4月30日まで</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>全機能無制限</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>永久ライセンス（買い切り）</li>
@@ -502,8 +540,8 @@
         <ol>
           <li>上記口座に代金をお振込みください
             <ul>
-              <li>個人版: <strong>&yen;49,800（税込）</strong></li>
-              <li>法人版: <strong>&yen;148,000（税込）</strong></li>
+              <li>個人版: <strong>&yen;29,800（税込・発売記念価格）</strong><span style="color:var(--text-muted);font-size:0.82em;"> 通常&yen;49,800</span></li>
+              <li>法人版: <strong>&yen;99,800（税込・発売記念価格）</strong><span style="color:var(--text-muted);font-size:0.82em;"> 通常&yen;148,000</span></li>
             </ul>
           </li>
           <li>お振込み後、以下の情報を <a href="mailto:support@mojosoft.biz?subject=RocketMouse%20AI%20銀行振込%20ライセンス申請">support@mojosoft.biz</a> までメールでお送りください：
@@ -673,13 +711,13 @@
                         description: 'RocketMouse AI 個人版ライセンス [HW:' + hwid + ']',
                         amount: {
                             currency_code: 'JPY',
-                            value: '49800',
-                            breakdown: { item_total: { currency_code: 'JPY', value: '49800' } }
+                            value: '29800',
+                            breakdown: { item_total: { currency_code: 'JPY', value: '29800' } }
                         },
                         items: [{
                             name: 'RocketMouse AI 個人版ライセンス',
                             sku: 'MJ020',
-                            unit_amount: { currency_code: 'JPY', value: '49800' },
+                            unit_amount: { currency_code: 'JPY', value: '29800' },
                             quantity: '1',
                             description: 'HW:' + hwid
                         }],
@@ -691,7 +729,7 @@
                 return actions.order.capture().then(function(details) {
                     var input = document.getElementById('hardware-id-input');
                     var hwid = input ? input.value.trim().toUpperCase() : '';
-                    showSuccessModal('RocketMouse AI 個人版', '¥49,800（税込）', details.payer.email_address, hwid);
+                    showSuccessModal('RocketMouse AI 個人版', '¥29,800（税込・発売記念価格）', details.payer.email_address, hwid);
                 });
             },
             onError: function(err) {
@@ -716,13 +754,13 @@
                         description: desc,
                         amount: {
                             currency_code: 'JPY',
-                            value: '148000',
-                            breakdown: { item_total: { currency_code: 'JPY', value: '148000' } }
+                            value: '99800',
+                            breakdown: { item_total: { currency_code: 'JPY', value: '99800' } }
                         },
                         items: [{
                             name: 'RocketMouse AI 法人版ライセンス（PC台数無制限）',
                             sku: 'MJ021',
-                            unit_amount: { currency_code: 'JPY', value: '148000' },
+                            unit_amount: { currency_code: 'JPY', value: '99800' },
                             quantity: '1',
                             description: hwid ? 'HW:' + hwid : 'PC台数無制限'
                         }],
@@ -734,7 +772,7 @@
                 return actions.order.capture().then(function(details) {
                     var input = document.getElementById('hardware-id-input-business');
                     var hwid = input ? input.value.trim().toUpperCase() : '';
-                    showSuccessModal('RocketMouse AI 法人版（PC台数無制限）', '¥148,000（税込）', details.payer.email_address, hwid || null);
+                    showSuccessModal('RocketMouse AI 法人版（PC台数無制限）', '¥99,800（税込・発売記念価格）', details.payer.email_address, hwid || null);
                 });
             },
             onError: function(err) {

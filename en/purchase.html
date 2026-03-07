@@ -135,6 +135,38 @@
     }
     .payment-note svg { width: 16px; height: 16px; }
 
+    /* Sale badge & launch pricing */
+    .sale-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #EF4444, #F97316);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    }
+    .price-original {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: -4px;
+    }
+    .launch-note {
+      color: #F97316;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: 16px;
+    }
+
     /* Notice box */
     .notice-box {
       max-width: 820px;
@@ -331,10 +363,13 @@
     <div class="pricing-grid reveal">
       <!-- Personal -->
       <div class="pricing-card">
+        <span class="sale-badge">&#127881; Launch Sale</span>
         <h3>Personal</h3>
         <p class="subtitle">1 PC &middot; Perpetual license</p>
-        <div class="price">$329</div>
+        <div class="price-original">$329</div>
+        <div class="price">$199</div>
         <p class="price-note">One-time purchase</p>
+        <p class="launch-note">Launch price — until April 30, 2026</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>All features unlimited</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Perpetual license (one-time)</li>
@@ -357,10 +392,13 @@
 
       <!-- Business -->
       <div class="pricing-card">
+        <span class="sale-badge">&#127881; Launch Sale</span>
         <h3>Business</h3>
         <p class="subtitle">Unlimited PCs &middot; Perpetual license</p>
-        <div class="price">$999</div>
+        <div class="price-original">$999</div>
+        <div class="price">$659</div>
         <p class="price-note">One-time purchase</p>
+        <p class="launch-note">Launch price — until April 30, 2026</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>All features unlimited</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>Perpetual license (one-time)</li>
@@ -559,13 +597,13 @@
                         description: 'RocketMouse AI Personal License [HW:' + hwid + ']',
                         amount: {
                             currency_code: 'USD',
-                            value: '329.00',
-                            breakdown: { item_total: { currency_code: 'USD', value: '329.00' } }
+                            value: '199.00',
+                            breakdown: { item_total: { currency_code: 'USD', value: '199.00' } }
                         },
                         items: [{
                             name: 'RocketMouse AI Personal License',
                             sku: 'MJ020',
-                            unit_amount: { currency_code: 'USD', value: '329.00' },
+                            unit_amount: { currency_code: 'USD', value: '199.00' },
                             quantity: '1',
                             description: 'HW:' + hwid
                         }],
@@ -577,7 +615,7 @@
                 return actions.order.capture().then(function(details) {
                     var input = document.getElementById('hardware-id-input');
                     var hwid = input ? input.value.trim().toUpperCase() : '';
-                    showSuccessModal('RocketMouse AI Personal', '$329.00', details.payer.email_address, hwid);
+                    showSuccessModal('RocketMouse AI Personal', '$199.00 (Launch Price)', details.payer.email_address, hwid);
                 });
             },
             onError: function(err) {
@@ -602,13 +640,13 @@
                         description: desc,
                         amount: {
                             currency_code: 'USD',
-                            value: '999.00',
-                            breakdown: { item_total: { currency_code: 'USD', value: '999.00' } }
+                            value: '659.00',
+                            breakdown: { item_total: { currency_code: 'USD', value: '659.00' } }
                         },
                         items: [{
                             name: 'RocketMouse AI Business License (Unlimited PCs)',
                             sku: 'MJ021',
-                            unit_amount: { currency_code: 'USD', value: '999.00' },
+                            unit_amount: { currency_code: 'USD', value: '659.00' },
                             quantity: '1',
                             description: hwid ? 'HW:' + hwid : 'Unlimited PCs'
                         }],
@@ -620,7 +658,7 @@
                 return actions.order.capture().then(function(details) {
                     var input = document.getElementById('hardware-id-input-business');
                     var hwid = input ? input.value.trim().toUpperCase() : '';
-                    showSuccessModal('RocketMouse AI Business (Unlimited PCs)', '$999.00', details.payer.email_address, hwid || null);
+                    showSuccessModal('RocketMouse AI Business (Unlimited PCs)', '$659.00 (Launch Price)', details.payer.email_address, hwid || null);
                 });
             },
             onError: function(err) {
