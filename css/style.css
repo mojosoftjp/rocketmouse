@@ -203,7 +203,7 @@ tbody tr:hover { background: rgba(255,255,255,0.02); }
 
 /* Logo with glow */
 .hero-logo {
-  width: 100px; height: 100px; margin: 0 auto 40px;
+  width: 150px; height: 150px; margin: 0 auto 40px;
   position: relative;
   animation: logoFloat 6s ease-in-out infinite;
 }
