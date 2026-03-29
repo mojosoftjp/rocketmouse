@@ -534,12 +534,12 @@
               <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
               <tbody>
                 <tr><td><strong>AiInstruction</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ対応。画像添付でVision APIも利用可（4MB制限）。</td></tr>
-                <tr><td><strong>AiAutopilot</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を見ながら自律的にタスクを完了。Claude Computer Use APIによるマルチターン操作。</td></tr>
-                <tr><td><strong>AiClick</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>自然言語で要素を指定してクリック。AIが画面を分析して座標を特定。2パスリファインメント対応。</td></tr>
-                <tr><td><strong>AiSmartWait</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を定期確認し、指定条件を満たすまでインテリジェントに待機。</td></tr>
-                <tr><td><strong>AiOcr</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AI Visionで画面上のテキストを読み取り変数に格納。文脈理解による高精度な読み取り。</td></tr>
-                <tr><td><strong>AiValidate</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>操作後の画面をAIが検証し、条件を満たすかtrue/falseで判定。</td></tr>
-                <tr><td><strong>BoolAiCondition</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>六角形Boolean。if/whileの条件にAI画面判定を使用（例:「ログイン画面が表示されているか」）。</td></tr>
+                <tr><td><strong>AIオートパイロット</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を見ながら自律的にタスクを完了。Claude Computer Use APIによるマルチターン操作。</td></tr>
+                <tr><td><strong>AIクリック</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>自然言語で要素を指定してクリック。AIが画面を分析して座標を特定。2パスリファインメント対応。</td></tr>
+                <tr><td><strong>AIスマート待機</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を定期確認し、指定条件を満たすまでインテリジェントに待機。</td></tr>
+                <tr><td><strong>AI OCR</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AI Visionで画面上のテキストを読み取り変数に格納。文脈理解による高精度な読み取り。</td></tr>
+                <tr><td><strong>AI検証</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>操作後の画面をAIが検証し、条件を満たすかtrue/falseで判定。</td></tr>
+                <tr><td><strong>AI条件</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>六角形Boolean。if/whileの条件にAI画面判定を使用（例:「ログイン画面が表示されているか」）。</td></tr>
               </tbody>
             </table>
             <div class="notice notice-info" style="margin-top:12px;">
@@ -873,11 +873,11 @@
         <table>
           <thead><tr><th>ブロック</th><th>機能</th><th>主なパラメータ</th></tr></thead>
           <tbody>
-            <tr><td><strong>AiClick</strong></td><td>AIが画面を見て要素を特定しクリック</td><td>description（クリック対象の説明）, button, clickType, provider, model, outputX/Y</td></tr>
-            <tr><td><strong>AiSmartWait</strong></td><td>AIが画面を定期確認し条件充足まで待機</td><td>description（待機条件）, timeoutMs, pollingMs, provider, model</td></tr>
-            <tr><td><strong>AiOcr</strong></td><td>AIが画面上のテキストを読み取り</td><td>prompt（読取指示）, outputVariable, provider, model</td></tr>
-            <tr><td><strong>AiValidate</strong></td><td>操作結果をAIが検証（true/false）</td><td>description（検証条件）, outputVariable, provider, model</td></tr>
-            <tr><td><strong>BoolAiCondition</strong></td><td>if/whileの条件にAI画面判定を使用</td><td>description（条件文）, provider, model</td></tr>
+            <tr><td><strong>AIクリック</strong></td><td>AIが画面を見て要素を特定しクリック</td><td>description（クリック対象の説明）, button, clickType, provider, model, outputX/Y</td></tr>
+            <tr><td><strong>AIスマート待機</strong></td><td>AIが画面を定期確認し条件充足まで待機</td><td>description（待機条件）, timeoutMs, pollingMs, provider, model</td></tr>
+            <tr><td><strong>AI OCR</strong></td><td>AIが画面上のテキストを読み取り</td><td>prompt（読取指示）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AI検証</strong></td><td>操作結果をAIが検証（true/false）</td><td>description（検証条件）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AI条件</strong></td><td>if/whileの条件にAI画面判定を使用</td><td>description（条件文）, provider, model</td></tr>
           </tbody>
         </table>
 
@@ -899,8 +899,8 @@
         </div>
 
         <!-- AI Autopilot -->
-        <h3 id="ai-autopilot">AI Autopilot（自律エージェント）</h3>
-        <p><strong>AiAutopilot</strong> は、自然言語でタスクを記述するだけで、AIが画面を見ながらマウス・キーボード操作を自律的に実行し、タスク完了まで繰り返す自律エージェントです。</p>
+        <h3 id="ai-autopilot">AIオートパイロット（自律エージェント）</h3>
+        <p><strong>AIオートパイロット</strong> は、自然言語でタスクを記述するだけで、AIが画面を見ながらマウス・キーボード操作を自律的に実行し、タスク完了まで繰り返す自律エージェントです。</p>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">デュアルパスルーティング</h4>
         <p>Autopilotは使用するプロバイダとモデルに応じて、2つの実行パスを自動選択します。</p>
