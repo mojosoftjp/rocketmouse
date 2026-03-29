@@ -40,19 +40,19 @@
   <div class="container">
     <div class="hero-badge reveal">
       <span class="badge-dot"></span>
-      <span>v1.0 — Now Available for Windows</span>
+      <span>v2.0.1 — AI Computer Use 搭載</span>
     </div>
     <img src="images/logo-256.png" alt="RocketMouse AI" class="hero-logo">
     <h1 class="reveal reveal-delay-1"><span class="gradient-text">RocketMouse AI</span></h1>
-    <p class="tagline reveal reveal-delay-2">Scratch風パズルピースブロックをドラッグ&amp;スナップするだけで、<br>誰でも簡単にRPAマクロを作成できます。</p>
+    <p class="tagline reveal reveal-delay-2">従来のRPAの確実性とAIの知性を融合。<br>RPAがついに「脳」と「目」を手に入れた。</p>
     <div class="hero-buttons reveal reveal-delay-3">
       <a href="download.html" class="btn btn-primary btn-lg">&#11015; 無料ダウンロード</a>
       <a href="help.html" class="btn btn-secondary btn-lg">&#128214; ヘルプを見る</a>
     </div>
     <div class="hero-stats reveal reveal-delay-4">
       <div class="hero-stat"><div class="stat-value" data-count="217" data-suffix="+">0</div><div class="stat-label">ブロック数</div></div>
-      <div class="hero-stat"><div class="stat-value" data-count="63">0</div><div class="stat-label">実装済み機能</div></div>
-      <div class="hero-stat"><div class="stat-value" data-count="256">0</div><div class="stat-label">ユニットテスト</div></div>
+      <div class="hero-stat"><div class="stat-value" data-count="69">0</div><div class="stat-label">実装済み機能</div></div>
+      <div class="hero-stat"><div class="stat-value" data-count="474">0</div><div class="stat-label">ユニットテスト</div></div>
       <div class="hero-stat"><div class="stat-value" data-count="5">0</div><div class="stat-label">AIプロバイダ</div></div>
     </div>
   </div>
@@ -76,8 +76,8 @@
       </div>
       <div class="card reveal reveal-delay-2">
         <div class="card-icon">&#129302;</div>
-        <h3>AI搭載</h3>
-        <p>5種のLLMプロバイダ対応。自然言語で指示するだけでブロック列を自動生成。</p>
+        <h3>AI Computer Use <span class="badge badge-new" style="font-size:0.6em;vertical-align:middle;margin-left:6px;">NEW</span></h3>
+        <p>AIが画面を「見て」「理解して」「操作」。Claude Computer Use APIで自律的にタスクを完了。</p>
       </div>
       <div class="card reveal reveal-delay-3">
         <div class="card-icon">&#127760;</div>
@@ -187,22 +187,181 @@
 
 <hr class="section-divider">
 
-<!-- AI Features -->
+<!-- Comparison Table: Traditional RPA vs AI Computer Use vs RocketMouse AI -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Why RocketMouse AI?</span>
+      <h2>従来のRPA vs AI Computer Use vs RocketMouse AI</h2>
+      <p>RocketMouse AI は両方の長所を融合した唯一のRPAツール</p>
+    </div>
+    <div class="comparison-table-wrap reveal">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>従来のRPA</th>
+            <th>AI Computer Use</th>
+            <th class="col-winner">
+              <span class="col-header-brand">RocketMouse AI</span>
+              <span class="col-header-sub">両方の良いとこ取り</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>実行速度</td>
+            <td class="compare-yes">&#9889; 高速（即時実行）</td>
+            <td class="compare-no">&#128034; 低速（毎ステップLLM推論）</td>
+            <td class="col-winner compare-best">&#9889; 定型処理は高速 + AIは必要時のみ</td>
+          </tr>
+          <tr>
+            <td>API / 通信コスト</td>
+            <td class="compare-yes">&#128178; ゼロ（完全オフライン）</td>
+            <td class="compare-no">&#128184; 高い（毎ステップ画像送信）</td>
+            <td class="col-winner compare-best">&#128178; 定型処理は無料 + AIは最小限使用</td>
+          </tr>
+          <tr>
+            <td>UIレイアウト変更への耐性</td>
+            <td class="compare-no">&#10060; 脆い（座標・セレクタ依存）</td>
+            <td class="compare-yes">&#9989; 強い（画面を「見て」判断）</td>
+            <td class="col-winner compare-best">&#9989; AIが視覚的に要素を認識</td>
+          </tr>
+          <tr>
+            <td>予期しないダイアログ対応</td>
+            <td class="compare-no">&#10060; 停止するしかない</td>
+            <td class="compare-yes">&#9989; 自己判断で対処</td>
+            <td class="col-winner compare-best">&#9989; AI Autopilotが自律対処</td>
+          </tr>
+          <tr>
+            <td>構築の容易さ</td>
+            <td class="compare-partial">&#9888; 座標拾い・設定が手間</td>
+            <td class="compare-yes">&#9989; 自然言語で指示するだけ</td>
+            <td class="col-winner compare-best">&#9989; ドラッグ&amp;ドロップ + 自然言語</td>
+          </tr>
+          <tr>
+            <td>再現性・決定論性</td>
+            <td class="compare-yes">&#9989; 同じ入力 → 同じ結果</td>
+            <td class="compare-no">&#10060; 毎回異なるパスを取��</td>
+            <td class="col-winner compare-best">&#9989; 定型部分は確実 + AIは判断部分のみ</td>
+          </tr>
+          <tr>
+            <td>エラー自己修復</td>
+            <td class="compare-no">&#10060; 不可能</td>
+            <td class="compare-yes">&#9989; 結果を見て自己修正</td>
+            <td class="col-winner compare-best">&#9989; セルフヒーリング搭載</td>
+          </tr>
+          <tr>
+            <td>オフライン動作</td>
+            <td class="compare-yes">&#9989; 完全対応</td>
+            <td class="compare-no">&#10060; インターネット必須</td>
+            <td class="col-winner compare-best">&#9989; RPA部分はオフライン + ローカルLLM対応</td>
+          </tr>
+          <tr>
+            <td>ブラウザ自動化</td>
+            <td class="compare-partial">&#9888; ツールにより異なる</td>
+            <td class="compare-partial">&#9888; 画面操作のみ（DOM非対応）</td>
+            <td class="col-winner compare-best">&#9989; Playwright（DOM）+ AI Vision 両対応</td>
+          </tr>
+          <tr>
+            <td>Excel操作</td>
+            <td class="compare-partial">&#9888; ツールにより異なる</td>
+            <td class="compare-no">&#10060; 画面操作のみ</td>
+            <td class="col-winner compare-best">&#9989; COM API（18操作）+ 画面操作</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- AI Vision Showcase: How Computer Use Powers RocketMouse AI -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">AI Vision &amp; Computer Use</span>
+      <h2>AIが画面を見て、理解して、操作する</h2>
+      <p>Anthropic Claude Computer Use API をネイティブ統合。RPAに「脳」と「目」を搭載。</p>
+    </div>
+
+    <div class="vision-flow">
+      <div class="vision-card reveal reveal-delay-1">
+        <span class="vision-icon">&#127919;</span>
+        <h3>AI Click</h3>
+        <p>「保存ボタンをクリック」— AIが画面を見て要素の位置を特定しクリック。座標指定不要。2パスリファインメントで画面端の小さなアイコンも高精度に検出。</p>
+        <span class="vision-tag vision-tag-vision">AI Vision</span>
+      </div>
+      <div class="vision-card reveal reveal-delay-2">
+        <span class="vision-icon">&#129504;</span>
+        <h3>AI Autopilot</h3>
+        <p>「メモ帳を開いてHello Worldと入力して保存」— Claude Computer Use APIによるマルチターン自律操作。画面のスクリーンショットを見ながらタスクが完了するまで自動で操作を続行。</p>
+        <span class="vision-tag vision-tag-native">Computer Use API</span>
+      </div>
+      <div class="vision-card reveal reveal-delay-3">
+        <span class="vision-icon">&#128064;</span>
+        <h3>AI OCR</h3>
+        <p>「画面上のエラーメッセージを読み取って」— AI Visionが画面上の任意のテキストを読み取り、変数に保存。従来のOCRでは困難だった文脈理解も可能。</p>
+        <span class="vision-tag vision-tag-vision">AI Vision</span>
+      </div>
+      <div class="vision-card reveal reveal-delay-4">
+        <span class="vision-icon">&#9201;</span>
+        <h3>AI Smart Wait</h3>
+        <p>「ダウンロード完了ダイアログが表示されるまで待機」— AIが画面を定期的に確認し、条件が満たされるまでインテリジェントに待機。固定秒数の待機は不要に���</p>
+        <span class="vision-tag vision-tag-vision">AI Vision</span>
+      </div>
+      <div class="vision-card reveal reveal-delay-5">
+        <span class="vision-icon">&#9989;</span>
+        <h3>AI Validate</h3>
+        <p>「ファイルが正しく保存されたか確認」— 操作後の画面をAIが検証。期待通りの結果になったかをtrue/falseで判定し、後続の条件分岐に��用。</p>
+        <span class="vision-tag vision-tag-vision">AI Vision</span>
+      </div>
+      <div class="vision-card reveal reveal-delay-5">
+        <span class="vision-icon">&#128171;</span>
+        <h3>AI Boolean 条���</h3>
+        <p>「ログイン画面が表示されているか？」— if/while の条件式にAI判定を使用。画面の状態に応じた動的な分岐をノーコードで実現。</p>
+        <span class="vision-tag vision-tag-vision">AI Vision</span>
+      </div>
+    </div>
+
+    <!-- Hybrid Advantage -->
+    <div class="hybrid-banner reveal">
+      <h3>&#9889; ハイブリッドの真価 — 1つのマクロ内でRPAとAIを自在に組み合わせ</h3>
+      <p>定型処理はWin32 APIで高速・確実・無料。UI変動がある箇所だけAIが視覚的に判断。コストと信頼性の最適バランスを1本のマクロで実現できるのは RocketMouse AI だけ。</p>
+      <div class="hybrid-flow-steps">
+        <span class="hybrid-step hybrid-step-rpa">&#9889; Win32でExcel起動</span>
+        <span class="hybrid-step-arrow">&rarr;</span>
+        <span class="hybrid-step hybrid-step-rpa">&#9889; データ入力（高速）</span>
+        <span class="hybrid-step-arrow">&rarr;</span>
+        <span class="hybrid-step hybrid-step-ai">&#129504; AI Clickで保存ボタン検出</span>
+        <span class="hybrid-step-arrow">&rarr;</span>
+        <span class="hybrid-step hybrid-step-rpa">&#9889; ショートカットキー</span>
+        <span class="hybrid-step-arrow">&rarr;</span>
+        <span class="hybrid-step hybrid-step-ai">&#129504; AI Autopilotでレビュー</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- AI Assistant & Providers -->
 <section class="section">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label">AI-Powered</span>
       <h2>AIアシスタント搭載</h2>
-      <p>自然言語でブロックを自動生成</p>
+      <p>5種のLLMプロバイダに対応</p>
     </div>
     <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
       <div class="card reveal reveal-delay-1">
-        <h3>&#128172; 自然言語 &rarr; ブロック生成</h3>
+        <h3>&#128172; 自然言語 &rarr; ブロック生���</h3>
         <p>「メモ帳を開いてHello Worldと入力して保存して」と入力するだけで、対応するブロック列を自動生成してワークスペースに配置。</p>
       </div>
       <div class="card reveal reveal-delay-2">
         <h3>&#9881; 5種のLLMプロバイダ</h3>
-        <p>OpenAI (GPT-4o)、Anthropic (Claude)、Google Gemini、Groq、ローカルLLM (LM Studio/Ollama) に対応。お好みのプロバイダを選択可能。</p>
+        <p>OpenAI (GPT-4o)、Anthropic (Claude)、Google Gemini、Groq、ローカルLLM (LM Studio/Ollama) に対応。お好みのプロバイダを選択��能。</p>
       </div>
     </div>
   </div>
@@ -238,7 +397,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Mojosoft. All rights reserved.</span>
-      <span>RocketMouse AI v1.0.1.1</span>
+      <span>RocketMouse AI v2.0.1</span>
     </div>
   </div>
 </footer>
