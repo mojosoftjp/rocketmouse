@@ -91,6 +91,9 @@
 
           <li class="toc-category">AI機能</li>
           <li><a href="#ai-features">AI指示ブロック</a></li>
+          <li><a href="#ai-vision">AI Vision / Computer Use</a></li>
+          <li><a href="#ai-autopilot">AI Autopilot</a></li>
+          <li><a href="#ai-recommended-models">推奨モデル</a></li>
           <li><a href="#ai-assistant">AIアシスタント</a></li>
 
           <li class="toc-category">ライセンスと設定</li>
@@ -522,19 +525,25 @@
         <!-- AI -->
         <div class="collapsible" id="cat-ai">
           <div class="collapsible-header">
-            <h4><span class="block-badge" style="color:#A78BFA;border:1px solid #A78BFA;">AI</span> AI操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 1ブロック</span></h4>
+            <h4><span class="block-badge" style="color:#A78BFA;border:1px solid #A78BFA;">AI</span> AI操作 <span class="text-muted" style="font-weight:400;font-size:0.85em;">&#8212; 7ブロック</span></h4>
             <span class="arrow">&#9654;</span>
           </div>
           <div class="collapsible-body">
-            <p>LLM（大規模言語モデル）にプロンプトを送信し、AI応答を変数に格納するブロックです。</p>
+            <p>LLM（大規模言語モデル）やAI Vision APIを使って、プロンプト送信・画面操作・画面認識を行うブロックです。</p>
             <table>
               <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
               <tbody>
-                <tr><td><strong>AiInstruction</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ（OpenAI, Anthropic, Gemini, Groq, ローカルLLM）から選択可能。画像ファイルを添付してVision APIも利用可（4MB制限）。温度パラメータ、モデル指定にも対応。</td></tr>
+                <tr><td><strong>AiInstruction</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ対応。画像添付でVision APIも利用可（4MB制限）。</td></tr>
+                <tr><td><strong>AiAutopilot</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を見ながら自律的にタスクを完了。Claude Computer Use APIによるマルチターン操作。</td></tr>
+                <tr><td><strong>AiClick</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>自然言語で要素を指定してクリック。AIが画面を分析して座標を特定。2パスリファインメント対応。</td></tr>
+                <tr><td><strong>AiSmartWait</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を定期確認し、指定条件を満たすまでインテリジェントに待機。</td></tr>
+                <tr><td><strong>AiOcr</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AI Visionで画面上のテキストを読み取り変数に格納。文脈理解による高精度な読み取り。</td></tr>
+                <tr><td><strong>AiValidate</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>操作後の画面をAIが検証し、条件を満たすかtrue/falseで判定。</td></tr>
+                <tr><td><strong>BoolAiCondition</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>六角形Boolean。if/whileの条件にAI画面判定を使用（例:「ログイン画面が表示されているか」）。</td></tr>
               </tbody>
             </table>
             <div class="notice notice-info" style="margin-top:12px;">
-              <strong>設定方法:</strong> AI設定ダイアログ（ツールバー）でAPIキーとデフォルトモデルを設定してください。各ブロック個別にプロバイダやモデルを上書きすることもできます。
+              <strong>設定方法:</strong> AI設定ダイアログ（ツールバー）でAPIキーとデフォルトモデルを設定してください。各ブロック個別にプロバイダやモデルを上書きすることもできます。AI Autopilotは Anthropic Claude Sonnet/Opus 推奨です。
             </div>
           </div>
         </div>
@@ -856,6 +865,107 @@
           </tbody>
         </table>
 
+        <!-- AI Vision / Computer Use -->
+        <h3 id="ai-vision">AI Vision / Computer Use</h3>
+        <p>RocketMouse AI v2.0 で追加された AI Vision 機能群は、AIが画面のスクリーンショットを「見て」理解し、操作を行います。従来の座標指定やテンプレートマッチングでは対応が難しかった、動的なUI変化やレイアウト変更に強い自動化を実現します。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">AI Visionブロック一覧</h4>
+        <table>
+          <thead><tr><th>ブロック</th><th>機能</th><th>主なパラメータ</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AiClick</strong></td><td>AIが画面を見て要素を特定しクリック</td><td>description（クリック対象の説明）, button, clickType, provider, model, outputX/Y</td></tr>
+            <tr><td><strong>AiSmartWait</strong></td><td>AIが画面を定期確認し条件充足まで待機</td><td>description（待機条件）, timeoutMs, pollingMs, provider, model</td></tr>
+            <tr><td><strong>AiOcr</strong></td><td>AIが画面上のテキストを読み取り</td><td>prompt（読取指示）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AiValidate</strong></td><td>操作結果をAIが検証（true/false）</td><td>description（検証条件）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>if/whileの条件にAI画面判定を使用</td><td>description（条件文）, provider, model</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>2パスリファインメント（AiClick）:</strong> Pass 1で全画面を1280&times;720に縮小して大まかな座標を取得。画面端（200px以内）の場合、Pass 2で元解像度1000&times;1000pxクロップによる精密座標を再取得します。スタートボタン等の小さなアイコンも高精度に検出できます。
+        </div>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">AI Visionの共通パラメータ</h4>
+        <table>
+          <thead><tr><th>パラメータ</th><th>説明</th><th>デフォルト</th></tr></thead>
+          <tbody>
+            <tr><td><strong>provider</strong></td><td>使用するLLMプロバイダ。"Default"でAI設定のデフォルトを使用</td><td>Default</td></tr>
+            <tr><td><strong>model</strong></td><td>モデルID。空欄でプロバイダのデフォルトモデル</td><td>（空）</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-success" style="margin-top:12px;">
+          <strong>セルフヒーリング:</strong> AI設定で「セルフヒーリング」を有効にすると、通常のVisionClick（テンプレートマッチング）が失敗した場合に自動的にAiClickにフォールバックします。既存マクロの堅牢性が大幅に向上します。
+        </div>
+
+        <!-- AI Autopilot -->
+        <h3 id="ai-autopilot">AI Autopilot（自律エージェント）</h3>
+        <p><strong>AiAutopilot</strong> は、自然言語でタスクを記述するだけで、AIが画面を見ながらマウス・キーボード操作を自律的に実行し、タスク完了まで繰り返す自律エージェントです。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">デュアルパスルーティング</h4>
+        <p>Autopilotは使用するプロバイダとモデルに応じて、2つの実行パスを自動選択します。</p>
+        <table>
+          <thead><tr><th>パス</th><th>条件</th><th>動作方式</th><th>精度</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ネイティブパス</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API（マルチターン tool_use/tool_result）</td><td>高精度</td></tr>
+            <tr><td><strong>汎用パス</strong></td><td>その他全プロバイダ + Haiku</td><td>プロンプトベースJSON方式</td><td>標準</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:12px;">ネイティブパスでは、Claude が画面のスクリーンショットを受け取り、tool_use でアクション（クリック、入力、スクロール等）を返し、実行結果のスクリーンショットを tool_result として受け取る、というマルチターン会話を繰り返します。これにより高い精度と自己修正能力を実現しています。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Autopilotパラメータ</h4>
+        <table>
+          <thead><tr><th>パラメータ</th><th>説明</th><th>デフォルト</th></tr></thead>
+          <tbody>
+            <tr><td><strong>task</strong></td><td>タスクの自然言語記述（例:「メモ帳を開いてHello Worldと入力して保存」）</td><td>（必須）</td></tr>
+            <tr><td><strong>maxSteps</strong></td><td>最大ステップ数。各ステップでスクリーンショット+LLM推論+アクション実行</td><td>30</td></tr>
+            <tr><td><strong>timeoutSeconds</strong></td><td>タイムアウト秒数</td><td>120</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLMプロバイダ</td><td>Default</td></tr>
+            <tr><td><strong>model</strong></td><td>モデルID（ネイティブパス判定に影響）</td><td>（空）</td></tr>
+            <tr><td><strong>outputVariable</strong></td><td>結果（True/False）を格納する変数</td><td>AutopilotResult</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">対応アクション</h4>
+        <table>
+          <thead><tr><th>アクション</th><th>説明</th></tr></thead>
+          <tbody>
+            <tr><td>left_click / right_click / double_click</td><td>マウスクリック</td></tr>
+            <tr><td>type</td><td>テキスト入力（日本語対応 &mdash; クリップボード方式で自動処理）</td></tr>
+            <tr><td>key</td><td>キー入力（Ctrl+S, Enter, Win+D 等）</td></tr>
+            <tr><td>scroll</td><td>マウスホイールスクロール</td></tr>
+            <tr><td>mouse_move / left_click_drag</td><td>カーソル移動・ドラッグ</td></tr>
+            <tr><td>screenshot</td><td>追加スクリーンショット取得</td></tr>
+            <tr><td>wait</td><td>2秒待機</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>コストに注意:</strong> Autopilotは各ステップでスクリーンショット（約200KB）をLLMに送信します。30ステップのタスクでは相応のAPI料金が発生します。定型処理はWin32ブロック、判断が必要な部分のみAutopilotを使うハイブリッド構成を推奨します。
+        </div>
+
+        <!-- Recommended Models -->
+        <h3 id="ai-recommended-models">AI Vision / Autopilot 推奨モデル</h3>
+        <p>AI Vision機能はVision対応の全プロバイダで動作しますが、用途に応じた推奨モデルがあります。</p>
+
+        <table>
+          <thead><tr><th>用途</th><th>推奨モデル</th><th>理由</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AI Autopilot（最高精度）</strong></td><td>Claude Opus 4.6</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。</td></tr>
+            <tr><td><strong>AI Autopilot（コスパ推奨）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。高速で十分な精度。Opusの数分の一のコスト。</td></tr>
+            <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
+            <tr><td><strong>AiInstruction（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Computer Use モデル設定</h4>
+        <p>AI Autopilotのネイティブパスで使用するClaudeモデルは、AI設定 &rarr; Anthropicセクション &rarr;「Computer Use モデル」で選択できます（Sonnet / Opus）。ブロックレベルの <code>model</code> パラメータで個別に上書きすることも可能です。</p>
+
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>モデル優先順位:</strong> (1) ブロックの <code>model</code> パラメータ &rarr; (2) AI設定の Computer Use モデル &rarr; (3) デフォルト: Claude Sonnet 4.6
+        </div>
+
         <h3 id="ai-assistant">AIアシスタント</h3>
         <p>右パネルのAIアシスタントは、マクロに関する質問や操作をチャット形式でサポートします。</p>
 
@@ -902,18 +1012,20 @@
         </ol>
 
         <h3 id="ai-settings">AI設定</h3>
-        <p>AI指示ブロックとAIアシスタントで使用するLLMプロバイダの設定です。</p>
+        <p>AI指示ブロック、AI Visionブロック、AIアシスタントで使用するLLMプロバイダの設定です。</p>
         <ol>
           <li>ツールバーの AI設定ボタン（歯車アイコン）をクリック</li>
           <li>使用するプロバイダのセクションを展開</li>
           <li>APIキーを入力</li>
           <li>「接続テスト」ボタンで接続を確認</li>
           <li>デフォルトプロバイダとモデルを選択</li>
+          <li>Anthropicセクション:「Computer Use モデル」でAutopilot用モデルを選択（Sonnet / Opus）</li>
+          <li>「セルフヒーリング」の有効/無効を設定</li>
           <li>「保存」をクリック</li>
         </ol>
 
         <div class="notice notice-warning">
-          <strong>APIキーの管理:</strong> APIキーはレジストリに保存されます（<code>HKCU\Software\Mojosoft\RocketMouse\AI</code>）。プロジェクトファイル (.rmproj) には保存されないため、プロジェクトを共有してもAPIキーは漏洩しません。
+          <strong>APIキーの管理:</strong> APIキーはDPAPI暗号化でレジストリに保存されます（<code>HKCU\Software\Mojosoft\RocketMouse\AI</code>）。プロジェクトファイル (.rmproj) には保存されないため、プロジェクトを共有してもAPIキーは漏洩しません。
         </div>
 
         <h3>プロジェクト設定</h3>

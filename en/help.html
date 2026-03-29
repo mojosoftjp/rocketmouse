@@ -55,6 +55,9 @@
           <li><a href="#variables-functions">Variables &amp; Functions</a></li>
           <li class="toc-category">AI / Settings</li>
           <li><a href="#ai-features">AI Features</a></li>
+          <li><a href="#ai-vision">AI Vision / Computer Use</a></li>
+          <li><a href="#ai-autopilot">AI Autopilot</a></li>
+          <li><a href="#ai-recommended-models">Recommended Models</a></li>
           <li><a href="#license-settings">License &amp; Settings</a></li>
           <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
         </ul>
@@ -407,30 +410,119 @@
         <h2 id="ai-features">AI Features</h2>
 
         <h3>AI Instruction Block</h3>
-        <p>The <code>AiInstruction</code> block sends a prompt to an LLM and stores the response in a variable. Attach image files for Vision API (4MB limit).</p>
-
-        <h3>Provider Setup</h3>
-        <p>Click the &#9881; AI Settings button in the toolbar to configure API keys and default models. Use the test button to verify connectivity.</p>
+        <p>The <code>AiInstruction</code> block sends a prompt to an LLM and stores the response in a variable. Attach image files for Vision API (4MB limit). Parameters: prompt, outputVariable, filePath, provider, model, temperature.</p>
 
         <h3>Supported Providers</h3>
         <table>
           <thead><tr><th>Provider</th><th>Default Model</th><th>Vision</th></tr></thead>
           <tbody>
             <tr><td>OpenAI</td><td>gpt-4o</td><td>&#10003;</td></tr>
-            <tr><td>Anthropic</td><td>claude-sonnet-4-5</td><td>&#10003;</td></tr>
+            <tr><td>Anthropic</td><td>claude-sonnet-4-6</td><td>&#10003;</td></tr>
             <tr><td>Google Gemini</td><td>gemini-2.5-pro</td><td>&#10003;</td></tr>
             <tr><td>Groq</td><td>llama-3.3-70b</td><td>&#10007;</td></tr>
             <tr><td>Local LLM</td><td>User-specified</td><td>&#10003;</td></tr>
           </tbody>
         </table>
 
+        <!-- AI Vision / Computer Use -->
+        <h3 id="ai-vision">AI Vision / Computer Use</h3>
+        <p>New in v2.0 &mdash; AI Vision features let AI "see" and understand your screen, enabling automation that adapts to dynamic UI changes without fixed coordinates or template images.</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">AI Vision Blocks</h4>
+        <table>
+          <thead><tr><th>Block</th><th>Function</th><th>Key Parameters</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AiClick</strong></td><td>AI sees the screen, locates the element, and clicks</td><td>description, button, clickType, provider, model</td></tr>
+            <tr><td><strong>AiSmartWait</strong></td><td>AI periodically checks the screen until condition is met</td><td>description, timeoutMs, pollingMs, provider, model</td></tr>
+            <tr><td><strong>AiOcr</strong></td><td>AI reads text from the screen into a variable</td><td>prompt, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AiValidate</strong></td><td>AI verifies screen state and returns true/false</td><td>description, outputVariable, provider, model</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>AI judgment in if/while conditions</td><td>description, provider, model</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>2-Pass Refinement (AiClick):</strong> Pass 1 uses a 1280&times;720 scaled screenshot for coarse coordinates. If near a screen edge (within 200px), Pass 2 crops a 1000&times;1000px region at original resolution for precise targeting. This accurately detects small icons like the Start button.
+        </div>
+
+        <div class="notice notice-success" style="margin-top:12px;">
+          <strong>Self-Healing:</strong> Enable in AI Settings to automatically fall back to AiClick when a standard VisionClick (template matching) fails. Dramatically improves robustness of existing macros.
+        </div>
+
+        <!-- AI Autopilot -->
+        <h3 id="ai-autopilot">AI Autopilot (Autonomous Agent)</h3>
+        <p><strong>AiAutopilot</strong> takes a natural language task description and autonomously operates your computer &mdash; taking screenshots, deciding actions, and repeating until the task is complete.</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Dual-Path Routing</h4>
+        <p>Autopilot automatically selects the best execution path based on the provider and model:</p>
+        <table>
+          <thead><tr><th>Path</th><th>When</th><th>How It Works</th><th>Accuracy</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Native Path</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API (multi-turn tool_use/tool_result)</td><td>High</td></tr>
+            <tr><td><strong>Generic Path</strong></td><td>All other providers + Haiku</td><td>Prompt-based JSON approach</td><td>Standard</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:12px;">The native path sends screenshots to Claude, receives tool_use actions (click, type, scroll, etc.), executes them, and sends the result screenshot back as tool_result &mdash; enabling high accuracy and self-correction through multi-turn conversation.</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Parameters</h4>
+        <table>
+          <thead><tr><th>Parameter</th><th>Description</th><th>Default</th></tr></thead>
+          <tbody>
+            <tr><td><strong>task</strong></td><td>Natural language task (e.g., "Open Notepad, type Hello World, and save")</td><td>(required)</td></tr>
+            <tr><td><strong>maxSteps</strong></td><td>Maximum steps (each step = screenshot + LLM + action)</td><td>30</td></tr>
+            <tr><td><strong>timeoutSeconds</strong></td><td>Timeout in seconds</td><td>120</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLM provider</td><td>Default</td></tr>
+            <tr><td><strong>model</strong></td><td>Model ID (affects native path routing)</td><td>(empty)</td></tr>
+            <tr><td><strong>outputVariable</strong></td><td>Result variable (True/False)</td><td>AutopilotResult</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Supported Actions</h4>
+        <table>
+          <thead><tr><th>Action</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>left_click / right_click / double_click</td><td>Mouse click operations</td></tr>
+            <tr><td>type</td><td>Text input (Japanese supported via clipboard)</td></tr>
+            <tr><td>key</td><td>Keyboard input (Ctrl+S, Enter, Win+D, etc.)</td></tr>
+            <tr><td>scroll</td><td>Mouse wheel scroll</td></tr>
+            <tr><td>mouse_move / left_click_drag</td><td>Cursor movement and drag</td></tr>
+            <tr><td>screenshot</td><td>Request additional screenshot</td></tr>
+            <tr><td>wait</td><td>Wait 2 seconds</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>Cost Awareness:</strong> Autopilot sends a screenshot (~200KB) to the LLM on each step. A 30-step task incurs significant API costs. We recommend a hybrid approach: use Win32 blocks for routine tasks, Autopilot only where judgment is needed.
+        </div>
+
+        <!-- Recommended Models -->
+        <h3 id="ai-recommended-models">Recommended Models for AI Vision / Autopilot</h3>
+        <p>AI Vision works with all Vision-capable providers, but here are the recommended models for each use case:</p>
+
+        <table>
+          <thead><tr><th>Use Case</th><th>Recommended Model</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Autopilot (Best Accuracy)</strong></td><td>Claude Opus 4.6</td><td>Native Computer Use API. Highest accuracy and self-correction.</td></tr>
+            <tr><td><strong>Autopilot (Best Value)</strong></td><td>Claude Sonnet 4.6</td><td>Native Computer Use API. Fast with good accuracy at a fraction of the cost.</td></tr>
+            <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>Single Vision API call. Any Vision-capable model works well.</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
+            <tr><td><strong>AiInstruction (Text)</strong></td><td>Any (per your needs)</td><td>No Vision required &mdash; Groq or local LLMs are also valid.</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Computer Use Model Setting</h4>
+        <p>The Claude model for Autopilot's native path can be set at: AI Settings &rarr; Anthropic section &rarr; "Computer Use Model" (Sonnet / Opus). You can also override per-block with the <code>model</code> parameter.</p>
+
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>Model Priority:</strong> (1) Block-level <code>model</code> parameter &rarr; (2) Computer Use Model setting &rarr; (3) Default: Claude Sonnet 4.6
+        </div>
+
         <h3>AI Assistant</h3>
         <p>The AI Assistant chat panel on the right side offers:</p>
         <ul>
-          <li><strong>Explain</strong> — AI explains the current macro</li>
-          <li><strong>Diagnose</strong> — AI suggests issues and improvements</li>
-          <li><strong>General Chat</strong> — Ask about block usage and more</li>
-          <li><strong>Block Generation</strong> — Describe tasks in natural language to auto-generate block sequences</li>
+          <li><strong>Explain</strong> &mdash; AI explains the current macro</li>
+          <li><strong>Diagnose</strong> &mdash; AI suggests issues and improvements</li>
+          <li><strong>General Chat</strong> &mdash; Ask about block usage and more</li>
+          <li><strong>Block Generation</strong> &mdash; Describe tasks in natural language to auto-generate block sequences</li>
         </ul>
 
         <h2 id="license-settings">License &amp; Settings</h2>
@@ -439,7 +531,16 @@
         <p>Free 15-day trial, then activate with a license key for full access. See <a href="license.html">License Policy</a> for details.</p>
 
         <h3>AI Settings</h3>
-        <p>Toolbar &rarr; AI Settings &rarr; Enter API keys for each provider &rarr; Test &rarr; Save. Settings are stored in the Windows registry.</p>
+        <p>Toolbar &rarr; AI Settings to configure:</p>
+        <ol>
+          <li>Enter API keys for each provider</li>
+          <li>Test connectivity</li>
+          <li>Select default provider and model</li>
+          <li>Anthropic section: Choose "Computer Use Model" for Autopilot (Sonnet / Opus)</li>
+          <li>Enable/disable Self-Healing</li>
+          <li>Save</li>
+        </ol>
+        <p>API keys are stored encrypted (DPAPI) in the Windows registry. They are never saved in project files.</p>
 
         <h3>Project Settings</h3>
         <p><code>.rmproj</code> files are JSON format. They can be manually edited but are typically managed within the app.</p>
