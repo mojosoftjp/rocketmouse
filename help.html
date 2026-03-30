@@ -534,7 +534,7 @@
             <table>
               <thead><tr><th>ブロック</th><th>説明</th></tr></thead>
               <tbody>
-                <tr><td><strong>AiInstruction</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ対応。画像添付でVision APIも利用可（4MB制限）。</td></tr>
+                <tr><td><strong>AI指示</strong></td><td>LLMにプロンプトを送信し、応答を変数に格納。5プロバイダ対応。画像添付でVision APIも利用可（4MB制限）。</td></tr>
                 <tr><td><strong>AIオートパイロット</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を見ながら自律的にタスクを完了。Claude Computer Use APIによるマルチターン操作。</td></tr>
                 <tr><td><strong>AIクリック</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>自然言語で要素を指定してクリック。AIが画面を分析して座標を特定。2パスリファインメント対応。</td></tr>
                 <tr><td><strong>AIスマート待機</strong> <span class="badge badge-new" style="font-size:0.65em;">NEW</span></td><td>AIが画面を定期確認し、指定条件を満たすまでインテリジェントに待機。</td></tr>
@@ -837,8 +837,8 @@
         <!-- ===== 7. AI機能 ===== -->
         <h2 id="ai-features">AI機能</h2>
 
-        <h3>AI指示ブロック（AiInstruction）</h3>
-        <p><strong>AiInstruction</strong> ブロックは、マクロ実行中にLLM（大規模言語モデル）にプロンプトを送信し、AIの応答を変数に格納します。テキスト生成、データ分析、意思決定の自動化などに活用できます。</p>
+        <h3>AI指示ブロック</h3>
+        <p><strong>AI指示</strong>ブロックは、マクロ実行中にLLM（大規模言語モデル）にプロンプトを送信し、AIの応答を変数に格納します。テキスト生成、データ分析、意思決定の自動化などに活用できます。</p>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">パラメータ</h4>
         <table>
@@ -883,7 +883,7 @@
         </table>
 
         <div class="notice notice-info" style="margin-top:12px;">
-          <strong>2パスリファインメント（AiClick）:</strong> Pass 1で全画面を1280&times;720に縮小して大まかな座標を取得。画面端（200px以内）の場合、Pass 2で元解像度1000&times;1000pxクロップによる精密座標を再取得します。スタートボタン等の小さなアイコンも高精度に検出できます。
+          <strong>2パスリファインメント（AIクリック）:</strong> Pass 1で全画面を1280&times;720に縮小して大まかな座標を取得。画面端（200px以内）の場合、Pass 2で元解像度1000&times;1000pxクロップによる精密座標を再取得します。スタートボタン等の小さなアイコンも高精度に検出できます。
         </div>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">AI Visionの共通パラメータ</h4>
@@ -896,7 +896,7 @@
         </table>
 
         <div class="notice notice-success" style="margin-top:12px;">
-          <strong>セルフヒーリング:</strong> AI設定で「セルフヒーリング」を有効にすると、通常のVisionClick（テンプレートマッチング）が失敗した場合に自動的にAiClickにフォールバックします。既存マクロの堅牢性が大幅に向上します。
+          <strong>セルフヒーリング:</strong> AI設定で「セルフヒーリング」を有効にすると、通常のVisionClick（テンプレートマッチング）が失敗した場合に自動的にAIクリックにフォールバックします。既存マクロの堅牢性が大幅に向上します。
         </div>
 
         <!-- AI Autopilot -->
@@ -954,9 +954,9 @@
           <tbody>
             <tr><td><strong>AI Autopilot（最高精度）</strong></td><td>Claude Opus 4.6</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。</td></tr>
             <tr><td><strong>AI Autopilot（コスパ推奨）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。高速で十分な精度。Opusの数分の一のコスト。</td></tr>
-            <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
-            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
-            <tr><td><strong>AiInstruction（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
+            <tr><td><strong>AIクリック / AIスマート待機 / AI OCR</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
+            <tr><td><strong>AI条件</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
+            <tr><td><strong>AI指示（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
           </tbody>
         </table>
 
