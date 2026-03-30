@@ -482,10 +482,12 @@
           <p class="help-text">RocketMouse AI のAboutダイアログでハードウェアIDを確認・コピーできます。<a href="#hardware-id-guide">詳しい手順</a></p>
           <p id="hardware-id-error" class="hardware-id-error">ハードウェアIDを入力してください</p>
         </div>
-        <div id="paypal-button-personal" class="paypal-button-container"></div>
-        <p class="payment-note">
+        <div class="paypal-button-container" style="display:flex;align-items:center;justify-content:center;min-height:55px;">
+          <span class="badge badge-amber" style="font-size:0.9em;padding:6px 20px;">Coming Soon</span>
+        </div>
+        <p class="payment-note" style="opacity:0.5;">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-          PayPalで安全にお支払い
+          PayPalで安全にお支払い（準備中）
         </p>
       </div>
 
@@ -512,7 +514,9 @@
           <input type="text" id="hardware-id-input-business" placeholder="RM-HW-XXXXXXXXXXXXXXXX" maxlength="23">
           <p class="help-text">RocketMouse AI のAboutダイアログでハードウェアIDを確認・コピーできます。<a href="#hardware-id-guide">詳しい手順</a></p>
         </div>
-        <div id="paypal-button-business" class="paypal-button-container"></div>
+        <div class="paypal-button-container" style="display:flex;align-items:center;justify-content:center;min-height:55px;">
+          <span class="badge badge-amber" style="font-size:0.9em;padding:6px 20px;">Coming Soon</span>
+        </div>
         <p class="payment-note">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
           PayPalで安全にお支払い
@@ -669,8 +673,8 @@
   </div>
 </footer>
 
-<!-- PayPal SDK (JPY) -->
-<script src="https://www.paypal.com/sdk/js?client-id=AQW_pNfSyvlWxHshLEfmnSzEq85x3im5k-2Khrpns2wh7XV2yp5oYYkwb1_8-8fT2U6fnVIX4xlrTvgO&currency=JPY&locale=ja_JP"></script>
+<!-- PayPal SDK (JPY) — disabled until launch -->
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AQW_pNfSyvlWxHshLEfmnSzEq85x3im5k-2Khrpns2wh7XV2yp5oYYkwb1_8-8fT2U6fnVIX4xlrTvgO&currency=JPY&locale=ja_JP"></script> -->
 <script>
     // 購入完了モーダル
     function showSuccessModal(product, amount, email, hardwareId) {
