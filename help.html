@@ -94,6 +94,7 @@
           <li><a href="#ai-vision">AI Vision / Computer Use</a></li>
           <li><a href="#ai-autopilot">AI Autopilot</a></li>
           <li><a href="#ai-recommended-models">推奨モデル</a></li>
+          <li><a href="#ai-local-vision">ローカルVision LLM</a></li>
           <li><a href="#ai-assistant">AIアシスタント</a></li>
 
           <li class="toc-category">ライセンスと設定</li>
@@ -964,6 +965,70 @@
 
         <div class="notice notice-info" style="margin-top:12px;">
           <strong>モデル優先順位:</strong> (1) ブロックの <code>model</code> パラメータ &rarr; (2) AI設定の Computer Use モデル &rarr; (3) デフォルト: Claude Sonnet 4.6
+        </div>
+
+        <!-- Local Vision LLM -->
+        <h3 id="ai-local-vision">ローカルLLMでのAI Vision（LM Studio / Ollama）</h3>
+        <p>クラウドAPIを使わずに、ローカルで動作するVision対応LLMでもAI Vision機能を利用できます。RocketMouse AI の「ローカルLLM」プロバイダ（OpenAI互換API）で接続します。</p>
+        <p>以下は画面認識・UI要素検出に適したVision対応ローカルモデルの推奨一覧です（2026年3月時点）。</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">推奨ローカルVisionモデル</h4>
+        <table>
+          <thead><tr><th>モデル</th><th>サイズ</th><th>VRAM目安 (Q4)</th><th>対応ランタイム</th><th>用途・特徴</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Qwen3-VL 8B</strong></td>
+              <td>8B</td>
+              <td>約6GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-green" style="font-size:0.7em;">最推奨</span> GUI要素の検出精度がクラス最高（ScreenSpot 94.4%）。画面操作・OCR・UI認識すべてに優秀。128Kコンテキスト。</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen2.5-VL 7B</strong></td>
+              <td>7B</td>
+              <td>約6GB</td>
+              <td>LM Studio / Ollama</td>
+              <td>実績豊富な定番モデル。ドキュメントOCR（DocVQA 95.7）に特に強い。安定性重視の場合に。</td>
+            </tr>
+            <tr>
+              <td><strong>Gemma 3 4B</strong></td>
+              <td>4B</td>
+              <td>約3-4GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-amber" style="font-size:0.7em;">軽量</span> VRAM 6GB以下のGPUでも動作。簡単な画面状態チェック（Yes/No判定）向き。精密な座標検出には不向き。</td>
+            </tr>
+            <tr>
+              <td><strong>Phi-4-Reasoning-Vision 15B</strong></td>
+              <td>15B</td>
+              <td>約10GB</td>
+              <td>LM Studio (GGUF)</td>
+              <td>Microsoft製。複雑な画面内容の推論・分析が得意。チャート、表、エラーメッセージの読解に強い。</td>
+            </tr>
+            <tr>
+              <td><strong>Gemma 3 27B QAT</strong></td>
+              <td>27B</td>
+              <td>約14GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-purple" style="font-size:0.7em;">高精度</span> 24GB GPU向け。量子化対応学習(QAT)で品質低下が少ない。ローカル最高品質を求める場合に。</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-success" style="margin-top:12px;">
+          <strong>おすすめ:</strong> まず <strong>Qwen3-VL 8B</strong> をお試しください。6GBのVRAMで動作し、GUI要素の検出精度がクラウドAPIに迫る水準です。LM Studio なら検索バーで「qwen3-vl」と入力してダウンロード、Ollama なら <code>ollama pull qwen3-vl</code> で導入できます。
+        </div>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">接続設定</h4>
+        <ol>
+          <li>LM Studio または Ollama でVision対応モデルを起動</li>
+          <li>RocketMouse AI &rarr; AI設定 &rarr;「ローカルLLM」セクション</li>
+          <li>ベースURL: LM Studio は <code>http://localhost:1234</code>、Ollama は <code>http://localhost:11434</code></li>
+          <li>モデルID: 起動中のモデル名（例: <code>qwen3-vl-8b</code>）</li>
+          <li>「接続テスト」で確認 &rarr;「保存」</li>
+        </ol>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>AI Autopilotについて:</strong> AI Autopilotのネイティブパス（Computer Use API）は Anthropic Claude 専用です。ローカルLLMでは汎用パス（プロンプトベースJSON方式）で動作します。AIクリック・AI OCR・AIスマート待機・AI検証・AI条件は全プロバイダ（ローカルLLM含む）で利用可能です。
         </div>
 
         <h3 id="ai-assistant">AIアシスタント</h3>

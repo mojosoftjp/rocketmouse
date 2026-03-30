@@ -58,6 +58,7 @@
           <li><a href="#ai-vision">AI Vision / Computer Use</a></li>
           <li><a href="#ai-autopilot">AI Autopilot</a></li>
           <li><a href="#ai-recommended-models">Recommended Models</a></li>
+          <li><a href="#ai-local-vision">Local Vision LLMs</a></li>
           <li><a href="#license-settings">License &amp; Settings</a></li>
           <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
         </ul>
@@ -514,6 +515,70 @@
 
         <div class="notice notice-info" style="margin-top:12px;">
           <strong>Model Priority:</strong> (1) Block-level <code>model</code> parameter &rarr; (2) Computer Use Model setting &rarr; (3) Default: Claude Sonnet 4.6
+        </div>
+
+        <!-- Local Vision LLM -->
+        <h3 id="ai-local-vision">Local Vision LLMs (LM Studio / Ollama)</h3>
+        <p>AI Vision features work with locally-hosted Vision-capable LLMs via the "Local LLM" provider (OpenAI-compatible API). No cloud API required.</p>
+        <p>Below are recommended Vision-capable local models for screen recognition and UI element detection (as of March 2026).</p>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Recommended Local Vision Models</h4>
+        <table>
+          <thead><tr><th>Model</th><th>Size</th><th>VRAM (Q4)</th><th>Runtime</th><th>Use Case &amp; Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Qwen3-VL 8B</strong></td>
+              <td>8B</td>
+              <td>~6GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-green" style="font-size:0.7em;">TOP PICK</span> Best-in-class GUI grounding (ScreenSpot 94.4%). Excellent at screen analysis, OCR, and UI element detection. 128K context.</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen2.5-VL 7B</strong></td>
+              <td>7B</td>
+              <td>~6GB</td>
+              <td>LM Studio / Ollama</td>
+              <td>Battle-tested and stable. Exceptional document OCR (DocVQA 95.7). Choose this for proven reliability.</td>
+            </tr>
+            <tr>
+              <td><strong>Gemma 3 4B</strong></td>
+              <td>4B</td>
+              <td>~3-4GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-amber" style="font-size:0.7em;">LIGHTWEIGHT</span> Runs on 6GB GPUs. Good for simple screen checks (Yes/No). Not suited for precise coordinate detection.</td>
+            </tr>
+            <tr>
+              <td><strong>Phi-4-Reasoning-Vision 15B</strong></td>
+              <td>15B</td>
+              <td>~10GB</td>
+              <td>LM Studio (GGUF)</td>
+              <td>Microsoft. Excels at complex reasoning over screen content: charts, tables, error messages.</td>
+            </tr>
+            <tr>
+              <td><strong>Gemma 3 27B QAT</strong></td>
+              <td>27B</td>
+              <td>~14GB</td>
+              <td>LM Studio / Ollama</td>
+              <td><span class="badge badge-purple" style="font-size:0.7em;">HIGH-END</span> For 24GB GPUs. QAT (Quantization-Aware Training) preserves quality. Best local quality available.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-success" style="margin-top:12px;">
+          <strong>Recommendation:</strong> Start with <strong>Qwen3-VL 8B</strong>. It runs on 6GB VRAM with GUI grounding accuracy approaching cloud APIs. In LM Studio, search for "qwen3-vl"; in Ollama, run <code>ollama pull qwen3-vl</code>.
+        </div>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Connection Setup</h4>
+        <ol>
+          <li>Launch a Vision-capable model in LM Studio or Ollama</li>
+          <li>RocketMouse AI &rarr; AI Settings &rarr; "Local LLM" section</li>
+          <li>Base URL: LM Studio <code>http://localhost:1234</code>, Ollama <code>http://localhost:11434</code></li>
+          <li>Model ID: the running model name (e.g., <code>qwen3-vl-8b</code>)</li>
+          <li>Test Connection &rarr; Save</li>
+        </ol>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>About AI Autopilot:</strong> The native path (Computer Use API) is Anthropic Claude exclusive. Local LLMs use the generic path (prompt-based JSON). AiClick, AiOcr, AiSmartWait, AiValidate, and BoolAiCondition all work with any provider including local LLMs.
         </div>
 
         <h3>AI Assistant</h3>
