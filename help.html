@@ -859,7 +859,7 @@
           <thead><tr><th>プロバイダ</th><th>主要モデル</th><th>Vision対応</th></tr></thead>
           <tbody>
             <tr><td><strong>OpenAI</strong></td><td>gpt-4o, gpt-4o-mini</td><td>対応</td></tr>
-            <tr><td><strong>Anthropic</strong></td><td>claude-sonnet-4-5, claude-3-5-haiku</td><td>対応</td></tr>
+            <tr><td><strong>Anthropic</strong></td><td>claude-sonnet-4-6, claude-haiku-4-5</td><td>対応</td></tr>
             <tr><td><strong>Google Gemini</strong></td><td>gemini-2.5-pro, gemini-2.0-flash</td><td>対応</td></tr>
             <tr><td><strong>Groq</strong></td><td>llama-3.3-70b-versatile</td><td>非対応</td></tr>
             <tr><td><strong>ローカルLLM</strong></td><td>LM Studio / Ollama（任意モデル）</td><td>対応（モデル依存）</td></tr>
@@ -961,7 +961,7 @@
         </table>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Computer Use モデル設定</h4>
-        <p>AI Autopilotのネイティブパスで使用するClaudeモデルは、AI設定 &rarr; Anthropicセクション &rarr;「Computer Use モデル」で選択できます（Sonnet / Opus）。ブロックレベルの <code>model</code> パラメータで個別に上書きすることも可能です。</p>
+        <p>AI Autopilotのネイティブパスで使用するClaudeモデルは、AI設定 &rarr;「AIオートパイロット」セクション &rarr;「モデル」で選択できます（Sonnet / Opus）。ブロックレベルの <code>model</code> パラメータで個別に上書きすることも可能です。</p>
 
         <div class="notice notice-info" style="margin-top:12px;">
           <strong>モデル優先順位:</strong> (1) ブロックの <code>model</code> パラメータ &rarr; (2) AI設定の Computer Use モデル &rarr; (3) デフォルト: Claude Sonnet 4.6
@@ -1084,7 +1084,7 @@
           <li>APIキーを入力</li>
           <li>「接続テスト」ボタンで接続を確認</li>
           <li>デフォルトプロバイダとモデルを選択</li>
-          <li>Anthropicセクション:「Computer Use モデル」でAutopilot用モデルを選択（Sonnet / Opus）</li>
+          <li>「AIオートパイロット」セクション:「モデル」でAutopilot用モデルを選択（Sonnet / Opus）</li>
           <li>「セルフヒーリング」の有効/無効を設定</li>
           <li>「保存」をクリック</li>
         </ol>
