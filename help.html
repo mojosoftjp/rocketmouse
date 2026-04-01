@@ -874,11 +874,11 @@
         <table>
           <thead><tr><th>ブロック</th><th>機能</th><th>主なパラメータ</th></tr></thead>
           <tbody>
-            <tr><td><strong>AIクリック</strong></td><td>AIが画面を見て要素を特定しクリック</td><td>description（クリック対象の説明）, button, clickType, provider, model, outputX/Y</td></tr>
-            <tr><td><strong>AIスマート待機</strong></td><td>AIが画面を定期確認し条件充足まで待機</td><td>description（待機条件）, timeoutMs, pollingMs, provider, model</td></tr>
-            <tr><td><strong>AI OCR</strong></td><td>AIが画面上のテキストを読み取り</td><td>prompt（読取指示）, outputVariable, provider, model</td></tr>
-            <tr><td><strong>AI検証</strong></td><td>操作結果をAIが検証（true/false）</td><td>description（検証条件）, outputVariable, provider, model</td></tr>
-            <tr><td><strong>AI条件</strong></td><td>if/whileの条件にAI画面判定を使用</td><td>description（条件文）, provider, model</td></tr>
+            <tr><td><strong>AIクリック</strong></td><td>AIが画面を見て要素を特定しクリック</td><td>プロンプト（クリック対象の説明）, button, clickType, provider, model, outputX/Y</td></tr>
+            <tr><td><strong>AIスマート待機</strong></td><td>AIが画面を定期確認し条件充足まで待機</td><td>プロンプト（待機条件）, timeoutMs, pollingMs, provider, model</td></tr>
+            <tr><td><strong>AI OCR</strong></td><td>AIが画面上のテキストを読み取り</td><td>プロンプト（読取指示）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AI検証</strong></td><td>操作結果をAIが検証（true/false）</td><td>プロンプト（検証条件）, outputVariable, provider, model</td></tr>
+            <tr><td><strong>AI条件</strong></td><td>if/whileの条件にAI画面判定を使用</td><td>プロンプト（条件文）, provider, model</td></tr>
           </tbody>
         </table>
 
@@ -952,7 +952,7 @@
         <table>
           <thead><tr><th>パラメータ</th><th>説明</th><th>デフォルト</th></tr></thead>
           <tbody>
-            <tr><td><strong>task</strong></td><td>タスクの自然言語記述（例:「メモ帳を開いてHello Worldと入力して保存」）</td><td>（必須）</td></tr>
+            <tr><td><strong>task（プロンプト）</strong></td><td>タスクの自然言語記述（例:「メモ帳を開いてHello Worldと入力して保存」）</td><td>（必須）</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>最大ステップ数。各ステップでスクリーンショット+LLM推論+アクション実行</td><td>30</td></tr>
             <tr><td><strong>timeoutSeconds</strong></td><td>タイムアウト秒数</td><td>120</td></tr>
             <tr><td><strong>provider</strong></td><td>LLMプロバイダ</td><td>Default</td></tr>

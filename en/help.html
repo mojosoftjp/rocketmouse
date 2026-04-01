@@ -436,11 +436,11 @@
         <table>
           <thead><tr><th>Block</th><th>Function</th><th>Key Parameters</th></tr></thead>
           <tbody>
-            <tr><td><strong>AiClick</strong></td><td>AI sees the screen, locates the element, and clicks</td><td>description, button, clickType, provider, model</td></tr>
-            <tr><td><strong>AiSmartWait</strong></td><td>AI periodically checks the screen until condition is met</td><td>description, timeoutMs, pollingMs, provider, model</td></tr>
+            <tr><td><strong>AiClick</strong></td><td>AI sees the screen, locates the element, and clicks</td><td>prompt, button, clickType, provider, model</td></tr>
+            <tr><td><strong>AiSmartWait</strong></td><td>AI periodically checks the screen until condition is met</td><td>prompt, timeoutMs, pollingMs, provider, model</td></tr>
             <tr><td><strong>AiOcr</strong></td><td>AI reads text from the screen into a variable</td><td>prompt, outputVariable, provider, model</td></tr>
-            <tr><td><strong>AiValidate</strong></td><td>AI verifies screen state and returns true/false</td><td>description, outputVariable, provider, model</td></tr>
-            <tr><td><strong>BoolAiCondition</strong></td><td>AI judgment in if/while conditions</td><td>description, provider, model</td></tr>
+            <tr><td><strong>AiValidate</strong></td><td>AI verifies screen state and returns true/false</td><td>prompt, outputVariable, provider, model</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>AI judgment in if/while conditions</td><td>prompt, provider, model</td></tr>
           </tbody>
         </table>
 
@@ -505,7 +505,7 @@
         <table>
           <thead><tr><th>Parameter</th><th>Description</th><th>Default</th></tr></thead>
           <tbody>
-            <tr><td><strong>task</strong></td><td>Natural language task (e.g., "Open Notepad, type Hello World, and save")</td><td>(required)</td></tr>
+            <tr><td><strong>task (prompt)</strong></td><td>Natural language task (e.g., "Open Notepad, type Hello World, and save")</td><td>(required)</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>Maximum steps (each step = screenshot + LLM + action)</td><td>30</td></tr>
             <tr><td><strong>timeoutSeconds</strong></td><td>Timeout in seconds</td><td>120</td></tr>
             <tr><td><strong>provider</strong></td><td>LLM provider</td><td>Default</td></tr>
