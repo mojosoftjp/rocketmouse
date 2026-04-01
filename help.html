@@ -886,6 +886,40 @@
           <strong>2パスリファインメント（AIクリック）:</strong> Pass 1で全画面を1280&times;720に縮小して大まかな座標を取得。画面端（200px以内）の場合、Pass 2で元解像度1000&times;1000pxクロップによる精密座標を再取得します。スタートボタン等の小さなアイコンも高精度に検出できます。
         </div>
 
+        <h4 style="margin-top:20px;color:var(--text-primary);">プロンプト例</h4>
+        <p>各AI Visionブロックに渡すプロンプトの例です。具体的で明確な記述ほどAIの精度が向上します。</p>
+
+        <table>
+          <thead><tr><th>ブロック</th><th>パラメータ</th><th>プロンプト例</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4"><strong>AIクリック</strong></td><td rowspan="4">description</td>
+              <td>メモ帳の「ファイル」メニュー</td></tr>
+            <tr><td>「名前を付けて保存」ダイアログの「保存」ボタン</td></tr>
+            <tr><td>タスクバーの Chrome アイコン</td></tr>
+            <tr><td>Excelのセル B3</td></tr>
+
+            <tr><td rowspan="3"><strong>AIスマート待機</strong></td><td rowspan="3">description</td>
+              <td>ファイルのダウンロードが完了した（プログレスバーが消えた）</td></tr>
+            <tr><td>「処理が完了しました」というメッセージが表示された</td></tr>
+            <tr><td>アプリケーションの起動画面（スプラッシュ）が消えてメインウィンドウが表示された</td></tr>
+
+            <tr><td rowspan="3"><strong>AI OCR</strong></td><td rowspan="3">prompt</td>
+              <td>画面中央のダイアログに表示されているエラーメッセージを読み取ってください</td></tr>
+            <tr><td>Excelの表の合計金額（一番下の行の右端の数値）を読み取ってください</td></tr>
+            <tr><td>タイトルバーに表示されているファイル名を読み取ってください</td></tr>
+
+            <tr><td rowspan="3"><strong>AI検証</strong></td><td rowspan="3">description</td>
+              <td>ファイルの保存に成功した（タイトルバーに「*」マークがない）</td></tr>
+            <tr><td>ログイン画面が表示されている（ユーザー名とパスワードの入力欄が見える）</td></tr>
+            <tr><td>印刷プレビューが正しく表示されている</td></tr>
+
+            <tr><td rowspan="3"><strong>AI条件</strong></td><td rowspan="3">description</td>
+              <td>画面にエラーダイアログが表示されている</td></tr>
+            <tr><td>メモ帳が画面に表示されている</td></tr>
+            <tr><td>Webページの読み込みが完了している（ローディングスピナーが表示されていない）</td></tr>
+          </tbody>
+        </table>
+
         <h4 style="margin-top:16px;color:var(--text-primary);">AI Visionの共通パラメータ</h4>
         <table>
           <thead><tr><th>パラメータ</th><th>説明</th><th>デフォルト</th></tr></thead>
@@ -938,6 +972,18 @@
             <tr><td>mouse_move / left_click_drag</td><td>カーソル移動・ドラッグ</td></tr>
             <tr><td>screenshot</td><td>追加スクリーンショット取得</td></tr>
             <tr><td>wait</td><td>2秒待機</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">タスク記述例（task パラメータ）</h4>
+        <p>具体的で手順の明確なタスク記述ほど、Autopilotは正確に動作します。</p>
+        <table>
+          <thead><tr><th>タスク記述例</th><th>ポイント</th></tr></thead>
+          <tbody>
+            <tr><td>メモ帳を起動して「Hello World」と入力して、デスクトップに test.txt として保存してください</td><td>具体的なファイル名と保存先を明示</td></tr>
+            <tr><td>Chromeで https://example.com を開いて、ページタイトルをコピーしてメモ帳に貼り付けてください</td><td>複数アプリの連携タスク</td></tr>
+            <tr><td>電卓を起動して 1234 × 5678 を計算してください</td><td>シンプルで明確な目標</td></tr>
+            <tr><td>デスクトップにある report.xlsx を開いて、A1セルの値を確認してください</td><td>既存ファイルの操作</td></tr>
           </tbody>
         </table>
 

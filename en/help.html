@@ -448,6 +448,40 @@
           <strong>2-Pass Refinement (AiClick):</strong> Pass 1 uses a 1280&times;720 scaled screenshot for coarse coordinates. If near a screen edge (within 200px), Pass 2 crops a 1000&times;1000px region at original resolution for precise targeting. This accurately detects small icons like the Start button.
         </div>
 
+        <h4 style="margin-top:20px;color:var(--text-primary);">Prompt Examples</h4>
+        <p>Example prompts for each AI Vision block. Specific, clear descriptions improve AI accuracy.</p>
+
+        <table>
+          <thead><tr><th>Block</th><th>Parameter</th><th>Prompt Example</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4"><strong>AiClick</strong></td><td rowspan="4">description</td>
+              <td>The "File" menu in Notepad</td></tr>
+            <tr><td>The "Save" button in the Save As dialog</td></tr>
+            <tr><td>The Chrome icon in the taskbar</td></tr>
+            <tr><td>Cell B3 in the Excel spreadsheet</td></tr>
+
+            <tr><td rowspan="3"><strong>AiSmartWait</strong></td><td rowspan="3">description</td>
+              <td>The file download has completed (progress bar disappeared)</td></tr>
+            <tr><td>A "Processing complete" message is displayed</td></tr>
+            <tr><td>The splash screen has closed and the main window is visible</td></tr>
+
+            <tr><td rowspan="3"><strong>AiOcr</strong></td><td rowspan="3">prompt</td>
+              <td>Read the error message shown in the dialog at the center of the screen</td></tr>
+            <tr><td>Read the total amount in the bottom-right cell of the Excel table</td></tr>
+            <tr><td>Read the filename shown in the title bar</td></tr>
+
+            <tr><td rowspan="3"><strong>AiValidate</strong></td><td rowspan="3">description</td>
+              <td>The file was saved successfully (no "*" mark in the title bar)</td></tr>
+            <tr><td>A login screen is displayed (username and password fields are visible)</td></tr>
+            <tr><td>The print preview is correctly displayed</td></tr>
+
+            <tr><td rowspan="3"><strong>BoolAiCondition</strong></td><td rowspan="3">description</td>
+              <td>An error dialog is displayed on the screen</td></tr>
+            <tr><td>Notepad is visible on the screen</td></tr>
+            <tr><td>The web page has finished loading (no loading spinner visible)</td></tr>
+          </tbody>
+        </table>
+
         <div class="notice notice-success" style="margin-top:12px;">
           <strong>Self-Healing:</strong> Enable in AI Settings to automatically fall back to AiClick when a standard VisionClick (template matching) fails. Dramatically improves robustness of existing macros.
         </div>
@@ -491,6 +525,18 @@
             <tr><td>mouse_move / left_click_drag</td><td>Cursor movement and drag</td></tr>
             <tr><td>screenshot</td><td>Request additional screenshot</td></tr>
             <tr><td>wait</td><td>Wait 2 seconds</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Task Description Examples (task parameter)</h4>
+        <p>Specific, step-clear task descriptions lead to more accurate Autopilot execution.</p>
+        <table>
+          <thead><tr><th>Task Description</th><th>Tip</th></tr></thead>
+          <tbody>
+            <tr><td>Open Notepad, type "Hello World", and save it as test.txt on the Desktop</td><td>Specify filename and location</td></tr>
+            <tr><td>Open Chrome, navigate to https://example.com, copy the page title, and paste it into Notepad</td><td>Multi-app coordination task</td></tr>
+            <tr><td>Open Calculator and compute 1234 &times; 5678</td><td>Simple, clear objective</td></tr>
+            <tr><td>Open report.xlsx from the Desktop and check the value in cell A1</td><td>Working with existing files</td></tr>
           </tbody>
         </table>
 
