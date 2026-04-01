@@ -889,36 +889,41 @@
         <h4 style="margin-top:20px;color:var(--text-primary);">プロンプト例</h4>
         <p>各AI Visionブロックに渡すプロンプトの例です。具体的で明確な記述ほどAIの精度が向上します。</p>
 
-        <table>
-          <thead><tr><th>ブロック</th><th>パラメータ</th><th>プロンプト例</th></tr></thead>
-          <tbody>
-            <tr><td rowspan="4"><strong>AIクリック</strong></td><td rowspan="4">description</td>
-              <td>メモ帳の「ファイル」メニュー</td></tr>
-            <tr><td>「名前を付けて保存」ダイアログの「保存」ボタン</td></tr>
-            <tr><td>タスクバーの Chrome アイコン</td></tr>
-            <tr><td>Excelのセル B3</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AIクリック</strong> &mdash; クリック対象のUI要素を具体的に記述<br>
+          <code style="display:block;margin:6px 0 3px;">メモ帳の「ファイル」メニュー</code>
+          <code style="display:block;margin:3px 0;">「名前を付けて保存」ダイアログの「保存」ボタン</code>
+          <code style="display:block;margin:3px 0;">タスクバーの Chrome アイコン</code>
+          <code style="display:block;margin:3px 0;">Excelのセル B3</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AIスマート待機</strong></td><td rowspan="3">description</td>
-              <td>ファイルのダウンロードが完了した（プログレスバーが消えた）</td></tr>
-            <tr><td>「処理が完了しました」というメッセージが表示された</td></tr>
-            <tr><td>アプリケーションの起動画面（スプラッシュ）が消えてメインウィンドウが表示された</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AIスマート待機</strong> &mdash; 画面の状態変化を条件として記述<br>
+          <code style="display:block;margin:6px 0 3px;">ファイルのダウンロードが完了した（プログレスバーが消えた）</code>
+          <code style="display:block;margin:3px 0;">「処理が完了しました」というメッセージが表示された</code>
+          <code style="display:block;margin:3px 0;">アプリの起動画面（スプラッシュ）が消えてメインウィンドウが表示された</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AI OCR</strong></td><td rowspan="3">prompt</td>
-              <td>画面中央のダイアログに表示されているエラーメッセージを読み取ってください</td></tr>
-            <tr><td>Excelの表の合計金額（一番下の行の右端の数値）を読み取ってください</td></tr>
-            <tr><td>タイトルバーに表示されているファイル名を読み取ってください</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AI OCR</strong> &mdash; 読み取りたいテキストの場所と内容を指示<br>
+          <code style="display:block;margin:6px 0 3px;">画面中央のダイアログに表示されているエラーメッセージを読み取ってください</code>
+          <code style="display:block;margin:3px 0;">Excelの表の合計金額（一番下の行の右端の数値）を読み取ってください</code>
+          <code style="display:block;margin:3px 0;">タイトルバーに表示されているファイル名を読み取ってください</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AI検証</strong></td><td rowspan="3">description</td>
-              <td>ファイルの保存に成功した（タイトルバーに「*」マークがない）</td></tr>
-            <tr><td>ログイン画面が表示されている（ユーザー名とパスワードの入力欄が見える）</td></tr>
-            <tr><td>印刷プレビューが正しく表示されている</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AI検証</strong> &mdash; 操作後に確認したい画面状態を記述<br>
+          <code style="display:block;margin:6px 0 3px;">ファイルの保存に成功した（タイトルバーに「*」マークがない）</code>
+          <code style="display:block;margin:3px 0;">ログイン画面が表示されている（ユーザー名とパスワードの入力欄が見える）</code>
+          <code style="display:block;margin:3px 0;">印刷プレビューが正しく表示されている</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AI条件</strong></td><td rowspan="3">description</td>
-              <td>画面にエラーダイアログが表示されている</td></tr>
-            <tr><td>メモ帳が画面に表示されている</td></tr>
-            <tr><td>Webページの読み込みが完了している（ローディングスピナーが表示されていない）</td></tr>
-          </tbody>
-        </table>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AI条件</strong> &mdash; if/while条件として使う画面判定を記述<br>
+          <code style="display:block;margin:6px 0 3px;">画面にエラーダイアログが表示されている</code>
+          <code style="display:block;margin:3px 0;">メモ帳が画面に表示されている</code>
+          <code style="display:block;margin:3px 0;">Webページの読み込みが完了している（ローディングスピナーが表示されていない）</code>
+        </div>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">AI Visionの共通パラメータ</h4>
         <table>
@@ -977,15 +982,17 @@
 
         <h4 style="margin-top:16px;color:var(--text-primary);">タスク記述例（task パラメータ）</h4>
         <p>具体的で手順の明確なタスク記述ほど、Autopilotは正確に動作します。</p>
-        <table>
-          <thead><tr><th>タスク記述例</th><th>ポイント</th></tr></thead>
-          <tbody>
-            <tr><td>メモ帳を起動して「Hello World」と入力して、デスクトップに test.txt として保存してください</td><td>具体的なファイル名と保存先を明示</td></tr>
-            <tr><td>Chromeで https://example.com を開いて、ページタイトルをコピーしてメモ帳に貼り付けてください</td><td>複数アプリの連携タスク</td></tr>
-            <tr><td>電卓を起動して 1234 × 5678 を計算してください</td><td>シンプルで明確な目標</td></tr>
-            <tr><td>デスクトップにある report.xlsx を開いて、A1セルの値を確認してください</td><td>既存ファイルの操作</td></tr>
-          </tbody>
-        </table>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AIオートパイロット</strong> &mdash; タスク全体を自然言語で記述<br>
+          <code style="display:block;margin:6px 0 3px;">メモ帳を起動して「Hello World」と入力して、デスクトップに test.txt として保存してください</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; 具体的なファイル名と保存先を明示</span>
+          <code style="display:block;margin:6px 0 3px;">Chromeで https://example.com を開いて、ページタイトルをコピーしてメモ帳に貼り付けてください</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; 複数アプリの連携タスク</span>
+          <code style="display:block;margin:6px 0 3px;">電卓を起動して 1234 &times; 5678 を計算してください</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; シンプルで明確な目標</span>
+          <code style="display:block;margin:6px 0 3px;">デスクトップにある report.xlsx を開いて、A1セルの値を確認してください</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; 既存ファイルの操作</span>
+        </div>
 
         <div class="notice notice-warning" style="margin-top:12px;">
           <strong>コストに注意:</strong> Autopilotは各ステップでスクリーンショット（約200KB）をLLMに送信します。30ステップのタスクでは相応のAPI料金が発生します。定型処理はWin32ブロック、判断が必要な部分のみAutopilotを使うハイブリッド構成を推奨します。

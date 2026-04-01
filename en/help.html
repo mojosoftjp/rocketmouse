@@ -451,36 +451,41 @@
         <h4 style="margin-top:20px;color:var(--text-primary);">Prompt Examples</h4>
         <p>Example prompts for each AI Vision block. Specific, clear descriptions improve AI accuracy.</p>
 
-        <table>
-          <thead><tr><th>Block</th><th>Parameter</th><th>Prompt Example</th></tr></thead>
-          <tbody>
-            <tr><td rowspan="4"><strong>AiClick</strong></td><td rowspan="4">description</td>
-              <td>The "File" menu in Notepad</td></tr>
-            <tr><td>The "Save" button in the Save As dialog</td></tr>
-            <tr><td>The Chrome icon in the taskbar</td></tr>
-            <tr><td>Cell B3 in the Excel spreadsheet</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AiClick</strong> &mdash; Describe the target UI element specifically<br>
+          <code style="display:block;margin:6px 0 3px;">The "File" menu in Notepad</code>
+          <code style="display:block;margin:3px 0;">The "Save" button in the Save As dialog</code>
+          <code style="display:block;margin:3px 0;">The Chrome icon in the taskbar</code>
+          <code style="display:block;margin:3px 0;">Cell B3 in the Excel spreadsheet</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AiSmartWait</strong></td><td rowspan="3">description</td>
-              <td>The file download has completed (progress bar disappeared)</td></tr>
-            <tr><td>A "Processing complete" message is displayed</td></tr>
-            <tr><td>The splash screen has closed and the main window is visible</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AiSmartWait</strong> &mdash; Describe the screen state change to wait for<br>
+          <code style="display:block;margin:6px 0 3px;">The file download has completed (progress bar disappeared)</code>
+          <code style="display:block;margin:3px 0;">A "Processing complete" message is displayed</code>
+          <code style="display:block;margin:3px 0;">The splash screen has closed and the main window is visible</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AiOcr</strong></td><td rowspan="3">prompt</td>
-              <td>Read the error message shown in the dialog at the center of the screen</td></tr>
-            <tr><td>Read the total amount in the bottom-right cell of the Excel table</td></tr>
-            <tr><td>Read the filename shown in the title bar</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AiOcr</strong> &mdash; Specify the location and content of text to read<br>
+          <code style="display:block;margin:6px 0 3px;">Read the error message shown in the dialog at the center of the screen</code>
+          <code style="display:block;margin:3px 0;">Read the total amount in the bottom-right cell of the Excel table</code>
+          <code style="display:block;margin:3px 0;">Read the filename shown in the title bar</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>AiValidate</strong></td><td rowspan="3">description</td>
-              <td>The file was saved successfully (no "*" mark in the title bar)</td></tr>
-            <tr><td>A login screen is displayed (username and password fields are visible)</td></tr>
-            <tr><td>The print preview is correctly displayed</td></tr>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AiValidate</strong> &mdash; Describe the expected screen state after an action<br>
+          <code style="display:block;margin:6px 0 3px;">The file was saved successfully (no "*" mark in the title bar)</code>
+          <code style="display:block;margin:3px 0;">A login screen is displayed (username and password fields are visible)</code>
+          <code style="display:block;margin:3px 0;">The print preview is correctly displayed</code>
+        </div>
 
-            <tr><td rowspan="3"><strong>BoolAiCondition</strong></td><td rowspan="3">description</td>
-              <td>An error dialog is displayed on the screen</td></tr>
-            <tr><td>Notepad is visible on the screen</td></tr>
-            <tr><td>The web page has finished loading (no loading spinner visible)</td></tr>
-          </tbody>
-        </table>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>BoolAiCondition</strong> &mdash; Describe screen conditions for if/while logic<br>
+          <code style="display:block;margin:6px 0 3px;">An error dialog is displayed on the screen</code>
+          <code style="display:block;margin:3px 0;">Notepad is visible on the screen</code>
+          <code style="display:block;margin:3px 0;">The web page has finished loading (no loading spinner visible)</code>
+        </div>
 
         <div class="notice notice-success" style="margin-top:12px;">
           <strong>Self-Healing:</strong> Enable in AI Settings to automatically fall back to AiClick when a standard VisionClick (template matching) fails. Dramatically improves robustness of existing macros.
@@ -530,15 +535,17 @@
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Task Description Examples (task parameter)</h4>
         <p>Specific, step-clear task descriptions lead to more accurate Autopilot execution.</p>
-        <table>
-          <thead><tr><th>Task Description</th><th>Tip</th></tr></thead>
-          <tbody>
-            <tr><td>Open Notepad, type "Hello World", and save it as test.txt on the Desktop</td><td>Specify filename and location</td></tr>
-            <tr><td>Open Chrome, navigate to https://example.com, copy the page title, and paste it into Notepad</td><td>Multi-app coordination task</td></tr>
-            <tr><td>Open Calculator and compute 1234 &times; 5678</td><td>Simple, clear objective</td></tr>
-            <tr><td>Open report.xlsx from the Desktop and check the value in cell A1</td><td>Working with existing files</td></tr>
-          </tbody>
-        </table>
+        <div class="notice notice-info" style="margin-top:12px;">
+          <strong>AiAutopilot</strong> &mdash; Describe the full task in natural language<br>
+          <code style="display:block;margin:6px 0 3px;">Open Notepad, type "Hello World", and save it as test.txt on the Desktop</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; Specify filename and location</span>
+          <code style="display:block;margin:6px 0 3px;">Open Chrome, navigate to https://example.com, copy the page title, and paste it into Notepad</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; Multi-app coordination task</span>
+          <code style="display:block;margin:6px 0 3px;">Open Calculator and compute 1234 &times; 5678</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; Simple, clear objective</span>
+          <code style="display:block;margin:6px 0 3px;">Open report.xlsx from the Desktop and check the value in cell A1</code>
+          <span style="font-size:0.85em;color:var(--text-muted);">&rarr; Working with existing files</span>
+        </div>
 
         <div class="notice notice-warning" style="margin-top:12px;">
           <strong>Cost Awareness:</strong> Autopilot sends a screenshot (~200KB) to the LLM on each step. A 30-step task incurs significant API costs. We recommend a hybrid approach: use Win32 blocks for routine tasks, Autopilot only where judgment is needed.
