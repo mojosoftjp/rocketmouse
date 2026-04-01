@@ -329,19 +329,19 @@
                 <tr><td><strong>BrowserLaunch</strong></td><td>ブラウザを起動（Edge / Chrome / Chromium 選択可）</td></tr>
                 <tr><td><strong>BrowserNavigate</strong></td><td>指定URLに移動</td></tr>
                 <tr><td><strong>BrowserClick</strong></td><td>CSSセレクタで指定した要素をクリック</td></tr>
-                <tr><td><strong>BrowserType</strong></td><td>テキストフィールドに文字入力</td></tr>
+                <tr><td><strong>BrowserFill</strong></td><td>テキストフィールドに文字入力</td></tr>
+                <tr><td><strong>BrowserSelect</strong></td><td>ドロップダウンから選択</td></tr>
+                <tr><td><strong>BrowserCheck</strong></td><td>チェックボックスのオン/オフ</td></tr>
                 <tr><td><strong>BrowserGetText</strong></td><td>要素のテキストを取得して変数に格納</td></tr>
                 <tr><td><strong>BrowserGetAttribute</strong></td><td>要素の属性値を取得</td></tr>
+                <tr><td><strong>BrowserGetTitle</strong></td><td>ページタイトルを取得して変数に格納</td></tr>
+                <tr><td><strong>BrowserGetUrl</strong></td><td>現在のURLを取得して変数に格納</td></tr>
                 <tr><td><strong>BrowserScreenshot</strong></td><td>ページまたは要素のスクリーンショットを保存</td></tr>
-                <tr><td><strong>BrowserEvalJs</strong></td><td>JavaScript コードを実行</td></tr>
-                <tr><td><strong>BrowserSelectOption</strong></td><td>ドロップダウンから選択</td></tr>
-                <tr><td><strong>BrowserWaitElement</strong></td><td>指定要素が表示されるまで待機</td></tr>
-                <tr><td><strong>BrowserClose</strong></td><td>ブラウザを閉じる</td></tr>
-                <tr><td><strong>BrowserNewTab</strong></td><td>新しいタブを開く</td></tr>
+                <tr><td><strong>BrowserExecuteScript</strong></td><td>JavaScript コードを実行</td></tr>
+                <tr><td><strong>BrowserWaitForElement</strong></td><td>指定要素が表示されるまで待機</td></tr>
                 <tr><td><strong>BrowserSwitchTab</strong></td><td>指定タブに切替</td></tr>
                 <tr><td><strong>BrowserGoBack</strong></td><td>前のページに戻る</td></tr>
-                <tr><td><strong>BrowserGoForward</strong></td><td>次のページに進む</td></tr>
-                <tr><td><strong>BrowserReload</strong></td><td>ページを再読み込み</td></tr>
+                <tr><td><strong>BrowserClose</strong></td><td>ブラウザを閉じる</td></tr>
               </tbody>
             </table>
           </div>
@@ -955,7 +955,7 @@
             <tr><td><strong>AI Autopilot（最高精度）</strong></td><td>Claude Opus 4.6</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。</td></tr>
             <tr><td><strong>AI Autopilot（コスパ推奨）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。高速で十分な精度。Opusの数分の一のコスト。</td></tr>
             <tr><td><strong>AIクリック / AIスマート待機 / AI OCR</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
-            <tr><td><strong>AI条件</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
+            <tr><td><strong>AI条件</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
             <tr><td><strong>AI指示（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
           </tbody>
         </table>

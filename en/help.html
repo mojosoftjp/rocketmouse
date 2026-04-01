@@ -178,16 +178,19 @@
             <table>
               <thead><tr><th>Block</th><th>Description</th></tr></thead>
               <tbody>
-                <tr><td>BrowserLaunch</td><td>Launch browser (Edge/Chrome)</td></tr>
+                <tr><td>BrowserLaunch</td><td>Launch browser (Edge/Chrome/Chromium)</td></tr>
                 <tr><td>BrowserNavigate</td><td>Navigate to URL</td></tr>
                 <tr><td>BrowserClick</td><td>Click element (CSS selector)</td></tr>
-                <tr><td>BrowserType</td><td>Type text into element</td></tr>
-                <tr><td>BrowserGetText / BrowserGetAttribute</td><td>Extract data</td></tr>
-                <tr><td>BrowserScreenshot</td><td>Save screenshot</td></tr>
-                <tr><td>BrowserEvalJs</td><td>Execute JavaScript</td></tr>
-                <tr><td>BrowserSelectOption / BrowserWaitElement</td><td>Interact and wait</td></tr>
+                <tr><td>BrowserFill</td><td>Type text into input field</td></tr>
+                <tr><td>BrowserSelect</td><td>Select from dropdown</td></tr>
+                <tr><td>BrowserCheck</td><td>Toggle checkbox on/off</td></tr>
+                <tr><td>BrowserGetText / BrowserGetAttribute</td><td>Extract element data</td></tr>
+                <tr><td>BrowserGetTitle / BrowserGetUrl</td><td>Get page title or URL</td></tr>
+                <tr><td>BrowserScreenshot</td><td>Save page or element screenshot</td></tr>
+                <tr><td>BrowserExecuteScript</td><td>Execute JavaScript</td></tr>
+                <tr><td>BrowserWaitForElement</td><td>Wait for element to appear</td></tr>
+                <tr><td>BrowserSwitchTab / BrowserGoBack</td><td>Tab and navigation control</td></tr>
                 <tr><td>BrowserClose</td><td>Close browser</td></tr>
-                <tr><td>Others</td><td>Check, GetUrl, GetTitle, ScrollTo, NewTab</td></tr>
               </tbody>
             </table>
           </div>
@@ -505,7 +508,7 @@
             <tr><td><strong>Autopilot (Best Accuracy)</strong></td><td>Claude Opus 4.6</td><td>Native Computer Use API. Highest accuracy and self-correction.</td></tr>
             <tr><td><strong>Autopilot (Best Value)</strong></td><td>Claude Sonnet 4.6</td><td>Native Computer Use API. Fast with good accuracy at a fraction of the cost.</td></tr>
             <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>Single Vision API call. Any Vision-capable model works well.</td></tr>
-            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.0 Flash / GPT-4o mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
             <tr><td><strong>AiInstruction (Text)</strong></td><td>Any (per your needs)</td><td>No Vision required &mdash; Groq or local LLMs are also valid.</td></tr>
           </tbody>
         </table>
