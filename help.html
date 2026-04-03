@@ -959,9 +959,9 @@
           <tbody>
             <tr><td><strong>task（プロンプト）</strong></td><td>タスクの自然言語記述（例:「メモ帳を開いてHello Worldと入力して保存」）</td><td>（必須）</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>最大ステップ数。各ステップでスクリーンショット+LLM推論+アクション実行</td><td>30</td></tr>
-            <tr><td><strong>timeoutSeconds</strong></td><td>タイムアウト秒数</td><td>120</td></tr>
-            <tr><td><strong>provider</strong></td><td>LLMプロバイダ</td><td>Default</td></tr>
-            <tr><td><strong>model</strong></td><td>モデルID（ネイティブパス判定に影響）</td><td>（空）</td></tr>
+            <tr><td><strong>timeoutSeconds</strong></td><td>タイムアウト秒数</td><td>300</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLMプロバイダ。ブロック単位で上書き可能（例: <code>OpenAICompatible</code> でローカルLLMを使用）</td><td>Default（Anthropic）</td></tr>
+            <tr><td><strong>model</strong></td><td>モデルID。ブロック単位で上書き可能（例: <code>gemma4:26b</code>）</td><td>（空 = AI設定に従う）</td></tr>
             <tr><td><strong>outputVariable</strong></td><td>結果（True/False）を格納する変数</td><td>AutopilotResult</td></tr>
           </tbody>
         </table>
@@ -1007,6 +1007,7 @@
           <tbody>
             <tr><td><strong>AI Autopilot（最高精度）</strong></td><td>Claude Opus 4.6</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。</td></tr>
             <tr><td><strong>AI Autopilot（コスパ推奨）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。高速で十分な精度。Opusの数分の一のコスト。</td></tr>
+            <tr><td><strong>AI Autopilot（ローカルLLM）</strong></td><td>Gemma 4 26B A4B / Qwen3-VL 8B</td><td>Ollama経由。API料金不要・オフライン動作。速度はGPU性能に依存。</td></tr>
             <tr><td><strong>AIクリック / AIスマート待機 / AI OCR</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
             <tr><td><strong>AI条件</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
             <tr><td><strong>AI指示（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
@@ -1018,6 +1019,26 @@
 
         <div class="notice notice-info" style="margin-top:12px;">
           <strong>モデル優先順位:</strong> (1) ブロックの <code>model</code> パラメータ &rarr; (2) AI設定の Computer Use モデル &rarr; (3) デフォルト: Claude Sonnet 4.6
+        </div>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">ローカルLLMでAutopilotを使う</h4>
+        <p>Ollama等でVision対応のローカルLLM（Gemma 4など）を起動すれば、API料金なし・オフラインでAutopilotを利用できます。</p>
+        <ol style="margin-top:8px;">
+          <li><strong>AI設定</strong> &rarr;「各プロバイダの設定」&rarr;「OpenAI Compatible」にOllamaのURL（<code>http://localhost:11434/v1</code>）とモデル名（例: <code>gemma4:26b</code>）を設定</li>
+          <li>AIオートパイロットブロックのプロパティで <strong>provider</strong> を <code>OpenAICompatible</code> に変更</li>
+          <li>ローカルLLMは応答に時間がかかるため、必要に応じて <strong>timeoutSeconds</strong> を延長してください</li>
+        </ol>
+        <h4 style="margin-top:16px;color:var(--text-primary);">Autopilot向けローカルLLM推奨モデル</h4>
+        <table>
+          <thead><tr><th>モデル</th><th>Ollamaコマンド</th><th>VRAM目安</th><th>特徴</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gemma 4 26B A4B</strong></td><td><code>ollama pull gemma4:26b</code></td><td>~15GB</td><td>MoE構造（3.8Bアクティブ）で高速。Vision+関数呼び出し対応。Apache 2.0ライセンス。</td></tr>
+            <tr><td><strong>Qwen3-VL 8B</strong></td><td><code>ollama pull qwen3-vl:8b</code></td><td>~6GB</td><td>軽量で高速。VRAM少なめのGPUでも動作可能。8Bながら高いVision精度。</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>注意:</strong> ローカルLLMはClaude Sonnet/Opusと比べて精度・速度ともに劣ります。簡単なタスクから試すことを推奨します。
         </div>
 
         <!-- Local Vision LLM -->

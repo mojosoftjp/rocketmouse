@@ -512,9 +512,9 @@
           <tbody>
             <tr><td><strong>task (prompt)</strong></td><td>Natural language task (e.g., "Open Notepad, type Hello World, and save")</td><td>(required)</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>Maximum steps (each step = screenshot + LLM + action)</td><td>30</td></tr>
-            <tr><td><strong>timeoutSeconds</strong></td><td>Timeout in seconds</td><td>120</td></tr>
-            <tr><td><strong>provider</strong></td><td>LLM provider</td><td>Default</td></tr>
-            <tr><td><strong>model</strong></td><td>Model ID (affects native path routing)</td><td>(empty)</td></tr>
+            <tr><td><strong>timeoutSeconds</strong></td><td>Timeout in seconds</td><td>300</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLM provider. Can be overridden per block (e.g., <code>OpenAICompatible</code> for local LLMs)</td><td>Default (Anthropic)</td></tr>
+            <tr><td><strong>model</strong></td><td>Model ID. Can be overridden per block (e.g., <code>gemma4:26b</code>)</td><td>(empty = use AI Settings)</td></tr>
             <tr><td><strong>outputVariable</strong></td><td>Result variable (True/False)</td><td>AutopilotResult</td></tr>
           </tbody>
         </table>
@@ -560,6 +560,7 @@
           <tbody>
             <tr><td><strong>Autopilot (Best Accuracy)</strong></td><td>Claude Opus 4.6</td><td>Native Computer Use API. Highest accuracy and self-correction.</td></tr>
             <tr><td><strong>Autopilot (Best Value)</strong></td><td>Claude Sonnet 4.6</td><td>Native Computer Use API. Fast with good accuracy at a fraction of the cost.</td></tr>
+            <tr><td><strong>Autopilot (Local LLM)</strong></td><td>Gemma 4 26B A4B / Qwen3-VL 8B</td><td>Via Ollama. No API costs, works offline. Speed depends on GPU.</td></tr>
             <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>Single Vision API call. Any Vision-capable model works well.</td></tr>
             <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
             <tr><td><strong>AiInstruction (Text)</strong></td><td>Any (per your needs)</td><td>No Vision required &mdash; Groq or local LLMs are also valid.</td></tr>
@@ -571,6 +572,26 @@
 
         <div class="notice notice-info" style="margin-top:12px;">
           <strong>Model Priority:</strong> (1) Block-level <code>model</code> parameter &rarr; (2) Computer Use Model setting &rarr; (3) Default: Claude Sonnet 4.6
+        </div>
+
+        <h4 style="margin-top:16px;color:var(--text-primary);">Using Autopilot with Local LLMs</h4>
+        <p>Run a Vision-capable local LLM (e.g., Gemma 4) via Ollama to use Autopilot with no API costs and fully offline.</p>
+        <ol style="margin-top:8px;">
+          <li><strong>AI Settings</strong> &rarr; "Provider Settings" &rarr; "OpenAI Compatible": set the URL to <code>http://localhost:11434/v1</code> and the model name (e.g., <code>gemma4:26b</code>)</li>
+          <li>On the AI Autopilot block, set <strong>provider</strong> to <code>OpenAICompatible</code></li>
+          <li>Local LLMs are slower &mdash; increase <strong>timeoutSeconds</strong> as needed</li>
+        </ol>
+        <h4 style="margin-top:16px;color:var(--text-primary);">Recommended Local LLMs for Autopilot</h4>
+        <table>
+          <thead><tr><th>Model</th><th>Ollama Command</th><th>VRAM</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gemma 4 26B A4B</strong></td><td><code>ollama pull gemma4:26b</code></td><td>~15GB</td><td>MoE (3.8B active) for fast inference. Vision + function calling. Apache 2.0 license.</td></tr>
+            <tr><td><strong>Qwen3-VL 8B</strong></td><td><code>ollama pull qwen3-vl:8b</code></td><td>~6GB</td><td>Lightweight and fast. Runs on GPUs with less VRAM. Strong Vision accuracy for its size.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>Note:</strong> Local LLMs are slower and less accurate than Claude Sonnet/Opus. Start with simple tasks.
         </div>
 
         <!-- Local Vision LLM -->
