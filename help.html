@@ -544,7 +544,7 @@
               </tbody>
             </table>
             <div class="notice notice-info" style="margin-top:12px;">
-              <strong>設定方法:</strong> AI設定ダイアログ（ツールバー）でAPIキーとデフォルトモデルを設定してください。各ブロック個別にプロバイダやモデルを上書きすることもできます。AI Autopilotは Anthropic Claude Sonnet/Opus 推奨です。
+              <strong>設定方法:</strong> AI設定ダイアログ（ツールバー）でAPIキーとデフォルトモデルを設定してください。各ブロック個別にプロバイダやモデルを上書きすることもできます。AI Autopilotは <strong>OpenAI GPT-5.5</strong>（速度・コスト優先）または <strong>Anthropic Claude Sonnet 4.6 / Opus 4.7</strong>（精度・安定優先）が推奨です。
             </div>
           </div>
         </div>
@@ -858,10 +858,10 @@
         <table>
           <thead><tr><th>プロバイダ</th><th>主要モデル</th><th>Vision対応</th></tr></thead>
           <tbody>
-            <tr><td><strong>OpenAI</strong></td><td>gpt-4o, gpt-4o-mini</td><td>対応</td></tr>
-            <tr><td><strong>Anthropic</strong></td><td>claude-sonnet-4-6, claude-haiku-4-5</td><td>対応</td></tr>
-            <tr><td><strong>Google Gemini</strong></td><td>gemini-2.5-pro, gemini-2.0-flash</td><td>対応</td></tr>
-            <tr><td><strong>Groq</strong></td><td>llama-3.3-70b-versatile</td><td>非対応</td></tr>
+            <tr><td><strong>OpenAI</strong></td><td>gpt-5.5, gpt-5.5-mini, gpt-5.4, gpt-5.2, gpt-4.1, gpt-4o</td><td>対応</td></tr>
+            <tr><td><strong>Anthropic</strong></td><td>claude-sonnet-4-6, claude-opus-4-7, claude-haiku-4-5</td><td>対応</td></tr>
+            <tr><td><strong>Google Gemini</strong></td><td>gemini-3-pro / 3-flash (Preview), gemini-2.5-pro / 2.5-flash</td><td>対応</td></tr>
+            <tr><td><strong>Groq</strong></td><td>Llama 4 Scout 17B (multimodal), Llama 3.3 70B, Llama 3.1 8B</td><td>対応 (Llama 4 Scout 選択時)</td></tr>
             <tr><td><strong>ローカルLLM</strong></td><td>LM Studio / Ollama（任意モデル）</td><td>対応（モデル依存）</td></tr>
           </tbody>
         </table>
@@ -942,16 +942,18 @@
         <h3 id="ai-autopilot">AIオートパイロット（自律エージェント）</h3>
         <p><strong>AIオートパイロット</strong> は、自然言語でタスクを記述するだけで、AIが画面を見ながらマウス・キーボード操作を自律的に実行し、タスク完了まで繰り返す自律エージェントです。</p>
 
-        <h4 style="margin-top:16px;color:var(--text-primary);">デュアルパスルーティング</h4>
-        <p>Autopilotは使用するプロバイダとモデルに応じて、2つの実行パスを自動選択します。</p>
+        <h4 style="margin-top:16px;color:var(--text-primary);">デュアルプロバイダ × デュアルパスルーティング</h4>
+        <p>Autopilotは使用するプロバイダとモデルに応じて、3つの実行パスを自動選択します。<strong>v2.0.6 から OpenAI GPT-5.5 ネイティブパスに対応</strong>。</p>
         <table>
-          <thead><tr><th>パス</th><th>条件</th><th>動作方式</th><th>精度</th></tr></thead>
+          <thead><tr><th>パス</th><th>条件</th><th>動作方式</th><th>精度・特徴</th></tr></thead>
           <tbody>
-            <tr><td><strong>ネイティブパス</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API（マルチターン tool_use/tool_result）</td><td>高精度</td></tr>
-            <tr><td><strong>汎用パス</strong></td><td>その他全プロバイダ + Haiku</td><td>プロンプトベースJSON方式</td><td>標準</td></tr>
+            <tr><td><strong>Anthropic ネイティブパス</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API（マルチターン tool_use/tool_result）</td><td>高精度・安定（実績豊富）</td></tr>
+            <tr><td><strong>OpenAI ネイティブパス</strong> <span class="badge badge-new" style="font-size:0.7em;">NEW</span></td><td>OpenAI + GPT-5.5 / GPT-5.4 / computer-use-preview</td><td>OpenAI Responses API（previous_response_id でステートレス継続）</td><td>高速・低コスト（Sonnet比 約1.3倍速、約1/5コスト）</td></tr>
+            <tr><td><strong>汎用パス</strong></td><td>その他全プロバイダ + Anthropic Haiku</td><td>プロンプトベースJSON方式</td><td>標準</td></tr>
           </tbody>
         </table>
-        <p style="margin-top:12px;">ネイティブパスでは、Claude が画面のスクリーンショットを受け取り、tool_use でアクション（クリック、入力、スクロール等）を返し、実行結果のスクリーンショットを tool_result として受け取る、というマルチターン会話を繰り返します。これにより高い精度と自己修正能力を実現しています。</p>
+        <p style="margin-top:12px;">ネイティブパスでは、AI がスクリーンショットを受け取り、ツール呼び出しでアクション（クリック、入力、スクロール等）を返し、実行結果のスクリーンショットを返送、というマルチターン会話を繰り返します。これにより高い精度と自己修正能力を実現しています。</p>
+        <p style="margin-top:8px;">アプローチに違いがあります: <strong>GPT-5.5</strong> は効率重視で最短経路を選びがち（例: Win+R で Run ダイアログ起動）、<strong>Claude Sonnet</strong> は人間らしくスタートメニューから検索して段階的に進めて確認多めです。シンプルなタスクは GPT-5.5、複雑な画面認識が必要なタスクは Sonnet が向いています。</p>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Autopilotパラメータ</h4>
         <table>
@@ -960,7 +962,7 @@
             <tr><td><strong>task（プロンプト）</strong></td><td>タスクの自然言語記述（例:「メモ帳を開いてHello Worldと入力して保存」）</td><td>（必須）</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>最大ステップ数。各ステップでスクリーンショット+LLM推論+アクション実行</td><td>30</td></tr>
             <tr><td><strong>timeoutSeconds</strong></td><td>タイムアウト秒数</td><td>300</td></tr>
-            <tr><td><strong>provider</strong></td><td>LLMプロバイダ。ブロック単位で上書き可能（例: <code>OpenAICompatible</code> でローカルLLMを使用）</td><td>Default（Anthropic）</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLMプロバイダ。<code>Default</code>はAI設定の「AIオートパイロット」セクションで選択したプロバイダ（Anthropic または OpenAI）。ブロック単位で <code>Anthropic</code> / <code>OpenAI</code> / <code>OpenAICompatible</code> 等に上書き可能</td><td>Default</td></tr>
             <tr><td><strong>model</strong></td><td>モデルID。ブロック単位で上書き可能（例: <code>gemma4:26b</code>）</td><td>（空 = AI設定に従う）</td></tr>
             <tr><td><strong>outputVariable</strong></td><td>結果（True/False）を格納する変数</td><td>AutopilotResult</td></tr>
           </tbody>
@@ -1005,20 +1007,25 @@
         <table>
           <thead><tr><th>用途</th><th>推奨モデル</th><th>理由</th></tr></thead>
           <tbody>
-            <tr><td><strong>AI Autopilot（最高精度）</strong></td><td>Claude Opus 4.6</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。</td></tr>
-            <tr><td><strong>AI Autopilot（コスパ推奨）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。高速で十分な精度。Opusの数分の一のコスト。</td></tr>
+            <tr><td><strong>AI Autopilot（速度・コスト優先）</strong> <span class="badge badge-new" style="font-size:0.7em;">NEW</span></td><td>OpenAI GPT-5.5</td><td>built-in Computer Use 対応。Sonnet比 約1.3倍速・1/5コスト。OpenAI Tier 1 から利用可。シンプルな定型タスクに最適。</td></tr>
+            <tr><td><strong>AI Autopilot（精度・安定優先）</strong></td><td>Claude Sonnet 4.6</td><td>Computer Use API ネイティブ対応。長期運用実績豊富、段階的に状態確認しながら進めるアプローチで複雑タスクに強い。</td></tr>
+            <tr><td><strong>AI Autopilot（最高性能）</strong></td><td>Claude Opus 4.7</td><td>Computer Use API ネイティブ対応。最も高い精度と自己修正能力。長時間の複雑タスク向け。</td></tr>
+            <tr><td><strong>AI Autopilot（OpenAI 上位）</strong></td><td>computer-use-preview</td><td>OpenAI 専用調整モデル。Tier 3+ 必須（累計 $100 + 7日経過）。</td></tr>
             <tr><td><strong>AI Autopilot（ローカルLLM）</strong></td><td>Gemma 4 26B A4B / Qwen3-VL 8B</td><td>Ollama経由。API料金不要・オフライン動作。速度はGPU性能に依存。</td></tr>
-            <tr><td><strong>AIクリック / AIスマート待機 / AI OCR</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
-            <tr><td><strong>AI条件</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
+            <tr><td><strong>AIクリック / AIスマート待機 / AI OCR</strong></td><td>Claude Sonnet 4.6 / GPT-5.5 / Gemini 2.5 Pro / Llama 4 Scout</td><td>1回のVision API呼び出しで完結。どのVision対応モデルでも高精度。</td></tr>
+            <tr><td><strong>AI条件</strong></td><td>Gemini 2.5 Flash / GPT-5.5 mini</td><td>Yes/No判定のみ。高速・低コストモデルで十分。</td></tr>
             <tr><td><strong>AI指示（テキスト生成）</strong></td><td>任意（用途に応じて選択）</td><td>Vision不要ならGroqやローカルLLMも選択可。</td></tr>
           </tbody>
         </table>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Computer Use モデル設定</h4>
-        <p>AI Autopilotのネイティブパスで使用するClaudeモデルは、AI設定 &rarr;「AIオートパイロット」セクション &rarr;「モデル」で選択できます（Sonnet / Opus）。ブロックレベルの <code>model</code> パラメータで個別に上書きすることも可能です。</p>
+        <p>AI Autopilotのネイティブパスで使用するモデルは、AI設定 &rarr;「AIオートパイロット」セクション &rarr;「デフォルトモデル」で <strong>1 つの統合 ComboBox</strong> から選択します。Anthropic（Sonnet 4.6 / Opus 4.7）と OpenAI（GPT-5.5 / 5.4 / computer-use-preview）の中から、用途に応じてプロバイダ × モデルを一発で選択できます。ブロックレベルの <code>provider</code> / <code>model</code> パラメータで個別に上書きすることも可能です。</p>
 
         <div class="notice notice-info" style="margin-top:12px;">
-          <strong>モデル優先順位:</strong> (1) ブロックの <code>model</code> パラメータ &rarr; (2) AI設定の Computer Use モデル &rarr; (3) デフォルト: Claude Sonnet 4.6
+          <strong>モデル優先順位:</strong> (1) ブロックの <code>provider</code> + <code>model</code> パラメータ &rarr; (2) AI設定の「AIオートパイロット」デフォルトモデル &rarr; (3) デフォルト: Claude Sonnet 4.6（Anthropic）
+        </div>
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>OpenAI 利用時の注意:</strong> GPT-5.5 は Tier 1（$5+ 入金済）から利用可能ですが、<code>computer-use-preview</code> は Tier 3+（累計 $100 入金 + 7日経過）が必要です。また、OpenAI プロジェクトの「Allowed Models」ホワイトリストで対象モデルを許可する必要があります（Default project では <code>gpt-4o</code> しか許可されていないケースあり）。
         </div>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">ローカルLLMでAutopilotを使う</h4>
@@ -1102,7 +1109,7 @@
         </ol>
 
         <div class="notice notice-warning" style="margin-top:12px;">
-          <strong>AI Autopilotについて:</strong> AI Autopilotのネイティブパス（Computer Use API）は Anthropic Claude 専用です。ローカルLLMでは汎用パス（プロンプトベースJSON方式）で動作します。AIクリック・AI OCR・AIスマート待機・AI検証・AI条件は全プロバイダ（ローカルLLM含む）で利用可能です。
+          <strong>AI Autopilotについて:</strong> AI Autopilotのネイティブパス（Computer Use API）は <strong>Anthropic Claude</strong>（Sonnet/Opus）と <strong>OpenAI</strong>（GPT-5.5 / GPT-5.4 / computer-use-preview）の両方に対応しています。ローカルLLMでは汎用パス（プロンプトベースJSON方式）で動作します。AIクリック・AI OCR・AIスマート待機・AI検証・AI条件は全プロバイダ（ローカルLLM含む）で利用可能です。
         </div>
 
         <h3 id="ai-assistant">AIアシスタント</h3>
@@ -1158,7 +1165,7 @@
           <li>APIキーを入力</li>
           <li>「接続テスト」ボタンで接続を確認</li>
           <li>デフォルトプロバイダとモデルを選択</li>
-          <li>「AIオートパイロット」セクション:「モデル」でAutopilot用モデルを選択（Sonnet / Opus）</li>
+          <li>「AIオートパイロット」セクション:「デフォルトモデル」でAutopilot用モデルを統合 ComboBox から選択（Anthropic Sonnet 4.6 / Opus 4.7、または OpenAI GPT-5.5 / 5.4 / computer-use-preview）</li>
           <li>「セルフヒーリング」の有効/無効を設定</li>
           <li>「保存」をクリック</li>
         </ol>

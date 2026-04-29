@@ -420,10 +420,10 @@
         <table>
           <thead><tr><th>Provider</th><th>Default Model</th><th>Vision</th></tr></thead>
           <tbody>
-            <tr><td>OpenAI</td><td>gpt-4o</td><td>&#10003;</td></tr>
-            <tr><td>Anthropic</td><td>claude-sonnet-4-6</td><td>&#10003;</td></tr>
-            <tr><td>Google Gemini</td><td>gemini-2.5-pro</td><td>&#10003;</td></tr>
-            <tr><td>Groq</td><td>llama-3.3-70b</td><td>&#10007;</td></tr>
+            <tr><td>OpenAI</td><td>gpt-5.5 (default), gpt-5.5-mini, gpt-5.4, gpt-5.2, gpt-4.1, gpt-4o</td><td>&#10003;</td></tr>
+            <tr><td>Anthropic</td><td>claude-sonnet-4-6 (default), claude-opus-4-7, claude-haiku-4-5</td><td>&#10003;</td></tr>
+            <tr><td>Google Gemini</td><td>gemini-3-pro / 3-flash (Preview), gemini-2.5-pro / 2.5-flash</td><td>&#10003;</td></tr>
+            <tr><td>Groq</td><td>Llama 4 Scout 17B (multimodal), Llama 3.3 70B, Llama 3.1 8B</td><td>&#10003; (with Llama 4 Scout)</td></tr>
             <tr><td>Local LLM</td><td>User-specified</td><td>&#10003;</td></tr>
           </tbody>
         </table>
@@ -495,16 +495,18 @@
         <h3 id="ai-autopilot">AI Autopilot (Autonomous Agent)</h3>
         <p><strong>AiAutopilot</strong> takes a natural language task description and autonomously operates your computer &mdash; taking screenshots, deciding actions, and repeating until the task is complete.</p>
 
-        <h4 style="margin-top:16px;color:var(--text-primary);">Dual-Path Routing</h4>
-        <p>Autopilot automatically selects the best execution path based on the provider and model:</p>
+        <h4 style="margin-top:16px;color:var(--text-primary);">Dual-Provider Native Routing</h4>
+        <p>Autopilot automatically selects from 3 execution paths based on the provider and model. <strong>v2.0.6 adds OpenAI GPT-5.5 native path</strong>.</p>
         <table>
-          <thead><tr><th>Path</th><th>When</th><th>How It Works</th><th>Accuracy</th></tr></thead>
+          <thead><tr><th>Path</th><th>When</th><th>How It Works</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td><strong>Native Path</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API (multi-turn tool_use/tool_result)</td><td>High</td></tr>
-            <tr><td><strong>Generic Path</strong></td><td>All other providers + Haiku</td><td>Prompt-based JSON approach</td><td>Standard</td></tr>
+            <tr><td><strong>Anthropic Native Path</strong></td><td>Anthropic + Sonnet/Opus</td><td>Claude Computer Use API (multi-turn tool_use/tool_result)</td><td>High accuracy, well-proven stability</td></tr>
+            <tr><td><strong>OpenAI Native Path</strong> <span class="badge badge-new" style="font-size:0.7em;">NEW</span></td><td>OpenAI + GPT-5.5 / GPT-5.4 / computer-use-preview</td><td>OpenAI Responses API (stateless continuation via previous_response_id)</td><td>Faster (~1.3x) and cheaper (~5x) vs. Sonnet</td></tr>
+            <tr><td><strong>Generic Path</strong></td><td>All other providers + Anthropic Haiku</td><td>Prompt-based JSON approach</td><td>Standard</td></tr>
           </tbody>
         </table>
-        <p style="margin-top:12px;">The native path sends screenshots to Claude, receives tool_use actions (click, type, scroll, etc.), executes them, and sends the result screenshot back as tool_result &mdash; enabling high accuracy and self-correction through multi-turn conversation.</p>
+        <p style="margin-top:12px;">Native paths send screenshots to the AI, receive tool calls (click, type, scroll, etc.), execute them, and return the resulting screenshot &mdash; a multi-turn conversation enabling high accuracy and self-correction.</p>
+        <p style="margin-top:8px;">Approach differs by provider: <strong>GPT-5.5</strong> tends to take the shortest path (e.g., Win+R Run dialog), while <strong>Claude Sonnet</strong> behaves more human-like, navigating the Start menu step-by-step with visual confirmation. Pick GPT-5.5 for simple repetitive tasks, Sonnet for complex screen recognition.</p>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Parameters</h4>
         <table>
@@ -513,7 +515,7 @@
             <tr><td><strong>task (prompt)</strong></td><td>Natural language task (e.g., "Open Notepad, type Hello World, and save")</td><td>(required)</td></tr>
             <tr><td><strong>maxSteps</strong></td><td>Maximum steps (each step = screenshot + LLM + action)</td><td>30</td></tr>
             <tr><td><strong>timeoutSeconds</strong></td><td>Timeout in seconds</td><td>300</td></tr>
-            <tr><td><strong>provider</strong></td><td>LLM provider. Can be overridden per block (e.g., <code>OpenAICompatible</code> for local LLMs)</td><td>Default (Anthropic)</td></tr>
+            <tr><td><strong>provider</strong></td><td>LLM provider. <code>Default</code> uses the provider selected in AI Settings &rarr; "AI Autopilot" section (Anthropic or OpenAI). Can be overridden per block: <code>Anthropic</code> / <code>OpenAI</code> / <code>OpenAICompatible</code> etc.</td><td>Default</td></tr>
             <tr><td><strong>model</strong></td><td>Model ID. Can be overridden per block (e.g., <code>gemma4:26b</code>)</td><td>(empty = use AI Settings)</td></tr>
             <tr><td><strong>outputVariable</strong></td><td>Result variable (True/False)</td><td>AutopilotResult</td></tr>
           </tbody>
@@ -558,20 +560,25 @@
         <table>
           <thead><tr><th>Use Case</th><th>Recommended Model</th><th>Reason</th></tr></thead>
           <tbody>
-            <tr><td><strong>Autopilot (Best Accuracy)</strong></td><td>Claude Opus 4.6</td><td>Native Computer Use API. Highest accuracy and self-correction.</td></tr>
-            <tr><td><strong>Autopilot (Best Value)</strong></td><td>Claude Sonnet 4.6</td><td>Native Computer Use API. Fast with good accuracy at a fraction of the cost.</td></tr>
+            <tr><td><strong>Autopilot (Speed & Cost)</strong> <span class="badge badge-new" style="font-size:0.7em;">NEW</span></td><td>OpenAI GPT-5.5</td><td>Built-in Computer Use. ~1.3x faster, ~5x cheaper than Sonnet. Available from OpenAI Tier 1. Best for simple repetitive tasks.</td></tr>
+            <tr><td><strong>Autopilot (Accuracy & Stability)</strong></td><td>Claude Sonnet 4.6</td><td>Native Computer Use API. Long production track record; step-by-step verification approach excels at complex tasks.</td></tr>
+            <tr><td><strong>Autopilot (Top Performance)</strong></td><td>Claude Opus 4.7</td><td>Native Computer Use API. Highest accuracy and self-correction. For long, complex tasks.</td></tr>
+            <tr><td><strong>Autopilot (OpenAI Premium)</strong></td><td>computer-use-preview</td><td>OpenAI's specialized Computer Use model. Requires Tier 3+ (cumulative $100 spend + 7 days).</td></tr>
             <tr><td><strong>Autopilot (Local LLM)</strong></td><td>Gemma 4 26B A4B / Qwen3-VL 8B</td><td>Via Ollama. No API costs, works offline. Speed depends on GPU.</td></tr>
-            <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-4o / Gemini 2.5 Pro</td><td>Single Vision API call. Any Vision-capable model works well.</td></tr>
-            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.5 Flash / GPT-4o mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
+            <tr><td><strong>AiClick / AiSmartWait / AiOcr</strong></td><td>Claude Sonnet 4.6 / GPT-5.5 / Gemini 2.5 Pro / Llama 4 Scout</td><td>Single Vision API call. Any Vision-capable model works well.</td></tr>
+            <tr><td><strong>BoolAiCondition</strong></td><td>Gemini 2.5 Flash / GPT-5.5 mini</td><td>Simple Yes/No judgment. Fast, low-cost models suffice.</td></tr>
             <tr><td><strong>AiInstruction (Text)</strong></td><td>Any (per your needs)</td><td>No Vision required &mdash; Groq or local LLMs are also valid.</td></tr>
           </tbody>
         </table>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Computer Use Model Setting</h4>
-        <p>The Claude model for Autopilot's native path can be set at: AI Settings &rarr; "AI Autopilot" section &rarr; "Model" (Sonnet / Opus). You can also override per-block with the <code>model</code> parameter.</p>
+        <p>The native-path model is selected from a single unified ComboBox at: AI Settings &rarr; "AI Autopilot" section &rarr; "Default Model". Pick from Anthropic (Sonnet 4.6 / Opus 4.7) or OpenAI (GPT-5.5 / 5.4 / computer-use-preview) in one selection. You can also override per-block with the <code>provider</code> and <code>model</code> parameters.</p>
 
         <div class="notice notice-info" style="margin-top:12px;">
-          <strong>Model Priority:</strong> (1) Block-level <code>model</code> parameter &rarr; (2) Computer Use Model setting &rarr; (3) Default: Claude Sonnet 4.6
+          <strong>Model Priority:</strong> (1) Block-level <code>provider</code> + <code>model</code> parameters &rarr; (2) AI Settings "AI Autopilot" Default Model &rarr; (3) Default: Claude Sonnet 4.6 (Anthropic)
+        </div>
+        <div class="notice notice-warning" style="margin-top:12px;">
+          <strong>OpenAI Note:</strong> GPT-5.5 is available from Tier 1 ($5+ spent), but <code>computer-use-preview</code> requires Tier 3+ (cumulative $100 + 7 days). Also, the OpenAI project's "Allowed Models" whitelist must include the target model (some Default projects only permit <code>gpt-4o</code>).
         </div>
 
         <h4 style="margin-top:16px;color:var(--text-primary);">Using Autopilot with Local LLMs</h4>
@@ -655,7 +662,7 @@
         </ol>
 
         <div class="notice notice-warning" style="margin-top:12px;">
-          <strong>About AI Autopilot:</strong> The native path (Computer Use API) is Anthropic Claude exclusive. Local LLMs use the generic path (prompt-based JSON). AiClick, AiOcr, AiSmartWait, AiValidate, and BoolAiCondition all work with any provider including local LLMs.
+          <strong>About AI Autopilot:</strong> The native path (Computer Use API) supports both <strong>Anthropic Claude</strong> (Sonnet/Opus) and <strong>OpenAI</strong> (GPT-5.5 / GPT-5.4 / computer-use-preview). Local LLMs use the generic path (prompt-based JSON). AiClick, AiOcr, AiSmartWait, AiValidate, and BoolAiCondition all work with any provider including local LLMs.
         </div>
 
         <h3>AI Assistant</h3>
@@ -678,7 +685,7 @@
           <li>Enter API keys for each provider</li>
           <li>Test connectivity</li>
           <li>Select default provider and model</li>
-          <li>"AI Autopilot" section: Choose the model for Autopilot (Sonnet / Opus)</li>
+          <li>"AI Autopilot" section: pick "Default Model" from the unified ComboBox (Anthropic Sonnet 4.6 / Opus 4.7, or OpenAI GPT-5.5 / 5.4 / computer-use-preview)</li>
           <li>Enable/disable Self-Healing</li>
           <li>Save</li>
         </ol>
